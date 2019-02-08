@@ -1,0 +1,42 @@
+body{
+    background-color: #F4F7F6;
+    position: relative;
+    box-sizing: border-box;
+
+}
+
+#add_class_room{
+  background: #f7882f;
+  color:#f7c331;
+  position: absolute;
+  left: 78%;
+  top: 10%;
+}
+#add_course{
+  background: #f7882f;
+  color:#f7c331;
+  position: absolute;
+  left: 77%;
+  top: 10%;
+}
+.navs_pages{
+  padding-top: 50px;
+}
+.navs_pages .nav-link {
+  position: relative;
+  left: 600px;
+}
+.img-circle {
+width: 200px;
+height: 200px;
+background-size: cover;
+display: block;
+border-radius: 100px;
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+align-self: center;
+background-color: orange;
+}
+.card-title{
+  padding-left: 80px;
+}

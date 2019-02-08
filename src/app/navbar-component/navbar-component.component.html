@@ -1,0 +1,57 @@
+<!-- navbar parent start-->
+	<nav class="navbar navbar-expand-sm fixed-top mainNav" style="background-color:#dcc7aa;color:#6b7a8f">
+		<!-- logo -->
+		<a class="navbar-brand" href="#" style="margin:auto 2.5%">
+		    <img src="ninja.png" alt="Logo" >
+		</a>
+
+
+
+		<!-- search form -->
+		<form class="form-inline" action="" style="width:35%;margin:auto 2.5%">
+			<input type="text" name="searchword" class="form-control mr-sm-2" placeholder="Search" style="width:75%;">
+			<button class="btn" type="submit" >Search</button>
+		</form>
+		<!-- navbar-->
+		<ul class="navbar-nav mr-auto d-inline-flex" style="width:40%;position:relative;left: 100px; ">
+			<!-- Profile Image -->
+			<li class="nav-item flex-fill" >
+				<a class="nav-link" href=""><img src="man.png" alt="Logo" style="margin:auto 8px;">profile</a>
+			</li>
+			<!-- Rank -->
+			<li class="nav-item navbar-text flex-fill" >
+				rank: 1000
+			</li>
+
+			<!-- notifications -->
+			<li class="nav-item dropdown flex-fill" >
+				<a class="nav-link dropdown-toggle flex-fill" href="" data-toggle="dropdown">notifications</a>
+				<div class="dropdown-menu dropdown">
+					<a class="dropdown-item">not1</a>
+					<a class="dropdown-item">not2</a>
+					<a class="dropdown-item">not3</a>
+				</div>
+			</li>
+			<!-- Categories -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">categories</a>
+				<div class="dropdown-menu dropdown">
+					<a class="dropdown-item">cat1</a>
+					<a class="dropdown-item">cat2</a>
+					<a class="dropdown-item">cat3</a>
+				</div>
+			</li>
+			<!-- Settings -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">settings</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item">s1</a>
+					<a class="dropdown-item">s2</a>
+					<a class="dropdown-item">s3</a>
+					<a class="dropdown-item" (click)="logoutUser()">logout</a>
+				</div>
+			</li>
+		</ul>
+
+	</nav>
+	<!-- navbar end-->

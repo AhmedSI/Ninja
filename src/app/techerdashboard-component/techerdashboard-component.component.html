@@ -1,0 +1,126 @@
+<app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component>
+<!-- nav pages start -->
+	<section class="navs_pages">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a class="nav-link active" data-toggle="tab" href="#home">My Courses</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#menu1">My Classrooms</a>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane container active" id="home">
+				<div class="container">
+					<button id="add_course" type="button" class="btn" data-toggle="modal" data-target="#myModal">
+						<i class="fas fa-plus"></i>
+						Creat New Course
+					</button>
+					<div class="modal fade" id="myModal">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">New Course Creation</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								<!-- Modal body -->
+								<div class="modal-body">
+									<form #courseForm="ngForm" (ngSubmit)="addCourse(courseForm)">
+										<label for="New_course_name">Course Name</label>
+										<input id="New_course_name" type="text"  value="" placeholder="Course Name" required name="title" [(ngModel)]="newCourse.title">
+										<br>
+										<p>                         ---------------------------------------------------</p>
+										<label for="New_course_detailed_title">Detailed Title</label>
+										<input id="New_course_detailed_title" type="text" value="" placeholder="Course Name" required name="detailed_title" [(ngModel)]="newCourse.detailed_title">
+										<br>
+										<p>                         ---------------------------------------------------</p>
+										<label for="New_course_cat">Category</label>
+										<input id="New_course_cat" type="text" value="" placeholder="Course Name" required name="category" [(ngModel)]="newCourse.category">
+										<br>
+										<p>                         ---------------------------------------------------</p>
+										<label for="New_course_level">Level as number</label>
+										<input id="New_course_level" type="text" value="" placeholder="Course Name" required name="level" [(ngModel)]="newCourse.level">
+										<br>
+										<p>                         ---------------------------------------------------</p>
+										<label for="New_course_description">Course Description</label>
+										<textarea id="New_course_description" name="name" rows="8" cols="40" placeholder="Course Description"  name="description" [(ngModel)]="newCourse.description"></textarea>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+											<input type="submit" value="Creat Course" class="btn btn-dark">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div *ngFor = "let course of courses" class="col-md-12 col-lg-6 col-xl-4">
+							<div class="item">
+								<div class="card mb-2">
+									<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+									alt="Card image cap">
+									<div class="card-body">
+										<a href="#"><h4 class="card-title">{{course.title}}</h4></a>
+										<p class="card-text">{{course.description}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane container fade" id="menu1">
+				<div class="container">
+					<!-- <span class="badge">Suggested Courses</span> -->
+					<button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
+						<i class="fas fa-plus"></i>
+						Creat Classroom
+					</button>
+					<div class="modal fade" id="myModal2">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">New Classroom Creation</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								<!-- Modal body -->
+								<div class="modal-body">
+									<form #classroomForm="ngForm" (ngSubmit)="addClassroom(classroomForm)">
+										<label for="New_classroom_name">Classroom Name</label>
+										<input id="New_classroom_name" type="text"  value="" placeholder="classroom Name" required name="title" [(ngModel)]="newClassroom.classroomName">
+										<br>
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+											<input type="submit" value="Creat Classrom" class="btn btn-dark">
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div  *ngFor = "let classroom of classrooms" class="col-md-12 col-lg-6 col-xl-4">
+							<div class="item">
+								<div class="card mb-2">
+									<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+									alt="Card image cap">
+									<div class="card-body">
+										<a href="#"><h4 class="card-title">{{classroom.classroomName}}</h4></a>
+										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+<app-footer-component></app-footer-component>

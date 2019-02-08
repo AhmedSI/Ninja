@@ -1,0 +1,18 @@
+.mainNav a, .mainNav button{
+    color: #6b7a8f;
+}
+.mainNav .btn{
+    background-color:#f7882f;
+    color: #f7c331;
+}
+.mainNav .btn:hover{
+    background-color:#f7c331;
+    color:#f7882f;
+    font-size: 20px;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}

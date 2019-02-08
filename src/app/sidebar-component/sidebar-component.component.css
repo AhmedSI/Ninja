@@ -1,0 +1,55 @@
+.sidebarMenu {
+
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    transition: all .3s ease-in;
+    width: 15em;
+    height: 100%;
+    background:rgb(107,122,143);
+    z-index: 2;
+}
+
+.sidebarMenu ul {
+    position: sticky;
+    top: 3.5em;;
+    padding: 0;
+    width: 15em;
+}
+
+.Menu {
+    display: inline-block;
+    width: 100%;
+    height: 4em;
+    color: #f7c331;
+    text-decoration: none;
+}
+
+.Menu h6 {
+    position: absolute;
+    margin-left: 70px;
+    margin-top: -20px;
+}
+
+.Menu i{
+    padding-left: 7%;
+    padding-top:25px;
+}
+
+.sidebarMenu {
+    width: 4em;
+    left: 0;
+}
+
+.Menu:hover{
+    text-decoration: none;
+    background-color: #DCC7AA;
+    color:rgb(107,122,143);
+}
+
+.sidebarMenu:hover {
+    width: 15em;
+    box-shadow:0 0 40px #6b7a8f;
+    opacity: 0.9;
+
+}

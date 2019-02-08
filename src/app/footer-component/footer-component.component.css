@@ -1,0 +1,37 @@
+footer {
+    position: absolute;
+    margin-bottom: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    background: rgba(220,199,170,0.6);
+    padding-bottom: 25px;
+}
+
+footer h6{
+  color: #F7882F;
+}
+footer p{
+  color:  #6B7A8F;
+}
+#team_pro{
+  color: #F7882F;
+}
+.Top_Courses a{
+  color: #6B7A8F ;
+}
+.Most_Rated a{
+  color: #6B7A8F;
+}
+.categories a{
+  color: #6B7A8F;
+}
+#social_icons a {
+  color: #6B7A8F;
+  font-size: 20px;
+  padding: 10px;
+  transition: all .5s ease;
+}
+#social_icons a:hover {
+  color: #F7882F;
+}

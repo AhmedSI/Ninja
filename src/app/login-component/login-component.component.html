@@ -1,0 +1,37 @@
+<div class="login-block" style ="background-image: url('assets/school-supplies.jpg')">
+        <div class="container">
+          <!-- <div class="row "> -->
+            <!-- <div class="col login-sec"> -->
+              <h2 id='loginNow' class="text-center">Login Now</h2>
+              <hr>
+              <div class= row >
+              <form #loginForm="ngForm" (ngSubmit)="enterUser(loginForm)" class="login-form col-xl">
+                <div class="form-group">
+                  <label class="text-uppercase">email</label>
+                  <input type="email" class="form-control" placeholder="Enter your email" 
+                  id="mail" name="email" ngModel>
+                  
+                  <br>
+                </div>
+      
+                <div class="form-group">
+                  <label class="text-uppercase">Password</label>
+                  <input type="password"  class="form-control" placeholder="Password" id="passwordInput" name="password" ngModel>
+                  
+                  
+      
+                  <input type="checkbox" id="checkBoxPassword"> Show Password
+                  <br>
+                </div>
+      
+                <!-- <button class="btn btn-primary btn-lg btn-block btn-outline-success text-uppercase" type="submit" id="btnLogin"> login </button>   -->
+                <button class="btn" type="submit" class="btnLogin">Login</button>
+
+                <p>Not registered? <a routerLink="../register"> Register Now</a> </p>
+      
+                </form>
+              </div>
+              <!-- </div> -->
+            <!-- </div> -->      
+          </div>
+        </div>
