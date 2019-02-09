@@ -6,11 +6,14 @@ import { Classroom } from './Classroom';
 
 @Injectable()
 export class UserServiceService {
-	private baseUrl = 'http://localhost:8080';
+	//private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'https://graduation-server.herokuapp.com';
+
 
   constructor(private http: Http) { }
 
   registerUser(userData: User): Promise<User> {
+
     return this.http.post(this.baseUrl + '/auth/register?firstname='+userData.firstName+'&lastname='+userData.lastName+'&email='+userData.email+'&username='+userData.username+'&password='+userData.password+'&gender='+userData.gender+'&date_of_birth='+userData.dateOfBirth,userData)
       .toPromise().then(response => response.json() as User);
   }
