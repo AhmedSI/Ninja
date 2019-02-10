@@ -69,8 +69,17 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
       path: 'editprofile',
       component: EditprofileComponent
     },{
-      path: 'coursedashboard',
+      path: 'coursedashboard/:id',
       component: CoursedashboardComponentComponent
+    },{
+      path: 'classroomdashboard/:id',
+      component: ClassroomdashboardComponentComponent
+    },{
+      path: 'course/:id',
+      component: CoursehomeComponentComponent
+    },{
+      path: 'classroom/:id',
+      component: CoursehomeComponentComponent
     }])
   ],
   providers: [UserServiceService],

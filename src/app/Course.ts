@@ -1,4 +1,5 @@
 export class Course {
+  courseId: string;
   creator: string;
   title: string;
   detailed_title: string;

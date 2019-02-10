@@ -6,8 +6,8 @@ import { Classroom } from './Classroom';
 
 @Injectable()
 export class UserServiceService {
-	//private baseUrl = 'http://localhost:8080';
-  private baseUrl = 'https://graduation-server.herokuapp.com';
+	private baseUrl = 'http://localhost:8080';
+  //private baseUrl = 'https://graduation-server.herokuapp.com';
 
 
   constructor(private http: Http) { }
@@ -26,6 +26,12 @@ export class UserServiceService {
   addCourse(token: string,courseData: Course):Promise<string> {
     
     return this.http.post(this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
+  }
+
+  addCourseForClassroom(token: string,courseData: Course) : Promise<string>{
+
+    return this.http.post(this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
+
   }
 
   addClassroom(token: string,classroomData: Classroom):Promise<string> {

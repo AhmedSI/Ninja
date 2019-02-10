@@ -13,14 +13,17 @@ import { Router,ActivatedRoute} from '@angular/router';
 export class RegisterComponentComponent implements OnInit {
 
   newUser: User = new User();
-  token: string = "initial";
   constructor(
     private userService: UserServiceService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
+    if(localStorage.getItem('token')) this.router.navigate(['/home']);
+  }
+
+  login(): void {
+    this.router.navigate(['/login']);
   }
 
   addUser(userForm: NgForm): void {

@@ -1,6 +1,125 @@
 <app-navbar-component></app-navbar-component>
 <app-sidebar-component></app-sidebar-component>
 
+<div class="descriptionAndName">
+    <div class="container media">
+      <img src="https://olc-wordpress-assets.s3.amazonaws.com/uploads/2018/06/INSTRUCTIONAL-DESIGNER-WEBINAR-COURSE-DESIGN-01.png" class="align-self-center mr-3" style="width:150px">
+      <div class="media-body">
+        <strong id="courseName"> {{course.title}} </strong>
 
+        <!-- <h5 class="title">Description:</h5> -->
+        <p>{{course.detailed_title}}</p>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+
+  <form class="" action="index.html" method="post">
+
+
+    <div class="container course-container">
+
+      <h5 class="title">Creator:</h5>
+      <div class="container">
+        <div class="media border p-2">
+          <img src="https://www.3dprintingstudios.com/wp-content/uploads/2017/10/person-dummy.jpg" alt="teacher" class="mr-2 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h6>{{course.creator}}</h6>
+            <p>Lorem ipsum...</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <h5 class="title">What you will learn:</h5>
+      <div class="container">
+        <div class="col-11">
+          <input type="text" class="form-control" placeholder="New item">
+        </div>
+        <button type="button" name="button" class="add_what_u_will_learn"><i class="fas fa-plus-circle"></i>add</button>
+        <ul>
+          <li>first item <button type="button" name="button" class="remove_what_u_will_learn"><i class="fas fa-times"></i> remove</button></li>
+        </ul>
+      </div>
+      <br>
+
+      <div class="section">
+        <h6 class="title">Content:</h6>
+
+        <div class="container wrapper center-block">
+          <div class="col-11">
+            <input type="text" class="form-control" placeholder="New Section name">
+          </div>
+          <button type="button" name="button" class="add_new_sec"><i class="fas fa-plus-circle"></i>add</button>
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading active" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fas fa-caret-right" ></i>
+                    Section #1   <button type="button" name="button" class="remove_what_u_will_learn"><i class="fas fa-times"></i> remove section</button>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="container panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <button type="button" name="button" class="upload_lec"><i class="fas fa-upload"></i> upload</button>
+                  <ul class="lecturesList">
+                    <a href="#"><li>lecture #1</li></a><button type="button" name="button" class="remove_lec"><i class="fas fa-times"></i> remove </button>
+                    <a href="#"><li>lecture #2</li></a>
+                    <button type="button" name="button" class="remove_lec"><i class="fas fa-times"></i> remove </button>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" (click)=onClick()>
+                    <i class="fas fa-caret-right" ></i>
+                    Section #2 <button type="button" name="button" class="remove_what_u_will_learn"><i class="fas fa-times"></i>remove section</button>
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="container panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                  <button type="button" name="button" class="upload_lec"><i class="fas fa-upload"></i> upload</button>
+                  <ul class="lecturesList">
+                    <a href="#"><li>lecture #1</li></a><button type="button" name="button" class="remove_lec"><i class="fas fa-times"></i> remove </button>
+                    <a href="#"><li>lecture #2</li></a>
+                    <button type="button" name="button" class="remove_lec"><i class="fas fa-times"></i> remove </button>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="fas fa-caret-right" ></i>
+                    Section #3 <button type="button" name="button" class="remove_what_u_will_learn"><i class="fas fa-times"></i>remove section</button>
+                    <!-- <i class={{item3}}></i>  -->
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseThree" class="container panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <button type="button" name="button" class="upload_lec"><i class="fas fa-upload"></i> upload</button>
+                <div class="panel-body">
+                  <ul class="lecturesList">
+                    <a href="#"><li>lecture #1</li></a><button type="button" name="button" class="remove_lec"><i class="fas fa-times"></i> remove </button>
+                    <a href="#"><li>lecture #2</li></a>
+                    <button type="button" name="button" class="remove_lec"><i class="fas fa-times"></i>remove </button>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <input type="submit" name="Save" value="Save" class="save_edit">
+      </div>
+    </div>
+  </form>
 
 <app-footer-component></app-footer-component>
