@@ -11,11 +11,7 @@ main {
     align-items: center;
     flex: 1;
 }
-.owl-carousel .item{
 
-}
-.owl-carousel {
-}
 .top-carousel,.new-carousel{
   margin-top: 90px;
   margin-bottom:50px;
@@ -153,4 +149,21 @@ background-color: orange;
     margin-right: auto;
     width: 100%;
     margin-bottom: 5%;
+}
+
+
+.list-item {
+  width: 40%;
+  height: 40%;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.scroll { 
+  overflow:auto;
+  white-space: nowrap;
+  /* width: auto; */
 }

@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/router';
 import { UserServiceService } from '../user-service.service';
 import { Course } from '../Course';
+declare let $: any;
 
 @Component({
   selector: 'app-home-component',
   templateUrl: './home-component.component.html',
   styleUrls: ['./home-component.component.css']
 })
-export class HomeComponentComponent implements OnInit {
+export class HomeComponentComponent implements OnInit{
   token:string = "initial";
   topCourses:Course[];
   newCourses:Course[];
@@ -25,7 +26,6 @@ export class HomeComponentComponent implements OnInit {
     this.getNewCourses();
     this.getSuggestedCourses();
   }
-
   getTopCourses(){
     this.userService.topCourses()
     .then(courses =>{this.topCourses=courses;});

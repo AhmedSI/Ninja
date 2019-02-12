@@ -83,4 +83,10 @@ export class UserServiceService {
     return this.http.get(this.baseUrl + '/hot_courses').toPromise().then(response => response.json() as Course[]);
   }
 
+  getUserData(token: string):  Promise<User> {
+    return this.http.get(this.baseUrl + '/profile?token='+token)
+      .toPromise()
+      .then(response => response.json() as User);
+  }
+
 }

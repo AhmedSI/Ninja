@@ -27,7 +27,8 @@ export class LoginComponentComponent implements OnInit {
     this.userService.loginUser(loginForm.value.email,loginForm.value.password)
       .then(accesstoken => {        
         loginForm.reset();
-        this.token = accesstoken.substring(30,accesstoken.length);
+        // this.token = accesstoken.substring(30,accesstoken.length);
+        this.token=accesstoken;
         localStorage.setItem('token', this.token);
         console.log(this.token);
         this.router.navigate(['/home']);

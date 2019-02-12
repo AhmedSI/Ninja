@@ -21,6 +21,7 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { ProfileComponent } from './profile/profile.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

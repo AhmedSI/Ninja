@@ -3,52 +3,62 @@
 <!-- Courses start-->
 
   <!--Top Courses Carousel start-->
-      <div class="top-carousel">
+      <!-- <div class="top-carousel">
         <span class="badge">Top Courses</span>
-        <div class="owl-carousel owl-theme">
+          <div class="owl-carousel owl-theme">
 
           
-
-          
-
-        </div>
-      </div>
-    <!--Top Courses Carousel end-->
-    <div *ngFor = "let course of topCourses" class="item">
-      <div class="card mb-2">
-        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-          alt="Card image cap">
-        <div class="card-body">
-          <h4 class="card-title">{{course.title}}</h4>
-          <p class="card-text">{{course.description}}</p>
-          <a class="btn btn-primary">Enroll</a>
-        </div>
-      </div>
-    </div>
-    <hr>
-
-    <!--New Courses Carousel start-->
-      <div class="new-carousel">
-        <span class="badge">New Courses </span>
-        <div class="owl-carousel owl-theme">
-          
-
-          
-        </div>
-      </div>
-    <!--New Carousel end-->
-      <div *ngFor = "let course of newCourses" class="item">
-          <div class="card mb-2">
-            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-              alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title">{{course.title}}</h4>
-              <p class="card-text">{{course.description}}</p>
-              <a class="btn btn-primary">Enroll</a>
+            <div *ngFor = "let course of topCourses" class="item">
+              <div class="card mb-2">
+                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+                  alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{course.title}}</h4>
+                  <p class="card-text">{{course.description}}</p>
+                  <a class="btn btn-primary">Enroll</a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+      </div>
+    </div> -->
+  <!--Top Courses Carousel end-->
+
+   <div class="container">
+      <span class="badge">Top Courses</span>
+      <ul class="scroll">
+              <li *ngFor = "let course of topCourses" class="list-item">
+
+                  <div class="caption">
+                      <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+                    <h4>{{course.title}}</h4>
+                    <p>{{course.description}}</p>
+                    <a href="#"class="courseButton">Enroll</a>
+                  </div>
+
+            </li>
+      </ul>
+    </div>
+
     <hr>
+    
+    <div class="container">
+        <span class="badge">New Courses</span>
+        <ul class="scroll">
+                <li *ngFor = "let course of newCourses" class="list-item">
+  
+                    <div class="caption">
+                        <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+                      <h4>{{course.title}}</h4>
+                      <p>{{course.description}}</p>
+                      <a href="#"class="courseButton">Enroll</a>
+                    </div>
+  
+              </li>
+        </ul>
+      </div>
+      
+      <hr>
+
 
     <!--suggested courses-->
     <div class="container">
