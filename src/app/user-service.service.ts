@@ -6,15 +6,15 @@ import { Classroom } from './Classroom';
 
 @Injectable()
 export class UserServiceService {
-	private baseUrl = 'http://localhost:8080';
-  //private baseUrl = 'https://graduation-server.herokuapp.com';
+	//private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'https://graduation-server.herokuapp.com';
 
 
   constructor(private http: Http) { }
 
   registerUser(userData: User): Promise<User> {
 
-    return this.http.post(this.baseUrl + '/auth/register?firstname='+userData.firstName+'&lastname='+userData.lastName+'&email='+userData.email+'&username='+userData.username+'&password='+userData.password+'&gender='+userData.gender+'&date_of_birth='+userData.dateOfBirth,userData)
+    return this.http.post(this.baseUrl + '/auth/register?first_name='+userData.firstName+'&last_name='+userData.lastName+'&email='+userData.email+'&username='+userData.username+'&password='+userData.password+'&gender='+userData.gender+'&date_of_birth='+userData.dateOfBirth,userData)
       .toPromise().then(response => response.json() as User);
   }
 
@@ -68,4 +68,19 @@ export class UserServiceService {
   	return this.http.get(this.baseUrl + '/auth/logout?token='+token)
       .toPromise().then(response => response.text() as string);
   }
+
+  topCourses(): Promise<Course[]> {
+    return this.http.get(this.baseUrl + '/new_courses')
+      .toPromise()
+      .then(response => response.json() as Course[]);
+  }
+
+  newCourses(): Promise<Course[]> {
+    return this.http.get(this.baseUrl + '/hot_courses').toPromise().then(response => response.json() as Course[]);
+  }
+
+  suggestedCourses(): Promise<Course[]> {
+    return this.http.get(this.baseUrl + '/hot_courses').toPromise().then(response => response.json() as Course[]);
+  }
+
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/router';
+import { UserServiceService } from '../user-service.service';
+import { Course } from '../Course';
 
 @Component({
   selector: 'app-home-component',
@@ -7,12 +9,37 @@ import { Router,ActivatedRoute} from '@angular/router';
   styleUrls: ['./home-component.component.css']
 })
 export class HomeComponentComponent implements OnInit {
+  token:string = "initial";
+  topCourses:Course[];
+  newCourses:Course[];
+  suggestedCourses:Course[];
 
   constructor(
+  private userService:UserServiceService,
   private router: Router
   ) { }
 
   ngOnInit() {
+  	this.token = localStorage.getItem('token');
+    this.getTopCourses();
+    this.getNewCourses();
+    this.getSuggestedCourses();
   }
+
+  getTopCourses(){
+    this.userService.topCourses()
+    .then(courses =>{this.topCourses=courses;});
+  }
+
+  getNewCourses(){
+    this.userService.newCourses()
+    .then(courses =>{this.newCourses=courses;});
+  }
+
+  getSuggestedCourses(){
+    this.userService.suggestedCourses()
+    .then(courses =>{this.suggestedCourses=courses;});
+  }
+
 
 }

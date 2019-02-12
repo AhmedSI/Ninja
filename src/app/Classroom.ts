@@ -2,7 +2,7 @@ import { Course } from './Course';
 export class Classroom {
   classroomId :string;
   courses: Course[];
-  creator: string;
+  creatorId: string;
   classroomName: string;
   passCode: string; 
 }

@@ -7,251 +7,67 @@
         <span class="badge">Top Courses</span>
         <div class="owl-carousel owl-theme">
 
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
+          
 
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
+          
 
         </div>
       </div>
     <!--Top Courses Carousel end-->
-
+    <div *ngFor = "let course of topCourses" class="item">
+      <div class="card mb-2">
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+          alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">{{course.title}}</h4>
+          <p class="card-text">{{course.description}}</p>
+          <a class="btn btn-primary">Enroll</a>
+        </div>
+      </div>
+    </div>
     <hr>
 
     <!--New Courses Carousel start-->
       <div class="new-carousel">
         <span class="badge">New Courses </span>
         <div class="owl-carousel owl-theme">
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
+          
 
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Course Name</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                  card's content.</p>
-                <a class="btn btn-primary">Enroll</a>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     <!--New Carousel end-->
-
+      <div *ngFor = "let course of newCourses" class="item">
+          <div class="card mb-2">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h4 class="card-title">{{course.title}}</h4>
+              <p class="card-text">{{course.description}}</p>
+              <a class="btn btn-primary">Enroll</a>
+            </div>
+          </div>
+        </div>
     <hr>
 
     <!--suggested courses-->
     <div class="container">
       <span class="badge">Suggested Courses</span>
-        <div class="row">
-
-              <div class="col-md-12 col-lg-6 col-xl-4">
-            <!--div of the course .. -->
-            <div class="thumbnail">
-                <div class="caption">
-                    <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                  <h4>Course no.1</h4>
-                  <p>teacher's name</p>
-                  <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
-                  <a href="#"class="courseButton">see course</a>
-
-              </div>
+      <div class="row">
+        <div *ngFor = "let course of suggestedCourses" class="col-md-12 col-lg-6 col-xl-4">
+          <!--div of the course .. -->
+          <div class="thumbnail">
+            <div class="caption">
+                <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+              <h4>{{course.title}}</h4>
+              <p>{{course.creator}}</p>
+              <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
+              <a href="#"class="courseButton">see course</a>
             </div>
           </div>
-
-              <!-- <div class="col-lg-4"> -->
-                  <div class="col-md-12 col-lg-6 col-xl-4">
-
-                <div class="thumbnail">
-                    <div class="caption">
-                        <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                        <h4>Course no.2</h4>
-                        <p>teacher's name</p>
-                        <a href="#"class="courseButton">see course</a>
-
-                  </div>
-                </div>
-              </div>
-
-                  <!-- <div class="col-lg-4"> -->
-                      <div class="col-md-12 col-lg-6 col-xl-4">
-                          <div class="thumbnail">
-                            <div class="caption">
-                                <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                                <h4>Course no.3</h4>
-                                <p>teacher's name</p>
-                                <a href="#"class="courseButton">see course</a>
-                                <!-- <a routerLink="/student/courses"> <button type="button" class="btn btn-info">see course</button></a> -->
-
-
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12 col-lg-6 col-xl-4">
-                      <div class="thumbnail">
-                        <div class="caption">
-                            <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                            <h4>Course no.4</h4>
-                            <p>teacher's name</p>
-                            <a href="#"class="courseButton">see course</a>
-
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-12 col-lg-6 col-xl-4">
-                  <div class="thumbnail">
-                    <div class="caption">
-                        <img class="courseImg"src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                        <h4>Course no.5</h4>
-                        <p>teacher's name</p>
-                        <a href="#" class="courseButton">see course</a>
-            </div>
-          </div>
-
-
-    </div><!--/row-->
-
-  </div><!--/container -->
+        </div>
+      </div><!--/row-->
+    </div><!--/container -->
 
   <!--end of suggested courses-->
 <app-footer-component></app-footer-component>
