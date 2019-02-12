@@ -31,9 +31,8 @@
             "scripts": [
             "./node_modules/jquery/dist/jquery.min.js",  
               "./node_modules/popper.js/dist/umd/popper.min.js",  
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "OwlCarousel2-2.3.4/doc/assets/vendors/jquery.min.js"
-              ]
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
