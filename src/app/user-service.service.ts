@@ -3,6 +3,7 @@ import { User } from './User';
 import { Headers, Http } from '@angular/http';
 import { Course } from './Course';
 import { Classroom } from './Classroom';
+import { Section } from './Section';
 
 @Injectable()
 export class UserServiceService {
@@ -60,7 +61,7 @@ export class UserServiceService {
 
     
   addChild(token: string,childData: User):Promise<string> {
-    return this.http.post(this.baseUrl + '/parent/addchild?token='+token+ '&firstname='+childData.firstName+'&date_of_birth='+childData.dateOfBirth+'&email='+childData.email+'&password='+childData.password+'&username='+childData.username+'&gender='+1+'&grade='+childData.grade,childData).toPromise().then(response => response.text() as string);
+    return this.http.post(this.baseUrl + '/parent/add_child?token='+token+ '&first_name='+childData.firstName+'&date_of_birth='+childData.dateOfBirth+'&email='+childData.email+'&password='+childData.password+'&username='+childData.username+'&gender='+1+'&grade='+childData.grade,childData).toPromise().then(response => response.text() as string);
   }
 
 
@@ -87,6 +88,19 @@ export class UserServiceService {
     return this.http.get(this.baseUrl + '/profile?token='+token)
       .toPromise()
       .then(response => response.json() as User);
+  }
+
+
+  addSectionForCourse(token: string,courseId:string,section:Section):  Promise<string>{
+    
+    return this.http.post(this.baseUrl + '/teacher/section?token='+token+ '&course_id='+courseId+ '&section_title='+section.title,section).toPromise().then(response => response.text() as string);
+
+  }
+
+  deleteSection(id: Number,token:string):  Promise<string> {
+    return this.http.delete(this.baseUrl + '/teacher/section?token='+token+'&section_id='+id)
+      .toPromise()
+      .then(response => response.json() as string);
   }
 
 }

@@ -1,3 +1,5 @@
+import { Section } from './Section';
+
 export class Course {
   courseId: string;
   creator: string;
@@ -6,4 +8,5 @@ export class Course {
   description: string;
   category: string;
   level:Number;
+  sections:Section[]
 }
