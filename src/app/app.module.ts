@@ -20,6 +20,7 @@ import { CoursedashboardComponentComponent } from './coursedashboard-component/c
 import { OwlModule } from 'ngx-owl-carousel';
 import { ProfileComponent } from './profile/profile.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
+import { MyCoursesComponent } from './my-courses/my-courses.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
     ClassroomdashboardComponentComponent,
     CoursedashboardComponentComponent,
     ProfileComponent,
-    EditprofileComponent 
+    EditprofileComponent,
+    MyCoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,9 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
     },{
       path: 'course/:id',
       component: CoursehomeComponentComponent
+    },{
+      path: 'myCourses',
+      component: MyCoursesComponent
     },{
       path: 'classroom/:id',
       component: CoursehomeComponentComponent

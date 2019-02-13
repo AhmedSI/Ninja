@@ -1,6 +1,8 @@
+import { User } from "./User";
+
 export class Course {
   courseId: string;
-  creator: string;
+  publisher: User;
   title: string;
   detailed_title: string;
   description: string;

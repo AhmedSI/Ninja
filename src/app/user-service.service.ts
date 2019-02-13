@@ -44,7 +44,7 @@ export class UserServiceService {
       .then(response => response.json() as Course[]);
 
   }
-
+b
   getClassrooms(token: string):  Promise<Classroom[]> {
     return this.http.get(this.baseUrl + '/teacher/classrooms?token='+token)
       .toPromise()
@@ -60,7 +60,7 @@ export class UserServiceService {
 
     
   addChild(token: string,childData: User):Promise<string> {
-    return this.http.post(this.baseUrl + '/parent/addchild?token='+token+ '&firstname='+childData.firstName+'&date_of_birth='+childData.dateOfBirth+'&email='+childData.email+'&password='+childData.password+'&username='+childData.username+'&gender='+1+'&grade='+childData.grade,childData).toPromise().then(response => response.text() as string);
+    return this.http.post(this.baseUrl + '/parent/add_child?token='+token+ '&first_name='+childData.firstName+'&date_of_birth='+childData.dateOfBirth+'&email='+childData.email+'&password='+childData.password+'&username='+childData.username+'&gender='+1+'&grade='+childData.grade,childData).toPromise().then(response => response.text() as string);
   }
 
 
@@ -89,4 +89,23 @@ export class UserServiceService {
       .then(response => response.json() as User);
   }
 
+  getCourseById(token:string,courseId:string): Promise<Course> {
+    return this.http.get(this.baseUrl + '/course?token='+token+'&course_id='+courseId)
+      .toPromise()
+      .then(response => response.json() as Course);
+  }
+
+  enrollIntoCourse(token:string,course:Course): Promise<Course> {
+    console.log(this.baseUrl + '/student/enroll_course?token='+token+'&course_id='+course.courseId,course);
+    return this.http.post(this.baseUrl + '/student/enroll_course?token='+token+'&course_id='+course.courseId,course)
+      .toPromise()
+      .then(response => response.json() as Course);
+  }
+
+  getEnrolledCourses(token:string):Promise<Course>{
+    return this.http.get(this.baseUrl + '/student/courses?token='+token)
+    .toPromise()
+    .then(response => response.json() as Course);
+
+  }
 }
