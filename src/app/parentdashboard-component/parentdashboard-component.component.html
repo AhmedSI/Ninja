@@ -88,16 +88,47 @@
 				<div class="container">
 					<!-- <span class="badge">Suggested Courses</span> -->
 					<div class="row">
-						
+						<div class="modal fade" id="myModal2">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<!-- Modal Header -->
+									<div class="modal-header">
+										<h4 class="modal-title">Enroll</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+									<!-- Modal body -->
+									<div class="modal-body">
+										<small>Select the Child you want to enroll to :</small>
+
+										<form  #enrollForm="ngForm" (ngSubmit)="enrollChildInCourse(enrollForm)">
+											<input type="text" id="course_name_style" class="form-control scrollabletextbox" name="course-name" value="course name here" disabled>
+											<hr>
+											<div class="row">
+												<label for="gender">child:</label>
+										<select  name="id" [(ngModel)]="chosenChild.firstName">
+											
+											<option  *ngFor="let child of children" value="{{child.firstName}}" >{{child.firstName}}</option>
+										</select>
+
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+												<input type="submit" value="Enroll" class="btn btn-dark">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div *ngFor="let course of courses" class="col-md-12 col-lg-6 col-xl-4">
 							<div class="item">
 								<div class="card mb-2">
-									<img  class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+									<img  class="card-img-top" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png"
 									alt="Card image cap">
 									<div class="card-body">
-										<a href="#"><h4 class="card-title"></h4></a>
-										<p class="card-text"></p>
-										<a href="#" class="btn btn-primary">Enroll Child</a>
+										<a routerLink="/course/{{course.courseId}}"><h4 class="card-title">{{course.title}}</h4></a>
+										<p class="card-text">{{course.description}}</p>
+										<button type="button" name="button" class="btn btn-primary enroll_child_but" data-toggle="modal" data-target="#myModal2" (click) = "detectCourse([course.courseId])">Enroll Child</button>
 									</div>
 								</div>
 							</div>
@@ -110,4 +141,3 @@
 		</div>
 	</section>
 
-<app-footer-component></app-footer-component>

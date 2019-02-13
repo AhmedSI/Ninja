@@ -14,10 +14,13 @@ export class HomeComponentComponent implements OnInit{
   topCourses:Course[];
   newCourses:Course[];
   suggestedCourses:Course[];
+  enrolledCourses:Course;
+  course:Course=new Course();
+
 
   constructor(
   private userService:UserServiceService,
-  private router: Router
+  private router: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -39,6 +42,12 @@ export class HomeComponentComponent implements OnInit{
   getSuggestedCourses(){
     this.userService.suggestedCourses()
     .then(courses =>{this.suggestedCourses=courses;});
+  }
+
+  enroll(course:Course){
+    // console.log(course);
+    this.userService.enrollIntoCourse(this.token,course)
+    .then(course =>{this.enrolledCourses=course;})
   }
 
 

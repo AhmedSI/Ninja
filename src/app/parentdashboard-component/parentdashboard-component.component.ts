@@ -14,7 +14,10 @@ export class ParentdashboardComponentComponent implements OnInit {
 	token: string = "initial";
 	children : User[];
 	courses: Course[];
-	newChild: User = new User();;
+	newChild: User = new User();
+  courseName :string ="";
+  courseId : Number;
+  chosenChild: User = new User();
   constructor(private userService: UserServiceService) { }
 
   ngOnInit() {
@@ -38,5 +41,18 @@ export class ParentdashboardComponentComponent implements OnInit {
   		childForm.reset();
         this.newChild = new User();
       });
+  }
+
+  detectCourse(id:Number){
+    this.courseId = id[0];
+    console.log(this.courseId);
+
+  }
+
+  enrollChildInCourse(enrollForm:NgForm){
+     this.userService.enrollChildInCourse(this.chosenChild,this.courseId,this.token).then(enrollment => { 
+      enrollForm.reset();
+        this.chosenChild = new User();
+      }); 
   }
 }

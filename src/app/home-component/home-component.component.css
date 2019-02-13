@@ -141,6 +141,8 @@ background-color: orange;
 
 .caption h4{
     color: #F7882F;
+    position: relative;
+
 }
 
 .courseImg{

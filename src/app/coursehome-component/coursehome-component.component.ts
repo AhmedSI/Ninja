@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Course } from '../Course';
+import { Section } from '../Section';
+import { UserServiceService } from '../user-service.service';
+import { Router,ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-coursehome-component',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursehomeComponentComponent implements OnInit {
 
-  constructor() { }
+  token: string = "initial";
+  courseID:string=this.router.snapshot.paramMap.get("id");
+  course:Course= new Course();
+  sections:Section[];
+  constructor(
+    private userService: UserServiceService,
+    private router: ActivatedRoute
+
+  ) { }
 
   ngOnInit() {
+    this.token = localStorage.getItem('token');
+    this.getCourseById();
+    // this.course.courseId=this.router.snapshot.paramMap.get("id");
   }
 
-}
+  getCourseById(){
+  	this.userService.getCourseById(this.token,this.courseID)
+      .then(course => {this.course = course; this.sections =course.sections});
+      console.log("creator name:"+this.course.publisher);
+    }
+  }  

@@ -1,5 +1,6 @@
 <app-navbar-component></app-navbar-component>
 <app-sidebar-component></app-sidebar-component>
+
 <!-- Courses start-->
 
   <!--Top Courses Carousel start-->
@@ -30,9 +31,9 @@
 
                   <div class="caption">
                       <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                      <a routerLink="../course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
+                      <a routerLink="/course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
                     <p>{{course.description}}</p>
-                    <a href="#"class="courseButton">Enroll</a>
+                    <a class="courseButton" (click)="enroll(course)">Enroll</a>
                   </div>
 
             </li>
@@ -48,8 +49,8 @@
   
                     <div class="caption">
                         <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                      <h4>{{course.title}}</h4>
-                      <p>{{course.description}}</p>
+                        <a routerLink="/course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
+                        <p>{{course.description}}</p>
                       <a href="#"class="courseButton">Enroll</a>
                     </div>
   
@@ -69,8 +70,8 @@
           <div class="thumbnail">
             <div class="caption">
                 <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-              <h4>{{course.title}}</h4>
-              <p>{{course.creator}}</p>
+                <a routerLink="/course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
+                <p>{{course.creator}}</p>
               <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
               <a href="#"class="courseButton">see course</a>
             </div>

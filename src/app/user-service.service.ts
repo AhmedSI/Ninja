@@ -45,7 +45,7 @@ export class UserServiceService {
       .then(response => response.json() as Course[]);
 
   }
-
+b
   getClassrooms(token: string):  Promise<Classroom[]> {
     return this.http.get(this.baseUrl + '/teacher/classrooms?token='+token)
       .toPromise()
@@ -90,7 +90,6 @@ export class UserServiceService {
       .then(response => response.json() as User);
   }
 
-
   addSectionForCourse(token: string,courseId:string,section:Section):  Promise<string>{
     
     return this.http.post(this.baseUrl + '/teacher/section?token='+token+ '&course_id='+courseId+ '&section_title='+section.title,section).toPromise().then(response => response.text() as string);
@@ -103,4 +102,35 @@ export class UserServiceService {
       .then(response => response.json() as string);
   }
 
+  getCourseById(token:string,courseId:string): Promise<Course> {
+    return this.http.get(this.baseUrl + '/course?token='+token+'&course_id='+courseId)
+      .toPromise()
+      .then(response => response.json() as Course);
+  }
+
+  enrollIntoCourse(token:string,course:Course): Promise<Course> {
+    console.log(this.baseUrl + '/student/enroll_course?token='+token+'&course_id='+course.courseId,course);
+    return this.http.post(this.baseUrl + '/student/enroll_course?token='+token+'&course_id='+course.courseId,course)
+      .toPromise()
+      .then(response => response.json() as Course);
+  }
+
+  getEnrolledCourses(token:string):Promise<Course>{
+    return this.http.get(this.baseUrl + '/student/courses?token='+token)
+    .toPromise()
+    .then(response => response.json() as Course);
+
+  }
+
+  getCoursesByCategory(category:string):Promise<Course[]>{
+    return this.http.get(this.baseUrl + '/category_courses?category='+category)
+    .toPromise()
+    .then(response => response.json() as Course[]);
+  }
+
+  enrollChildInCourse(child:User,courseId:Number,token:string):Promise<string>{
+  return this.http.post(this.baseUrl + '/parent/enroll_child_course?token='+token+'&first_name='+child.firstName+'&course_id='+courseId,child)
+    .toPromise()
+    .then(response => response.json() as string);
+  }
 }
