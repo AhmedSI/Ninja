@@ -133,4 +133,14 @@ b
     .toPromise()
     .then(response => response.json() as string);
   }
+  enrollClassroom(token: string,classroomData: Classroom):Promise<string> {
+    return this.http.post(this.baseUrl + '/student/join_classroom?token='+token+ '&passcode='+classroomData.passCode,classroomData).toPromise().then(response => response.text() as string);
+  }
+
+  getEnrolledClassroom(token:string):Promise<Classroom>{
+    return this.http.get(this.baseUrl + '/student/classrooms?token='+token)
+    .toPromise()
+    .then(response => response.json() as Classroom);
+}
+
 }

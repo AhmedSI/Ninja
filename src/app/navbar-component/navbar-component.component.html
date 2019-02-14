@@ -9,8 +9,16 @@
 
 		<!-- search form -->
 		<form class="form-inline" action="" style="width:35%;margin:auto 2.5%">
-			<input type="text" name="searchword" class="form-control mr-sm-2" placeholder="Search" style="width:75%;">
-			<button class="btn" type="submit" >Search</button>
+			<!-- <input type="text" name="searchword" class="form-control mr-sm-2" placeholder="Search" style="width:75%;">
+			<button class="btn" type="submit" >Search</button> -->
+			<div class="input-group">
+				<input type="text" class="form-control search" placeholder="Search">
+				<div class="input-group-append">
+				  <button class="btn btn-secondary" type="button">
+					<i class="fa fa-search"></i>
+				  </button>
+				</div>
+			  </div>
 		</form>
 		<!-- navbar-->
 		<ul class="navbar-nav mr-auto d-inline-flex" style="width:40%;position:relative;left: 100px; ">
@@ -49,6 +57,8 @@
 					<a class="dropdown-item">s2</a>
 					<a class="dropdown-item">s3</a>
 					<a class="dropdown-item" (click)="logoutUser()">logout</a>
+					
+
 				</div>
 			</li>
 		</ul>

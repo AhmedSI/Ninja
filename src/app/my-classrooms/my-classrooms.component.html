@@ -6,5 +6,53 @@
       <span class="badge">Joined Classrooms</span>
       <div class="row">
        
+
+        
+          <button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
+              <i class="fas fa-plus"></i>
+              Join Classroom
+            </button>
+            <div class="modal fade" id="myModal2">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Classroom</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <!-- <form #classroomForm="ngForm" (ngSubmit)="joinClassroom(classroomForm)"> -->
+                      <label>Classroom Passcode</label>
+                      <input id="New_classroom_name" type="text"  value="" placeholder="classroom Passcode" required name="title" [(ngModel)]="toBeJoinedClassroom.passCode">
+                      <br>
+                      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Join classroom" class="btn btn-create"(click)=joinClassroom()>
+                      </div>
+                    <!-- </form> -->
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <div *ngFor = "let classroom of enrolledClassroom" class="col-md-12 col-lg-6 col-xl-4">
+                  <!--div of the course .. -->
+                  <div class="thumbnail">
+                    <div class="caption">
+                        <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+                        <a routerLink="/classroom/{{classroom.classroomId}}"> <h4>{{classroom.classroomName}}</h4></a>
+                        <p>{{classroom.creatorId}}</p>
+                      <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
+                      <a href="#"class="courseButton">see classroom</a>
+                    </div>
+                  </div>
+                </div>
+
+
       </div><!--/row-->
     </div><!--/container -->
+
+    

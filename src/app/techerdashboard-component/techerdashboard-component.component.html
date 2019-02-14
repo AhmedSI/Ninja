@@ -15,7 +15,7 @@
 				<div class="container">
 					<button id="add_course" type="button" class="btn" data-toggle="modal" data-target="#myModal">
 						<i class="fas fa-plus"></i>
-						Creat New Course
+						Create New Course
 					</button>
 					<div class="modal fade" id="myModal">
 						<div class="modal-dialog">
@@ -31,24 +31,28 @@
 										<label for="New_course_name">Course Name</label>
 										<input id="New_course_name" type="text"  value="" placeholder="Course Name" required name="title" [(ngModel)]="newCourse.title">
 										<br>
-										<p>                         ---------------------------------------------------</p>
+										<!-- <p>                         ---------------------------------------------------</p> -->
+										<hr>
 										<label for="New_course_detailed_title">Detailed Title</label>
-										<input id="New_course_detailed_title" type="text" value="" placeholder="Course Name" required name="detailed_title" [(ngModel)]="newCourse.detailed_title">
+										<input id="New_course_detailed_title" type="text" value="" placeholder="Detailed Title" required name="detailed_title" [(ngModel)]="newCourse.detailed_title">
 										<br>
-										<p>                         ---------------------------------------------------</p>
+										<!-- <p>                         ---------------------------------------------------</p> -->
+										<hr>
 										<label for="New_course_cat">Category</label>
-										<input id="New_course_cat" type="text" value="" placeholder="Course Name" required name="category" [(ngModel)]="newCourse.category">
+										<input id="New_course_cat" type="text" value="" placeholder="Category" required name="category" [(ngModel)]="newCourse.category">
 										<br>
-										<p>                         ---------------------------------------------------</p>
+										<!-- <p>                         ---------------------------------------------------</p> -->
+										<hr>
 										<label for="New_course_level">Level as number</label>
-										<input id="New_course_level" type="text" value="" placeholder="Course Name" required name="level" [(ngModel)]="newCourse.level">
+										<input id="New_course_level" type="text" value="" placeholder="Level" required name="level" [(ngModel)]="newCourse.level">
 										<br>
-										<p>                         ---------------------------------------------------</p>
+										<!-- <p>                         ---------------------------------------------------</p> -->
+										<hr>
 										<label for="New_course_description">Course Description</label>
 										<textarea id="New_course_description" name="name" rows="8" cols="40" placeholder="Course Description"  name="description" [(ngModel)]="newCourse.description"></textarea>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-											<input type="submit" value="Creat Course" class="btn btn-dark">
+											<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+											<input type="submit" value="Create Course" class="btn btn-create">
 										</div>
 									</form>
 								</div>
@@ -77,7 +81,7 @@
 					<!-- <span class="badge">Suggested Courses</span> -->
 					<button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
 						<i class="fas fa-plus"></i>
-						Creat Classroom
+						Create Classroom
 					</button>
 					<div class="modal fade" id="myModal2">
 						<div class="modal-dialog">
@@ -95,8 +99,8 @@
 										<br>
 										
 										<div class="modal-footer">
-											<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-											<input type="submit" value="Creat Classrom" class="btn btn-dark">
+											<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+											<input type="submit" value="Create Classrom" class="btn btn-create">
 										</div>
 									</form>
 								</div>

@@ -49,8 +49,6 @@ hr{
   font-size: 70px;
 }
 
-
-
 .owl-next{
   position: absolute;
   right: -1220px;
@@ -137,6 +135,8 @@ background-color: orange;
     display: flex;
     flex-direction:column;
     box-shadow:0 0 50px #d6d7db;
+    height: auto;
+    overflow: hidden;
 }
 
 .caption h4{
@@ -168,4 +168,14 @@ background-color: orange;
   overflow:auto;
   white-space: nowrap;
   /* width: auto; */
+}
+
+a{
+    text-decoration-color: #f7882f;
+}
+
+.caption p{
+  color:grey;
+  float: left;
+  /* position: relative; */
 }
