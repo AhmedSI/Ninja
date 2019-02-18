@@ -72,14 +72,11 @@ margin-left: 5px;
 }
 
 p{
-    margin-top: 3%;
+    margin-top: 5%;
     text-align : center;
-    color:#4f4351;
-    margin-bottom: 50%;
-
 }
 
-a{
+#registerNow a{
     font-size: 20px;
     color: #d97400;
 }

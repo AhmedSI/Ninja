@@ -23,6 +23,7 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { CategoryComponent } from './category/category.component';
 import { MyClassroomsComponent } from './my-classrooms/my-classrooms.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { MyClassroomsComponent } from './my-classrooms/my-classrooms.component';
     OwlModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([{
       path: 'register',
       component: RegisterComponentComponent
