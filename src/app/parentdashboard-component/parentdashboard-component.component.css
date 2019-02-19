@@ -1,8 +1,8 @@
-body{
+/* body{
     background-color: #F4F7F6;
     position: relative;
     box-sizing: border-box;
-}
+} */
 
 
 #add_child{
@@ -48,4 +48,19 @@ background-color: orange;
 .btn-create{
   background-color: #f7882f;
   color: white;
+}
+
+.firstAndLastName{
+  display:flex;
+  flex-wrap: row wrap;
+}
+
+.firstAndLastName input{
+  width: 100%;
+}
+
+.firstAndLastName .lastName{
+  display: block;
+  margin-left: 10%;
+  /* background-color: red; */
 }

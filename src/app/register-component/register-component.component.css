@@ -92,6 +92,7 @@ input{
 }
 .invalid-feedback{
     color: red;
+    display: block
 }
 
 .dropdown-toggle {
@@ -173,7 +174,7 @@ input{
     color: #4f4351;
     letter-spacing: -0.05em;
     text-align: center;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    /* text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5); */
   }
   h1 {
     background: rgba(79, 67, 81, 0.1);
@@ -220,10 +221,22 @@ input{
     border-radius: 5px;
     background-color: #fff;
     padding: 3px 5px;
-    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    /* box-shadow: inset 0 3px 6px rgba(0,0,0,0.1); */
     width: 180px;
     margin-bottom: 20px;
     margin-left: 5%;
     margin: 30px;
     opacity: 0.9;
   }
+
+  p{
+    margin-top: 3%;
+    text-align : center;
+    color:#4f4351;
+    font-size: 18px;
+}
+
+a{
+    font-size: 24px;
+    color: #d97400;
+}

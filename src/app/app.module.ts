@@ -24,6 +24,8 @@ import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { CategoryComponent } from './category/category.component';
 import { MyClassroomsComponent } from './my-classrooms/my-classrooms.component';
 import { UploadfileComponent } from './uploadfile/uploadfile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { UploadfileComponent } from './uploadfile/uploadfile.component';
     MyCoursesComponent,
     CategoryComponent,
     MyClassroomsComponent,
+
     UploadfileComponent
   ],
   imports: [
@@ -53,6 +56,7 @@ import { UploadfileComponent } from './uploadfile/uploadfile.component';
     OwlModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([{
       path: 'register',
       component: RegisterComponentComponent
