@@ -60,7 +60,6 @@ background-color: orange;
   color: white;
 }
 
-input{
-  position: absolute;
-  left:50%;
+.btn-create:hover {
+  background-color: #ff7e16;
 }

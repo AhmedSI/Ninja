@@ -60,7 +60,6 @@ body{
     background-color: #F4F7F6;
     position: relative;
     box-sizing: border-box;
-
 }
 
 #add_class_room{
@@ -119,6 +118,13 @@ background-color: orange;
 }
 
 input{
-  position: absolute;
-  left:50%;
+  width: 100%;
+  margin-top: -1%;
+  /* margin-right: 10%; */
+    /* position: absolute; */
+  /* left:50%; */
+}
+
+.inline{
+  display: block;
 }

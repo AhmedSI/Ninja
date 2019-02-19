@@ -24,15 +24,30 @@
                   <!-- Modal body -->
                   <div class="modal-body">
                     <!-- <form #classroomForm="ngForm" (ngSubmit)="joinClassroom(classroomForm)"> -->
-                      <label>Classroom Passcode</label>
-                      <input id="New_classroom_name" type="text"  value="" placeholder="classroom Passcode" required name="title" [(ngModel)]="toBeJoinedClassroom.passCode">
-                      <br>
+                      <!-- <input id="New_classroom_name" type="text"  value="" placeholder="classroom Passcode" required name="title" [(ngModel)]="toBeJoinedClassroom.passCode"> -->
                       
+
+                    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <!-- <label> Classroom Passcode</label>  -->
+                            <br>
+                            <div class="inline">
+                            <input id="New_classroom_name" type="text" value='' class="form-control" name="passCode" placeholder="classroom Passcode" [(ngModel)]="toBeJoinedClassroom.passCode" #passCode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && passCode.invalid }" required />
+                            <div *ngIf="f.submitted && passCode.invalid" class="invalid-feedback">
+                                <div *ngIf="passCode.errors.required">Passcode is required</div>
+                            </div>
+                            </div>
+                            <br>
+                        </div>
+
                       <div class="modal-footer">
+                        <button type="submit" name="button" class="btn btn-create ">Join classroom</button>
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                        <input type="submit" value="Join classroom" class="btn btn-create"(click)=joinClassroom()>
                       </div>
                     <!-- </form> -->
+                    </form>
+
+
                   </div>
                 </div>
               </div>

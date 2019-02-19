@@ -55,6 +55,8 @@
 											<input type="submit" value="Create Course" class="btn btn-create">
 										</div>
 									</form>
+
+
 								</div>
 							</div>
 						</div>
@@ -87,22 +89,31 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<!-- Modal Header -->
-								<div class="modal-header">
+								<div class="modal-header">	
 									<h4 class="modal-title">New Classroom Creation</h4>
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 								</div>
 								<!-- Modal body -->
 								<div class="modal-body">
-									<form #classroomForm="ngForm" (ngSubmit)="addClassroom(classroomForm)">
-										<label for="New_classroom_name">Classroom Name</label>
-										<input id="New_classroom_name" type="text"  value="" placeholder="classroom Name" required name="title" [(ngModel)]="newClassroom.classroomName">
-										<br>
-										
-										<div class="modal-footer">
-											<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-											<input type="submit" value="Create Classrom" class="btn btn-create">
-										</div>
-									</form>
+
+									<form [formGroup]="createClassroomForm" class="login-form col-xl" (ngSubmit)="addClassroom()" >
+											<div class="form-group">
+												<label>Classroom Title</label>
+											  <input formControlName="classroomName" type="text" class="form-control" placeholder="Classroom title" [ngClass]="{ 'is-invalid': submitted && f.classroomName.errors }">
+											  <div *ngIf="submitted && f.classroomName.errors" class="invalid-feedback">
+												<div *ngIf="f.classroomName.errors.required">Classroom name is required</div>
+											  </div>
+											  <br>
+											</div>
+
+											<div class="modal-footer">
+												<!-- <button type="submit" value="Create Classroom" class="btn btn-create"> -->
+												<button type="submit" class="btn btn-create">Create Classroom</button>
+												<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+											</div>
+									  </form>
+
+
 								</div>
 							</div>
 						</div>

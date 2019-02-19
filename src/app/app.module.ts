@@ -45,7 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     EditprofileComponent,
     MyCoursesComponent,
     CategoryComponent,
-    MyClassroomsComponent
+    MyClassroomsComponent,
   ],
   imports: [
     BrowserModule,

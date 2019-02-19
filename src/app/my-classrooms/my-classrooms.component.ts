@@ -16,6 +16,8 @@ export class MyClassroomsComponent implements OnInit {
   toBeJoinedClassroom:Classroom= new Classroom();
   enrolledClassroom:Classroom;
   classroom:Classroom=new Classroom();
+  model: any = {};
+
 
 
   // classrooms: Classroom[];
@@ -31,11 +33,12 @@ export class MyClassroomsComponent implements OnInit {
     .then(classroom =>{this.enrolledClassroom=classroom;});
   }
 
-  joinClassroom(){
+  onSubmit(){
     console.log(this.toBeJoinedClassroom.passCode);
     // this.classrooms.unshift(this.newClassroom);
     this.userService.enrollClassroom(this.token,this.toBeJoinedClassroom).then(createClassroom => {        
         this.toBeJoinedClassroom = new Classroom();
       });	  
+      this.toBeJoinedClassroom.passCode='';
   }
 }

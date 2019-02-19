@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { User } from '.././User';
 import { Course } from '.././Course';
 import { UserServiceService } from '.././user-service.service';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-parentdashboard-component',
@@ -18,12 +20,32 @@ export class ParentdashboardComponentComponent implements OnInit {
   courseName :string ="";
   courseId : Number;
   chosenChild: User = new User();
-  constructor(private userService: UserServiceService) { }
+  addChildForm:FormGroup;
+  submitted = false;
+
+
+  constructor(
+    private userService: UserServiceService,
+    private formBuilder: FormBuilder
+    ) { }
+
+    get f() { return this.addChildForm.controls; }
 
   ngOnInit() {
   	this.token = localStorage.getItem('token');
   	this.getChildren();
-  	this.getCourses();
+    this.getCourses();
+    
+    this.addChildForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: [''],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      grade: ['', Validators.required],
+      gender: ['', Validators.required],
+      dateOfBirth: ['', Validators.required]
+  });
   }
 
   getChildren(){
@@ -36,9 +58,25 @@ export class ParentdashboardComponentComponent implements OnInit {
       .then(children => {this.courses = children;});
   }
 
-  addChild(childForm:NgForm){
+  addChild(){
+    this.newChild.dateOfBirth=this.addChildForm.value.dateOfBirth;
+    this.newChild.email=this.addChildForm.value.email;
+    this.newChild.firstName=this.addChildForm.value.firstName;
+    this.newChild.gender=this.addChildForm.value.gender;
+    this.newChild.grade=this.addChildForm.value.grade;
+    this.newChild.lastName=this.addChildForm.value.lastName;
+    this.newChild.password=this.addChildForm.value.password;
+    this.newChild.username=this.addChildForm.value.username;
+
+
+
+    if (this.addChildForm.invalid){
+      this.submitted=true;
+     return;
+    }
+
   	this.userService.addChild(this.token,this.newChild).then(createChild => { 
-  		childForm.reset();
+  		// childForm.reset();
         this.newChild = new User();
       });
   }

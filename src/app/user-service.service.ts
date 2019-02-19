@@ -77,7 +77,7 @@ b
   }
 
   newCourses(): Promise<Course[]> {
-    return this.http.get(this.baseUrl + '/hot_courses').toPromise().then(response => response.json() as Course[]);
+    return this.http.get(this.baseUrl + '/new_courses').toPromise().then(response => response.json() as Course[]);
   }
 
   suggestedCourses(): Promise<Course[]> {
