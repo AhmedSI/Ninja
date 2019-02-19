@@ -141,6 +141,13 @@ b
     return this.http.get(this.baseUrl + '/student/classrooms?token='+token)
     .toPromise()
     .then(response => response.json() as Classroom);
-}
+  }
+
+  pushFileToStorage(file:File,token:string):Promise<String>{
+
+    const formData : FormData = new FormData();
+    formData.append('file',file);
+    return this.http.post(this.baseUrl + '/profilePic?token='+token,formData).toPromise().then(response => response.text() as string);
+  }
 
 }

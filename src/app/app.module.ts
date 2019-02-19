@@ -23,6 +23,7 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { CategoryComponent } from './category/category.component';
 import { MyClassroomsComponent } from './my-classrooms/my-classrooms.component';
+import { UploadfileComponent } from './uploadfile/uploadfile.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { MyClassroomsComponent } from './my-classrooms/my-classrooms.component';
     EditprofileComponent,
     MyCoursesComponent,
     CategoryComponent,
-    MyClassroomsComponent
+    MyClassroomsComponent,
+    UploadfileComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +99,9 @@ import { MyClassroomsComponent } from './my-classrooms/my-classrooms.component';
     },{
       path: 'myClassrooms',
       component: MyClassroomsComponent
+    },{
+      path: 'uploadPicture',
+      component: UploadfileComponent
     }])
   ],
   providers: [UserServiceService],
