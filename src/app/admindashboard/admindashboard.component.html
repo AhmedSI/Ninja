@@ -1,0 +1,7 @@
+<h1>Hello Admin Here You Can Practice All Your Previliges</h1>
+
+<div *ngFor="let request of requests">
+	<p>{{request.claimerName}}</p>
+	<p>{{request.approved}}</p>
+	<button (click)="acceptRequest(request.claimerId)"> accept this request</button>
+</div>

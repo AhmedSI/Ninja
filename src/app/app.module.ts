@@ -25,6 +25,8 @@ import { CategoryComponent } from './category/category.component';
 import { MyClassroomsComponent } from './my-classrooms/my-classrooms.component';
 import { UploadfileComponent } from './uploadfile/uploadfile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { ChildprofileComponent } from './childprofile/childprofile.component';
 
 
 
@@ -49,7 +51,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     CategoryComponent,
     MyClassroomsComponent,
 
-    UploadfileComponent
+    UploadfileComponent,
+
+    AdmindashboardComponent,
+
+    ChildprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +112,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     },{
       path: 'uploadPicture',
       component: UploadfileComponent
+    },{
+      path: 'admindashboard',
+      component: AdmindashboardComponent
+    },{
+      path: 'childprofile/:id',
+      component: ChildprofileComponent
     }])
   ],
   providers: [UserServiceService],

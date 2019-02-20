@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { User } from './User';
 import { Headers, Http } from '@angular/http';
+import { User } from './User';
 import { Course } from './Course';
 import { Classroom } from './Classroom';
 import { Section } from './Section';
+import { Category } from './Category';
 
 @Injectable()
 export class UserServiceService {
@@ -25,7 +26,8 @@ export class UserServiceService {
   }
 
   addCourse(token: string,courseData: Course):Promise<string> {
-    
+    console.log(this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level);
+
     return this.http.post(this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
   }
 
@@ -149,5 +151,46 @@ b
     formData.append('file',file);
     return this.http.post(this.baseUrl + '/profilePic?token='+token,formData).toPromise().then(response => response.text() as string);
   }
+
+  beTeacher(token:string):Promise<String>{
+    const formData : FormData = new FormData();
+    return this.http.post(this.baseUrl + '/teacher/request_teaching?token='+token,formData).toPromise().then(response => response.text() as string);
+  }
+
+  getTeacherRequests(token:string):Promise<Request[]>{
+    return this.http.get(this.baseUrl + '/admin/requests?token='+token)
+    .toPromise()
+    .then(response => response.json() as Request[]);
+
+  }
+
+  acceptTeacher(token:string,id:Number):Promise<String>{
+    const formData : FormData = new FormData();
+    return this.http.put(this.baseUrl + '/admin/approve_teaching?token='+token+'&user_id='+id,formData).toPromise().then(response => response.text() as string);
+  }
+
+  getCategories () :Promise<Category[]>{
+
+    return this.http.get(this.baseUrl+'/categories').toPromise().then(response => response.json() as Category[]);
+  }
+
+  getChild(token: string,id:string):  Promise<User> {
+    
+    return this.http.get(this.baseUrl + '/parent/child?token='+token+'&user_id='+id)
+      .toPromise()
+      .then(response => response.json() as User);
+  }
+
+  
+
+  enrollChildInClassroom(token:string,passcode:string,name:string): Promise<string>{
+    console.log(this.baseUrl+'/parent/join_child_classroom?token='+token+'&first_name='+name+'&passcode='+passcode
+);
+    const formData : FormData = new FormData();
+    return this.http.post(this.baseUrl+'/parent/join_child_classroom?token='+token+'&first_name='+name+'&passcode='+passcode,formData).toPromise().then(
+      response=> response.text() as string);
+  }
+
+  
 
 }

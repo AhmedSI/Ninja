@@ -5,7 +5,7 @@ import { Course } from '.././Course';
 import { Classroom } from '.././Classroom';
 import { UserServiceService } from '.././user-service.service';
 import { FormBuilder, Validators } from '@angular/forms';
-
+import { Category } from '.././Category';
 
 @Component({
   selector: 'app-techerdashboard-component',
@@ -20,7 +20,8 @@ export class TecherdashboardComponentComponent implements OnInit {
   classrooms: Classroom[];
   createClassroomForm:FormGroup;
   submitted = false;
-
+  isTeacher : boolean = false;
+  categories : Category[];
 
   constructor(
     private userService: UserServiceService,
@@ -32,8 +33,10 @@ export class TecherdashboardComponentComponent implements OnInit {
 
   ngOnInit() {
   	this.token = localStorage.getItem('token');
+    this.checkTeacher();
   	this.getCourses();
     this.getClassrooms();
+    this.getCategoris()
 
     this.createClassroomForm = this.formBuilder.group({
       classroomName: ['', Validators.required]
@@ -74,6 +77,24 @@ export class TecherdashboardComponentComponent implements OnInit {
         this.newClassroom = new Classroom();
       });	
       
+  }
+
+  checkTeacher(){
+    this.userService.getUserData(this.token).then(user=>{
+      if(user.teacher) this.isTeacher = true;
+    });
+  }
+
+  beTeacher(){
+    this.userService.beTeacher(this.token).then(response => {        
+        console.log(response);
+      }); 
+  }
+
+  getCategoris(){
+    this.userService.getCategories().then(categories => {
+      this.categories = categories;
+    });
   }
 
 }

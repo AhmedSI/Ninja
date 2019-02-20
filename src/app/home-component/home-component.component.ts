@@ -29,6 +29,7 @@ export class HomeComponentComponent implements OnInit{
     this.getNewCourses();
     this.getSuggestedCourses();
   }
+
   getTopCourses(){
     this.userService.topCourses()
     .then(courses =>{this.topCourses=courses;});
@@ -47,8 +48,12 @@ export class HomeComponentComponent implements OnInit{
   enroll(course:Course){
     // console.log(course);
     this.userService.enrollIntoCourse(this.token,course)
-    .then(course =>{this.enrolledCourses=course;})
+    .then(course =>{this.enrolledCourses=course;});
   }
+
+  
+
+  
 
 
 }

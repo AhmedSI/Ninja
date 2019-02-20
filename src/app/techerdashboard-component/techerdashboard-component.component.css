@@ -15,7 +15,7 @@
   transition: all .5s ease;
 
 }
-#add_course{
+#add_course,#teach{
   border-radius: 20px;
   background: #f7882f;
   color:#f7c331;

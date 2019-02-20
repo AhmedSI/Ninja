@@ -8,4 +8,5 @@ export class User {
   dateOfBirth: Date;
   gender: Number;
   grade: string;
+  teacher:boolean;
 }

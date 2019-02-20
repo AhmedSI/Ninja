@@ -9,6 +9,8 @@ import { UserServiceService } from '.././user-service.service';
 })
 export class NavbarComponentComponent implements OnInit {
 	token: string = "initial";
+  isAdmin : boolean = false;
+  categories : string[];
   constructor(
   private userService: UserServiceService,
     private router: Router
@@ -16,7 +18,10 @@ export class NavbarComponentComponent implements OnInit {
 
   ngOnInit() {
   	this.token = localStorage.getItem('token');
+    this.checkUserPermisions();
+  
   }
+
   logoutUser(): void {
     
     this.userService.logoutUser(this.token)
@@ -28,5 +33,12 @@ export class NavbarComponentComponent implements OnInit {
       this.router.navigate(['/login']);
 
   }
+
+  checkUserPermisions(){
+    this.userService.getUserData(this.token).then(user=>{
+      if(user.username == "Admin") this.isAdmin = true;
+    });
+  }
+
 
 }

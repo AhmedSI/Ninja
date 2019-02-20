@@ -13,10 +13,11 @@
 		<div class="tab-content">
 			<div class="tab-pane container active" id="home">
 				<div class="container">
-					<button id="add_course" type="button" class="btn" data-toggle="modal" data-target="#myModal">
+					<button id="add_course" *ngIf="isTeacher" type="button" class="btn" data-toggle="modal" data-target="#myModal">
 						<i class="fas fa-plus"></i>
 						Create New Course
 					</button>
+					<button id="teach" *ngIf="!isTeacher" (click)= "beTeacher()" type="button" class="btn" >Be a Teacher</button>
 					<div class="modal fade" id="myModal">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -39,7 +40,10 @@
 										<!-- <p>                         ---------------------------------------------------</p> -->
 										<hr>
 										<label for="New_course_cat">Category</label>
-										<input id="New_course_cat" type="text" value="" placeholder="Category" required name="category" [(ngModel)]="newCourse.category">
+										<select id="New_course_cat"  name="category" [(ngModel)]="newCourse.category" placeholder="Category" >
+											<option *ngFor="let category of categories" [value]="category.categoryStr">{{category.categoryStr}}</option>
+
+										</select>
 										<br>
 										<!-- <p>                         ---------------------------------------------------</p> -->
 										<hr>
