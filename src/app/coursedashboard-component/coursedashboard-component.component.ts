@@ -7,6 +7,8 @@ import { UserServiceService } from '.././user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-coursedashboard-component',
@@ -20,15 +22,24 @@ export class CoursedashboardComponentComponent implements OnInit {
   sections : Section[];
   selectedSectionId:string;
   newQuiz:Quiz = new Quiz;
+  aimForm: FormGroup;
+  aims: string [];
+
   constructor(
   	private userService: UserServiceService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private formBuilder: FormBuilder
+
     ) { }
 
   ngOnInit(
   ) {
   	this.token = localStorage.getItem('token');
-  	this.getCourse();
+    this.getCourse();
+    this.aims = [];
+    this.aimForm = this.formBuilder.group({
+      aim:['']
+    });
 
   }
 
@@ -45,6 +56,15 @@ export class CoursedashboardComponentComponent implements OnInit {
 			}
 		}
     });
+  }
+  addAim(){
+    this.aims.push(this.aimForm.value.aim);
+    this.aimForm.reset();
+  }
+  onDeleteAim(aim:string){
+    this.aims = this.aims.filter(obj => obj !== aim);
+    console.log("aim: "+aim);
+    console.log("aims: "+this.aims);
   }
 
 
