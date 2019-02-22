@@ -98,13 +98,14 @@
                     </div>
                   </form>
 
-
                 </div>
+
+
               </div>
             </div>
           </div>
                   <ul class="lecturesList">
-                    <li *ngFor="let lecture of section.fancyLectures"><a href="#">{{lecture.name}}</a><button type="button" name="button" class="remove_lec" (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> remove </button>
+                    <li *ngFor="let lecture of section.fancyLectures"><a routerLink="/quizdashboard/{{lecture.lectureId}}">{{lecture.name}}</a><button type="button" name="button" class="remove_lec" (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> remove </button>
                     </li>
                   </ul>
                 </div>

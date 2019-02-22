@@ -127,6 +127,9 @@ import { QuizhomeComponent } from './quizhome/quizhome.component';
     },{
       path: 'childprofile/:id',
       component: ChildprofileComponent
+    },{
+      path: 'quizdashboard/:id',
+      component: QuizdahboardComponent
     }])
   ],
   providers: [UserServiceService],
