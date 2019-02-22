@@ -5,6 +5,7 @@ import { Course } from './Course';
 import { Classroom } from './Classroom';
 import { Section } from './Section';
 import { Category } from './Category';
+import { Quiz } from './Quiz';
 
 @Injectable()
 export class UserServiceService {
@@ -101,7 +102,7 @@ b
   deleteSection(id: Number,token:string):  Promise<string> {
     return this.http.delete(this.baseUrl + '/teacher/section?token='+token+'&section_id='+id)
       .toPromise()
-      .then(response => response.json() as string);
+      .then(response => response.text() as string);
   }
 
   getCourseById(token:string,courseId:string): Promise<Course> {
@@ -184,13 +185,24 @@ b
   
 
   enrollChildInClassroom(token:string,passcode:string,name:string): Promise<string>{
-    console.log(this.baseUrl+'/parent/join_child_classroom?token='+token+'&first_name='+name+'&passcode='+passcode
-);
+    
     const formData : FormData = new FormData();
     return this.http.post(this.baseUrl+'/parent/join_child_classroom?token='+token+'&first_name='+name+'&passcode='+passcode,formData).toPromise().then(
       response=> response.text() as string);
   }
 
-  
+
+
+  addQuiz(token:string,sectionId:string,quizData:Quiz): Promise<string>{
+    
+    return this.http.post(this.baseUrl+'/teacher/quiz?token='+token+'&section_id='+sectionId+'&quiz_title='+quizData.title+'&quiz_instructions='+quizData.instructions+'&quiz_time='+quizData.quizTime,quizData).toPromise().then(
+      response=> response.text() as string);
+  }
+
+  deleteQuiz(id: Number,token:string):  Promise<string> {
+    return this.http.delete(this.baseUrl + '/teacher/quiz?token='+token+'&quiz_id='+id)
+      .toPromise()
+      .then(response => response.text() as string);
+  }
 
 }

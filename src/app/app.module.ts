@@ -27,6 +27,9 @@ import { UploadfileComponent } from './uploadfile/uploadfile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { ChildprofileComponent } from './childprofile/childprofile.component';
+import { LectureComponent } from './lecture/lecture.component';
+import { QuizdahboardComponent } from './quizdahboard/quizdahboard.component';
+import { QuizhomeComponent } from './quizhome/quizhome.component';
 
 
 
@@ -55,7 +58,13 @@ import { ChildprofileComponent } from './childprofile/childprofile.component';
 
     AdmindashboardComponent,
 
-    ChildprofileComponent
+    ChildprofileComponent,
+
+    LectureComponent,
+
+    QuizdahboardComponent,
+
+    QuizhomeComponent
   ],
   imports: [
     BrowserModule,

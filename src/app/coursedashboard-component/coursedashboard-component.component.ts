@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '.././Course';
 import { Section } from '.././Section';
 import { Classroom } from '.././Classroom';
+import { Quiz } from '.././Quiz';
 import { UserServiceService } from '.././user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
 import {NgForm} from '@angular/forms';
@@ -17,6 +18,8 @@ export class CoursedashboardComponentComponent implements OnInit {
   token: string = "initial";
   newSection : Section = new Section();
   sections : Section[];
+  selectedSectionId:string;
+  newQuiz:Quiz = new Quiz;
   constructor(
   	private userService: UserServiceService,
     private router: ActivatedRoute
@@ -48,16 +51,34 @@ export class CoursedashboardComponentComponent implements OnInit {
   addSection(sectionForm:NgForm){
     this.userService.addSectionForCourse(this.token,this.course.courseId,this.newSection)
     .then(section => {
-        this.sections.unshift(this.newSection);
-        console.log(section);
+        this.getCourse();
     });
 
+  }
+
+  addQuiz(quizForm:NgForm){
+    this.userService.addQuiz(this.token,this.selectedSectionId,this.newQuiz)
+    .then(section => {
+        this.getCourse();
+    });
+  }
+
+  setSelectedSection(id:string){
+    this.selectedSectionId = id;
   }
 
   deleteSection(id:Number){
         
     this.userService.deleteSection(id,this.token).then(section => {
+        this.getCourse();
+    });
+
+  }
+
+  deleteQuiz(id:Number){
         
+    this.userService.deleteQuiz(id,this.token).then(section => {
+        this.getCourse();
     });
 
   }

@@ -58,6 +58,7 @@ export class TecherdashboardComponentComponent implements OnInit {
         courseForm.reset();
         this.newCourse = new Course();
         console.log(this.courses);
+        this.getCourses();
       });
   }
 
