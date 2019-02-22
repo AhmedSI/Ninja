@@ -30,7 +30,7 @@
         </div>
       </div>
       <br>
-      <h5 class="title">What you will learn:</h5>
+      <!-- <h5 class="title">What you will learn:</h5>
       <div class="container">
         <div class="col-11">
           <input type="text" class="form-control" placeholder="New item">
@@ -38,6 +38,22 @@
         <button type="button" name="button" class="add_what_u_will_learn"><i class="fas fa-plus-circle"></i>add</button>
         <ul>
           <li>first item <button type="button" name="button" class="remove_what_u_will_learn"><i class="fas fa-times"></i> remove</button></li>
+        </ul>
+      </div> -->
+      <h5 class="title">What you will learn:</h5>
+      <div class="container">
+
+      <form [formGroup]="aimForm" class="login-form col-xl" (ngSubmit)="addAim()" >  
+
+        <div class="col-11">
+          <input type="text" class="form-control" placeholder="New item" formControlName="aim">
+        </div>
+        <button type="submit" name="button" class="add_what_u_will_learn"><i class="fas fa-plus-circle"></i>add</button>
+
+      </form>
+
+        <ul>
+          <li *ngFor ="let aim of aims"> {{aim}} <button type="button" name="button" class="remove_what_u_will_learn" (click)="onDeleteAim(aim)"><i class="fas fa-times"></i> remove</button></li>
         </ul>
       </div>
       <br>
