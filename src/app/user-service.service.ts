@@ -12,11 +12,9 @@ export class UserServiceService {
 	//private baseUrl = 'http://localhost:8080';
   private baseUrl = 'https://graduation-server.herokuapp.com';
 
-
   constructor(private http: Http) { }
 
   registerUser(userData: User): Promise<User> {
-
     return this.http.post(this.baseUrl + '/auth/register?first_name='+userData.firstName+'&last_name='+userData.lastName+'&email='+userData.email+'&username='+userData.username+'&password='+userData.password+'&gender='+userData.gender+'&date_of_birth='+userData.dateOfBirth,userData)
       .toPromise().then(response => response.json() as User);
   }
@@ -27,28 +25,26 @@ export class UserServiceService {
   }
 
   addCourse(token: string,courseData: Course):Promise<string> {
-    console.log(this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level);
-
-    return this.http.post(this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
+    return this.http.post(
+      this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
   }
 
   addCourseForClassroom(token: string,courseData: Course) : Promise<string>{
-
-    return this.http.post(this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
-
+    return this.http.post(
+      this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
   }
 
   addClassroom(token: string,classroomData: Classroom):Promise<string> {
-    return this.http.post(this.baseUrl + '/teacher/classrooms?token='+token+ '&classroom_name='+classroomData.classroomName,classroomData).toPromise().then(response => response.text() as string);
+    return this.http.post(
+      this.baseUrl + '/teacher/classrooms?token='+token+ '&classroom_name='+classroomData.classroomName,classroomData).toPromise().then(response => response.text() as string);
   }
 
   getCourses(token: string):  Promise<Course[]> {
     return this.http.get(this.baseUrl + '/teacher/courses?token='+token)
       .toPromise()
       .then(response => response.json() as Course[]);
-
   }
-b
+
   getClassrooms(token: string):  Promise<Classroom[]> {
     return this.http.get(this.baseUrl + '/teacher/classrooms?token='+token)
       .toPromise()
@@ -56,7 +52,6 @@ b
   }
 
   getChildren(token: string):  Promise<User[]> {
-    console.log(this.baseUrl + '/parent/children?token='+token);
     return this.http.get(this.baseUrl + '/parent/children?token='+token)
       .toPromise()
       .then(response => response.json() as User[]);
@@ -64,7 +59,8 @@ b
 
     
   addChild(token: string,childData: User):Promise<string> {
-    return this.http.post(this.baseUrl + '/parent/add_child?token='+token+ '&first_name='+childData.firstName+'&date_of_birth='+childData.dateOfBirth+'&email='+childData.email+'&password='+childData.password+'&username='+childData.username+'&gender='+1+'&grade='+childData.grade,childData).toPromise().then(response => response.text() as string);
+    return this.http.post(
+      this.baseUrl + '/parent/add_child?token='+token+ '&first_name='+childData.firstName+'&date_of_birth='+childData.dateOfBirth+'&email='+childData.email+'&password='+childData.password+'&username='+childData.username+'&gender='+1+'&grade='+childData.grade,childData).toPromise().then(response => response.text() as string);
   }
 
 
@@ -80,11 +76,13 @@ b
   }
 
   newCourses(): Promise<Course[]> {
-    return this.http.get(this.baseUrl + '/new_courses').toPromise().then(response => response.json() as Course[]);
+    return this.http.get(
+      this.baseUrl + '/new_courses').toPromise().then(response => response.json() as Course[]);
   }
 
   suggestedCourses(): Promise<Course[]> {
-    return this.http.get(this.baseUrl + '/hot_courses').toPromise().then(response => response.json() as Course[]);
+    return this.http.get(
+      this.baseUrl + '/hot_courses').toPromise().then(response => response.json() as Course[]);
   }
 
   getUserData(token: string):  Promise<User> {
@@ -94,9 +92,8 @@ b
   }
 
   addSectionForCourse(token: string,courseId:string,section:Section):  Promise<string>{
-    
-    return this.http.post(this.baseUrl + '/teacher/section?token='+token+ '&course_id='+courseId+ '&section_title='+section.title,section).toPromise().then(response => response.text() as string);
-
+    return this.http.post(
+      this.baseUrl + '/teacher/section?token='+token+ '&course_id='+courseId+ '&section_title='+section.title,section).toPromise().then(response => response.text() as string);
   }
 
   deleteSection(id: Number,token:string):  Promise<string> {
@@ -112,7 +109,6 @@ b
   }
 
   enrollIntoCourse(token:string,course:Course): Promise<Course> {
-    console.log(this.baseUrl + '/student/enroll_course?token='+token+'&course_id='+course.courseId,course);
     return this.http.post(this.baseUrl + '/student/enroll_course?token='+token+'&course_id='+course.courseId,course)
       .toPromise()
       .then(response => response.json() as Course);
@@ -132,12 +128,14 @@ b
   }
 
   enrollChildInCourse(child:User,courseId:Number,token:string):Promise<string>{
-  return this.http.post(this.baseUrl + '/parent/enroll_child_course?token='+token+'&first_name='+child.firstName+'&course_id='+courseId,child)
-    .toPromise()
-    .then(response => response.json() as string);
+    return this.http.post(this.baseUrl + '/parent/enroll_child_course?token='+token+'&first_name='+child.firstName+'&course_id='+courseId,child)
+      .toPromise()
+      .then(response => response.json() as string);
   }
+
   enrollClassroom(token: string,classroomData: Classroom):Promise<string> {
-    return this.http.post(this.baseUrl + '/student/join_classroom?token='+token+ '&passcode='+classroomData.passCode,classroomData).toPromise().then(response => response.text() as string);
+    return this.http.post(
+      this.baseUrl + '/student/join_classroom?token='+token+ '&passcode='+classroomData.passCode,classroomData).toPromise().then(response => response.text() as string);
   }
 
   getEnrolledClassroom(token:string):Promise<Classroom>{
@@ -181,17 +179,12 @@ b
       .toPromise()
       .then(response => response.json() as User);
   }
-
-  
-
   enrollChildInClassroom(token:string,passcode:string,name:string): Promise<string>{
     
     const formData : FormData = new FormData();
     return this.http.post(this.baseUrl+'/parent/join_child_classroom?token='+token+'&first_name='+name+'&passcode='+passcode,formData).toPromise().then(
       response=> response.text() as string);
   }
-
-
 
   addQuiz(token:string,sectionId:string,quizData:Quiz): Promise<string>{
     
@@ -203,6 +196,12 @@ b
     return this.http.delete(this.baseUrl + '/teacher/quiz?token='+token+'&quiz_id='+id)
       .toPromise()
       .then(response => response.text() as string);
+  }
+
+  pushLectureContent(file:File,token:string,id:string):Promise<String>{
+    const formData : FormData = new FormData();
+    formData.append('file',file);
+    return this.http.post(this.baseUrl + '/teacher/file?token='+token+'&section_id='+id,formData).toPromise().then(response => response.text() as string);
   }
 
 }

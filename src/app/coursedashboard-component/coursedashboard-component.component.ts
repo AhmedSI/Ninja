@@ -24,6 +24,8 @@ export class CoursedashboardComponentComponent implements OnInit {
   newQuiz:Quiz = new Quiz;
   aimForm: FormGroup;
   aims: string [];
+  selectedFiles: FileList;
+  currentFileUpload: File;
 
   constructor(
   	private userService: UserServiceService,
@@ -57,10 +59,12 @@ export class CoursedashboardComponentComponent implements OnInit {
 		}
     });
   }
+
   addAim(){
     this.aims.push(this.aimForm.value.aim);
     this.aimForm.reset();
   }
+
   onDeleteAim(aim:string){
     this.aims = this.aims.filter(obj => obj !== aim);
     console.log("aim: "+aim);
@@ -83,6 +87,20 @@ export class CoursedashboardComponentComponent implements OnInit {
     });
   }
 
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  upload(lectureForm:NgForm){
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.userService.pushLectureContent(
+      this.currentFileUpload,this.token,this.selectedSectionId)
+      .then(event => {
+          this.getCourse();
+      }
+    );
+  }
+
   setSelectedSection(id:string){
     this.selectedSectionId = id;
   }
@@ -102,5 +120,7 @@ export class CoursedashboardComponentComponent implements OnInit {
     });
 
   }
+
+
 
 }
