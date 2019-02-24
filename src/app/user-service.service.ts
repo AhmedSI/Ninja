@@ -6,6 +6,8 @@ import { Classroom } from './Classroom';
 import { Section } from './Section';
 import { Category } from './Category';
 import { Quiz } from './Quiz';
+import { Question } from './Question';
+import { Answer } from './Answer';
 
 @Injectable()
 export class UserServiceService {
@@ -202,6 +204,31 @@ export class UserServiceService {
     const formData : FormData = new FormData();
     formData.append('file',file);
     return this.http.post(this.baseUrl + '/teacher/file?token='+token+'&section_id='+id,formData).toPromise().then(response => response.text() as string);
+  }
+
+  getQuiz(token:string,id:string):Promise<Quiz>{
+    return this.http.get(
+    this.baseUrl +'/quiz?token='+token+'&quiz_id='+id).toPromise().then(response=> response.json() as Quiz);
+  }
+
+  addQuestion(token:string,question:Question,quizId:string):Promise<string>{
+    return this.http.post(this.baseUrl + '/teacher/question?token='+token+'&question_id='+quizId+'&question_body='+question.question_body+'&is_multiple_choice='+question.is_multiple_choice+'&question_mark='+question.question_mark,question).toPromise().then(response => response.text() as string);
+  }
+
+  deleteQuestion(token:string,questionId:string):Promise<string>{
+    return this.http.delete(this.baseUrl + '/teacher/question?token='+token+'&question_id='+questionId)
+      .toPromise()
+      .then(response => response.text() as string);
+  }
+
+  addAnswer(token:string,answer:Answer,questionId:string):Promise<string>{
+    return this.http.post(this.baseUrl + '/teacher/answer?token='+token+'&question_id='+questionId+'&answer_body='+answer.answer_body+'&is_correct='+answer.is_correct,answer).toPromise().then(response => response.text() as string);
+  }
+
+  deleteAnswer(token:string,answerId:string):Promise<string>{
+    return this.http.delete(this.baseUrl + '/teacher/answer?token='+token+'&answer_id='+answerId)
+      .toPromise()
+      .then(response => response.text() as string);
   }
 
 }

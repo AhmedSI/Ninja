@@ -78,7 +78,9 @@
                 <button type="button" name="button" class="upload_lec" data-toggle="modal" data-target="#videoModal" (click)="setSelectedSection(section.sectionId)"><i class="fas fa-upload" ></i> upload video</button>
                 <button type="button" name="button" class="upload_lec"  data-toggle="modal" data-target="#quizModal" (click)="setSelectedSection(section.sectionId)"><i class="fas fa-upload"></i>create quiz</button>
                 <ul class="lecturesList">
-                  <li *ngFor="let lecture of section.fancyLectures"><a routerLink="/quizdashboard/{{lecture.lectureId}}">{{lecture.name}}</a><button type="button" name="button" class="remove_lec" (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> remove </button>
+                  <li  *ngFor="let lecture of section.fancyLectures"><a *ngIf="lecture.quiz" routerLink="/quizdashboard/{{lecture.lectureId}}">{{lecture.name}}</a>
+                    <a *ngIf="! lecture.quiz" routerLink="/lecture/{{lecture.lectureId}}">{{lecture.name}}</a>
+                    <button type="button" name="button" class="remove_lec" (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> remove </button>
                   </li>
                 </ul>
               </div>

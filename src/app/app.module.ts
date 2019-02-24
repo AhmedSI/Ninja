@@ -28,8 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { ChildprofileComponent } from './childprofile/childprofile.component';
 import { LectureComponent } from './lecture/lecture.component';
-import { QuizdahboardComponent } from './quizdahboard/quizdahboard.component';
 import { QuizhomeComponent } from './quizhome/quizhome.component';
+import { QuizdashboardComponent } from './quizdashboard/quizdashboard.component';
 
 
 
@@ -62,9 +62,11 @@ import { QuizhomeComponent } from './quizhome/quizhome.component';
 
     LectureComponent,
 
-    QuizdahboardComponent,
 
-    QuizhomeComponent
+    QuizhomeComponent,
+
+
+    QuizdashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -128,8 +130,11 @@ import { QuizhomeComponent } from './quizhome/quizhome.component';
       path: 'childprofile/:id',
       component: ChildprofileComponent
     },{
+      path: 'lecture/:id',
+      component: LectureComponent
+    },{
       path: 'quizdashboard/:id',
-      component: QuizdahboardComponent
+      component: QuizdashboardComponent
     }])
   ],
   providers: [UserServiceService],

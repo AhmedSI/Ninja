@@ -1,20 +1,18 @@
 
-
-  <div class="container">
+<div class="container">
     <form class="" action="index.html" method="post">
 
 
       <div class="about-quiz">
         <h5>About Quiz</h5>
         <hr width="50%" >
-        <input class="form-control form-control-lg quiz-name" type="text" placeholder="Quiz name">
+        <input class="form-control form-control-lg quiz-name" type="text" [placeholder]="quiz.title">
 
-
-        <textarea name="name" class="form-control quiz-des col-7" rows="4" style="resize:none" placeholder="Quiz description and notes"></textarea>
+        <textarea name="name" class="form-control quiz-des col-7" rows="4" style="resize:none" [placeholder]="quiz.instructions"></textarea>
         <div class="input-group col-2 time-c">
           <input type="text" class="form-control" placeholder="Time">
           <div class="input-group-append">
-            <span class="input-group-text">minutes</span>
+            <span class="input-group-text">{{quiz.time}}</span>
           </div>
         </div>
 
