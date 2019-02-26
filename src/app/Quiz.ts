@@ -1,5 +1,5 @@
 export class Quiz {
-  quizId: string;
+  quizId: Number;
   title: string;
   instructions: string;
   quizTime:Number;

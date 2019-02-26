@@ -8,6 +8,7 @@ import { Category } from './Category';
 import { Quiz } from './Quiz';
 import { Question } from './Question';
 import { Answer } from './Answer';
+import { Lecture } from './Lecture';
 
 @Injectable()
 export class UserServiceService {
@@ -206,13 +207,13 @@ export class UserServiceService {
     return this.http.post(this.baseUrl + '/teacher/file?token='+token+'&section_id='+id,formData).toPromise().then(response => response.text() as string);
   }
 
-  getQuiz(token:string,id:string):Promise<Quiz>{
+  getQuiz(token:string,id:Number):Promise<Quiz>{
     return this.http.get(
     this.baseUrl +'/quiz?token='+token+'&quiz_id='+id).toPromise().then(response=> response.json() as Quiz);
   }
 
-  addQuestion(token:string,question:Question,quizId:string):Promise<string>{
-    return this.http.post(this.baseUrl + '/teacher/question?token='+token+'&question_id='+quizId+'&question_body='+question.question_body+'&is_multiple_choice='+question.is_multiple_choice+'&question_mark='+question.question_mark,question).toPromise().then(response => response.text() as string);
+  addQuestion(token:string,question:Question,quizId:Number):Promise<string>{
+    return this.http.post(this.baseUrl + '/teacher/question?token='+token+'&quiz_id='+quizId+'&question_body='+question.question_body+'&is_multiple_choice='+question.is_multiple_choice+'&question_mark='+question.question_mark,question).toPromise().then(response => response.text() as string);
   }
 
   deleteQuestion(token:string,questionId:string):Promise<string>{
@@ -229,6 +230,10 @@ export class UserServiceService {
     return this.http.delete(this.baseUrl + '/teacher/answer?token='+token+'&answer_id='+answerId)
       .toPromise()
       .then(response => response.text() as string);
+  }
+
+  getLecture(token:string,id:string):Promise<Lecture>{
+    return this.http.get(this.baseUrl+"/lecture?token="+token+"&lecture_id="+id).toPromise().then(response => response.json() as Lecture);
   }
 
 }

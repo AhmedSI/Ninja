@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '.././Course';
 import { Section } from '.././Section';
+import { User } from '.././User';
 import { Classroom } from '.././Classroom';
 import { Quiz } from '.././Quiz';
 import { UserServiceService } from '.././user-service.service';
@@ -16,7 +17,7 @@ import { FormGroup,FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./coursedashboard-component.component.css']
 })
 export class CoursedashboardComponentComponent implements OnInit {
-  course : Course = new Course;
+  course : Course = new Course();
   token: string = "initial";
   newSection : Section = new Section();
   sections : Section[];

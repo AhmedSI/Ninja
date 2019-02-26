@@ -1,6 +1,5 @@
 import { Section } from './Section';
 import { User } from "./User";
-
 export class Course {
   courseId: string;
   publisher: User;
@@ -9,5 +8,5 @@ export class Course {
   description: string;
   category: string;
   level:Number;
-  sections:Section[]
+  sections:Section[];
 }

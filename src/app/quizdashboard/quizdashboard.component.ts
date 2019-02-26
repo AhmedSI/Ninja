@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Quiz } from '.././Quiz';
 import { Question } from '.././Question';
 import { Answer } from '.././Answer';
+import { Lecture } from '.././Lecture';
 import { UserServiceService } from '.././user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
 import {NgForm} from '@angular/forms';
@@ -13,7 +14,8 @@ import {NgForm} from '@angular/forms';
 })
 export class QuizdashboardComponent implements OnInit {
 	token: string = "initial";
-	quiz: Quiz = new Quiz();
+  quiz: Quiz = new Quiz();
+	lecture: Lecture = new Lecture();
 	id : string ;
 	selectedQuestionId:string;
 	newQuestion:Question = new Question();
@@ -27,12 +29,20 @@ export class QuizdashboardComponent implements OnInit {
   ngOnInit() {
   	this.token = localStorage.getItem('token');
   	this.id = this.router.snapshot.paramMap.get("id");
-  	this.getQuiz();
+  	this.getLecture();
   }
 
-  getQuiz(){
-  	this.userService.getQuiz(this.token,this.id).then(quiz=>{
-  		this.quiz=quiz;
+  getQuiz(id:Number){
+    this.userService.getQuiz(this.token,id).then(quiz=>{
+      this.quiz=quiz;
+      console.log(this.quiz);
+    })
+  }
+
+  getLecture(){
+  	this.userService.getLecture(this.token,this.id).then(lecture=>{
+  		this.lecture=lecture;
+      this.getQuiz(this.lecture.lectureContentId);
   	})
   }
 
@@ -41,26 +51,28 @@ export class QuizdashboardComponent implements OnInit {
   }
 
   addQuestion(questionForm:NgForm){
-  	this.userService.addQuestion(this.token,this.newQuestion,this.id).then(response =>{
-  		this.getQuiz();
+  this.newQuestion.is_multiple_choice = false;
+  	this.userService.addQuestion(this.token,this.newQuestion,this.quiz.quizId).then(response =>{
+  		this.getLecture();
   	})
   }
 
   deleteQuestion(questionId:string){
   	this.userService.deleteQuestion(this.token,questionId).then(response =>{
-  		this.getQuiz();
+  		this.getLecture();
   	})
   }
 
   addAnswer(AnswerForm:NgForm){
   	this.userService.addAnswer(this.token,this.newAnswer,this.selectedQuestionId).then(response =>{
-  		this.getQuiz();
+  		this.getLecture();
   	})
   }
 
   deleteAnswer(answerId:string){
+  console.log(answerId);
   	this.userService.deleteAnswer(this.token,answerId).then(response =>{
-  		this.getQuiz();
+  		this.getLecture();
   	})
   }
 
