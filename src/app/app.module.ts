@@ -30,6 +30,7 @@ import { ChildprofileComponent } from './childprofile/childprofile.component';
 import { LectureComponent } from './lecture/lecture.component';
 import { QuizhomeComponent } from './quizhome/quizhome.component';
 import { QuizdashboardComponent } from './quizdashboard/quizdashboard.component';
+import { LectureContentsComponent } from './lecture-contents/lecture-contents.component';
 
 
 
@@ -66,7 +67,10 @@ import { QuizdashboardComponent } from './quizdashboard/quizdashboard.component'
     QuizhomeComponent,
 
 
-    QuizdashboardComponent
+    QuizdashboardComponent,
+
+
+    LectureContentsComponent
   ],
   imports: [
     BrowserModule,
@@ -130,11 +134,12 @@ import { QuizdashboardComponent } from './quizdashboard/quizdashboard.component'
       path: 'childprofile/:id',
       component: ChildprofileComponent
     },{
-      path: 'lecture/:id',
-      component: LectureComponent
-    },{
       path: 'quizdashboard/:id',
       component: QuizdashboardComponent
+    },{
+      path: 'course/:id/sections',
+      component: LectureComponent, children:[
+        {path: 'lecture/:id', component:LectureContentsComponent}]
     }])
   ],
   providers: [UserServiceService],

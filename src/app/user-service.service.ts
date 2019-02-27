@@ -151,7 +151,7 @@ export class UserServiceService {
 
     const formData : FormData = new FormData();
     formData.append('file',file);
-    return this.http.post(this.baseUrl + '/profilePic?token='+token,formData).toPromise().then(response => response.text() as string);
+    return this.http.post(this.baseUrl + '/prongPic?token='+token,formData).toPromise().then(response => response.text() as string);
   }
 
   beTeacher(token:string):Promise<String>{
