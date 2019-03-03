@@ -30,7 +30,7 @@ export class CoursehomeComponentComponent implements OnInit {
 
   getCourseById(){
   	this.userService.getCourseById(this.token,this.courseID)
-      .then(course => {this.course = course; this.sections =course.sections;console.log("creator name:"+this.course.title);});
+      .then(course => {this.course = course; this.sections =course.sections;});
   }
 
 }  

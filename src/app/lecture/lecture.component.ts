@@ -3,7 +3,7 @@ import { UserServiceService } from '.././user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
 import { Course } from '../Course';
 import { Section } from '../Section';
-import { Lecture } from '../lecture';
+import { Lecture } from '../Lecture';
 import { Quiz } from '../Quiz';
 
 
@@ -20,6 +20,10 @@ export class LectureComponent implements OnInit {
   sections:Section[];
   lectures:Lecture[][];
   quiz:Quiz=new Quiz();
+  selectedLecture:string;
+  lecture:Lecture=new Lecture();
+  lectureContent:File;
+  request:string;
   // section:Section;
 
 
@@ -36,6 +40,25 @@ export class LectureComponent implements OnInit {
     // this.sections=new Section[];
     this.getCourseById();
     
+  }
+
+  setLecture(id){
+    this.selectedLecture = id;
+    this.getLecture();
+  }
+
+    getLectureContent(id:Number){
+    this.userService.getLectureContent(this.token,id).then(file=>{
+      this.lectureContent = file;
+      console.log(file);
+    })
+  }
+
+  getLecture(){
+    this.userService.getLecture(this.token,this.selectedLecture).then(lecture=>{
+      this.lecture = lecture;
+      this.getLectureContent(lecture.lectureContentId);
+    })
   }
 
   getCourseById(){

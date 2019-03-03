@@ -111,10 +111,10 @@ export class UserServiceService {
       .then(response => response.json() as Course);
   }
 
-  enrollIntoCourse(token:string,course:Course): Promise<Course> {
+  enrollIntoCourse(token:string,course:Course): Promise<string> {
     return this.http.post(this.baseUrl + '/student/enroll_course?token='+token+'&course_id='+course.courseId,course)
       .toPromise()
-      .then(response => response.json() as Course);
+      .then(response => response.text() as string);
   }
 
   getEnrolledCourses(token:string):Promise<Course>{
@@ -234,6 +234,10 @@ export class UserServiceService {
 
   getLecture(token:string,id:string):Promise<Lecture>{
     return this.http.get(this.baseUrl+"/lecture?token="+token+"&lecture_id="+id).toPromise().then(response => response.json() as Lecture);
+  }
+
+  getLectureContent(token:string,id:Number):Promise<File>{
+    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body'] as File);
   }
 
 }

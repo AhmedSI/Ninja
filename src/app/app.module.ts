@@ -31,7 +31,7 @@ import { LectureComponent } from './lecture/lecture.component';
 import { QuizhomeComponent } from './quizhome/quizhome.component';
 import { QuizdashboardComponent } from './quizdashboard/quizdashboard.component';
 import { LectureContentsComponent } from './lecture-contents/lecture-contents.component';
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 @NgModule({
@@ -74,7 +74,8 @@ import { LectureContentsComponent } from './lecture-contents/lecture-contents.co
   ],
   imports: [
     BrowserModule,
-    OwlModule,
+    OwlModule, 
+    PdfViewerModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,

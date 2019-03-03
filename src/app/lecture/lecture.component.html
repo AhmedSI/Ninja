@@ -25,7 +25,7 @@
       </div>
     </div>
   </div>
-  <div class="wr">
+  <div class="wr" style="height:735px">
     <div id="sidebar">
       <div class="sidebar-header">
         <h3>{{course.title}}</h3>
@@ -38,8 +38,7 @@
           <a href="#sec1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{section.title}}</a>
           <ul class="collapse list-unstyled" id="sec1">
             <li *ngFor = "let lecture of section.fancyLectures" >
-              <a *ngIf="lecture.video" routerLink="lecture/{{lecture.lectureContentId}}">{{lecture.name}}</a>
-              <a *ngIf="lecture.file" href="#">{{lecture.name}}</a>
+              <a *ngIf="!lecture.quiz" (click)="setLecture(lecture.lectureId)">{{lecture.name}}</a>
               <a *ngIf="lecture.quiz" data-toggle="modal" data-target="#myModal" (click)=quizModal(lecture)>{{lecture.name}}</a>
 
             </li>
@@ -52,22 +51,11 @@
     </div>
 
     <div class="cont">
-      <!-- <div class="lec-header">
-        <br>
-        <h3>Section name</h3>
-        <h6>Lecture name</h6>
-      </div>
-      <hr>
-      <br>
-      <div class="vi">
-
-        <video width="90%" height="80%" controls>
-          <source src="Video source here in mp4 extinsion" type="video/mp4">
-          </video>
-
-
-    </div> -->
-    <router-outlet></router-outlet>
+      <h1 *ngIf= "!selectedLecture" style="text-align: center;margin-top:250px">WELCOME TO {{course.title}}</h1>
+      <pdf-viewer [src]="request" 
+              [render-text]="true"
+              style="display: block;"
+  ></pdf-viewer>
     </div>
 
 </div>

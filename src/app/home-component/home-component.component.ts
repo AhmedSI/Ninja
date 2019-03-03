@@ -48,7 +48,7 @@ export class HomeComponentComponent implements OnInit{
   enroll(course:Course){
     // console.log(course);
     this.userService.enrollIntoCourse(this.token,course)
-    .then(course =>{this.enrolledCourses=course;});
+    .then(course =>{});
   }
 
   
