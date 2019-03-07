@@ -5,6 +5,7 @@ import { Course } from '../Course';
 import { Section } from '../Section';
 import { Lecture } from '../Lecture';
 import { Quiz } from '../Quiz';
+import { fileContent } from '../fileContent';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class LectureComponent implements OnInit {
   quiz:Quiz=new Quiz();
   selectedLecture:string;
   lecture:Lecture=new Lecture();
-  lectureContent:File;
+  lectureContent:fileContent;
   request:string;
   // section:Section;
 
@@ -50,7 +51,7 @@ export class LectureComponent implements OnInit {
     getLectureContent(id:Number){
     this.userService.getLectureContent(this.token,id).then(file=>{
       this.lectureContent = file;
-      console.log(file);
+      // console.log(file);
     })
   }
 
@@ -66,7 +67,7 @@ export class LectureComponent implements OnInit {
       this.userService.getCourseById(this.token,this.id)
       .then(coursef => {
         this.course = JSON.parse(JSON.stringify(coursef))
-        console.log(this.course);
+        // console.log(this.course);
       });
       // this.sections=this.course.sections;
     }
@@ -74,8 +75,4 @@ export class LectureComponent implements OnInit {
     quizModal(lecture:Lecture){
       this.quiz.title=lecture.name;
     }
-
-    
-
-
 }

@@ -32,6 +32,8 @@ import { QuizhomeComponent } from './quizhome/quizhome.component';
 import { QuizdashboardComponent } from './quizdashboard/quizdashboard.component';
 import { LectureContentsComponent } from './lecture-contents/lecture-contents.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { SafePipe } from './safe.pipe';
+
 
 
 @NgModule({
@@ -70,7 +72,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     QuizdashboardComponent,
 
 
-    LectureContentsComponent
+    LectureContentsComponent,
+
+
+    SafePipe
   ],
   imports: [
     BrowserModule,

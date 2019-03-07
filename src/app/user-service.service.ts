@@ -9,6 +9,7 @@ import { Quiz } from './Quiz';
 import { Question } from './Question';
 import { Answer } from './Answer';
 import { Lecture } from './Lecture';
+import { fileContent } from './fileContent';
 
 @Injectable()
 export class UserServiceService {
@@ -236,8 +237,12 @@ export class UserServiceService {
     return this.http.get(this.baseUrl+"/lecture?token="+token+"&lecture_id="+id).toPromise().then(response => response.json() as Lecture);
   }
 
-  getLectureContent(token:string,id:Number):Promise<File>{
-    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body'] as File);
+  // getLectureContent(token:string,id:Number):Promise<File>{
+  //   return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body'] as File);
+  // }
+
+  getLectureContent(token:string,id:Number):Promise<fileContent>{
+    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response.json() as fileContent);
   }
 
 }
