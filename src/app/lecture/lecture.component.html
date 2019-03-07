@@ -52,7 +52,8 @@
 
     <div class="cont">
       <h1 *ngIf= "!selectedLecture" style="text-align: center;margin-top:250px">WELCOME TO {{course.title}}</h1>
-      <pdf-viewer [src]="request" 
+      <iframe id="iframepdf" [src]="fileSrc"></iframe>
+      <pdf-viewer [src]="fileSrc" 
               [render-text]="true"
               style="display: block;"
   ></pdf-viewer>

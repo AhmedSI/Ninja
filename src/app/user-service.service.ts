@@ -236,8 +236,17 @@ export class UserServiceService {
     return this.http.get(this.baseUrl+"/lecture?token="+token+"&lecture_id="+id).toPromise().then(response => response.json() as Lecture);
   }
 
-  getLectureContent(token:string,id:Number):Promise<File>{
-    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body'] as File);
+  getLectureContent(token:string,id:Number):Promise<any>{
+    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body']);
+  }
+
+
+  downloadPDF(token:string,id:Number): any {
+    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(
+    (res) => {
+            console.log(res);
+            return new Blob([res['_body']], { type: 'application/pdf' })
+        });
   }
 
 }

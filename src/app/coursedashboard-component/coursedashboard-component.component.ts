@@ -97,6 +97,7 @@ export class CoursedashboardComponentComponent implements OnInit {
     this.userService.pushLectureContent(
       this.currentFileUpload,this.token,this.selectedSectionId)
       .then(event => {
+          console.log(event);
           this.getCourse();
       }
     );

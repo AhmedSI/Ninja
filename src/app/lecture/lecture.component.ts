@@ -22,8 +22,7 @@ export class LectureComponent implements OnInit {
   quiz:Quiz=new Quiz();
   selectedLecture:string;
   lecture:Lecture=new Lecture();
-  lectureContent:File;
-  request:string;
+  fileSrc:string;
   // section:Section;
 
 
@@ -48,16 +47,21 @@ export class LectureComponent implements OnInit {
   }
 
     getLectureContent(id:Number){
-    this.userService.getLectureContent(this.token,id).then(file=>{
-      this.lectureContent = file;
-      console.log(file);
-    })
-  }
+      this.userService.getLectureContent(this.token,id).then(response=>{
+
+        let file = new Blob([response.byteArray], { type: 'application/pdf' });            
+        var fileURL = URL.createObjectURL(file);
+        console.log(fileURL);
+        this.fileSrc = fileURL;
+        //this.lectureContent = file;
+        //console.log(file);
+      })
+    }
 
   getLecture(){
     this.userService.getLecture(this.token,this.selectedLecture).then(lecture=>{
       this.lecture = lecture;
-      this.getLectureContent(lecture.lectureContentId);
+      this.getLectureContentTry(lecture.lectureContentId);
     })
   }
 
@@ -75,6 +79,16 @@ export class LectureComponent implements OnInit {
       this.quiz.title=lecture.name;
     }
 
+
+    getLectureContentTry(id:Number){
+      this.userService.downloadPDF(this.token,id).then(
+        (res) => {
+        var fileURL = URL.createObjectURL(res);
+        this.fileSrc = "http://www.africau.edu/images/default/sample.pdf";
+        console.log(fileURL);
+        }
+    );
+    }
     
 
 
