@@ -9,6 +9,7 @@ import { Quiz } from './Quiz';
 import { Question } from './Question';
 import { Answer } from './Answer';
 import { Lecture } from './Lecture';
+import { fileContent } from './fileContent';
 
 @Injectable()
 export class UserServiceService {
@@ -132,8 +133,8 @@ export class UserServiceService {
 
   enrollChildInCourse(child:User,courseId:Number,token:string):Promise<string>{
     return this.http.post(this.baseUrl + '/parent/enroll_child_course?token='+token+'&first_name='+child.firstName+'&course_id='+courseId,child)
-      .toPromise()
-      .then(response => response.json() as string);
+    .toPromise()
+    .then(response => response.json() as string);
   }
 
   enrollClassroom(token: string,classroomData: Classroom):Promise<string> {
@@ -236,9 +237,10 @@ export class UserServiceService {
     return this.http.get(this.baseUrl+"/lecture?token="+token+"&lecture_id="+id).toPromise().then(response => response.json() as Lecture);
   }
 
-  getLectureContent(token:string,id:Number):Promise<any>{
-    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body']);
-  }
+
+  //getLectureContent(token:string,id:Number):Promise<any>{
+    //return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body']);
+  //}
 
 
   downloadPDF(token:string,id:Number): any {
@@ -247,6 +249,13 @@ export class UserServiceService {
             console.log(res);
             return new Blob([res['_body']], { type: 'application/pdf' })
         });
+  }
+  //getLectureContent(token:string,id:Number):Promise<File>{
+    //return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response['_body'] as File);
+  //}
+
+  getLectureContent(token:string,id:Number):Promise<fileContent>{
+    return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response.json() as fileContent);
   }
 
 }

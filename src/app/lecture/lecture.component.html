@@ -35,10 +35,12 @@
       <ul class="list-unstyled components">
 
         <li *ngFor = "let section of course.sections">
-          <a href="#sec1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{section.title}}</a>
-          <ul class="collapse list-unstyled" id="sec1">
+          <a href="#{{section.sectionId}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{section.title}}</a>
+          <ul class="collapse list-unstyled" id="{{section.sectionId}}">
             <li *ngFor = "let lecture of section.fancyLectures" >
-              <a *ngIf="!lecture.quiz" (click)="setLecture(lecture.lectureId)">{{lecture.name}}</a>
+              <!-- <a *ngIf="!lecture.quiz" routerLink="lecture/{{lecture.lectureId}}">{{lecture.name}}</a> -->
+              <a *ngIf="!lecture.quiz" (click)="setLecture(lecture)">{{lecture.name}}</a>
+
               <a *ngIf="lecture.quiz" data-toggle="modal" data-target="#myModal" (click)=quizModal(lecture)>{{lecture.name}}</a>
 
             </li>
@@ -51,12 +53,12 @@
     </div>
 
     <div class="cont">
+
       <h1 *ngIf= "!selectedLecture" style="text-align: center;margin-top:250px">WELCOME TO {{course.title}}</h1>
-      <iframe id="iframepdf" [src]="fileSrc"></iframe>
-      <pdf-viewer [src]="fileSrc" 
-              [render-text]="true"
-              style="display: block;"
-  ></pdf-viewer>
+      <video *ngIf="lecture.video"  [src]=videoURL()  type="video/mp4" width="90%" height="540" controls> </video>
+
+      <iframe *ngIf="lecture.file" [src]=pdfTrustedURL() width="100%" height="650px" frameborder="0"  style="display: block;"></iframe>
+
     </div>
 
 </div>
