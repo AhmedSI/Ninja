@@ -74,7 +74,7 @@ export class UserServiceService {
   }
 
   topCourses(): Promise<Course[]> {
-    return this.http.get(this.baseUrl + '/new_courses')
+    return this.http.get(this.baseUrl + '/top_rated_courses')
       .toPromise()
       .then(response => response.json() as Course[]);
   }

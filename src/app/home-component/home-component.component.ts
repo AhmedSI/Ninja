@@ -20,7 +20,7 @@ export class HomeComponentComponent implements OnInit{
 
   constructor(
   private userService:UserServiceService,
-  private router: ActivatedRoute
+  private router: Router
   ) { }
 
   ngOnInit() {
@@ -49,6 +49,7 @@ export class HomeComponentComponent implements OnInit{
     // console.log(course);
     this.userService.enrollIntoCourse(this.token,course)
     .then(course =>{});
+    this.router.navigate(['/myCourses']);
   }
 
   
