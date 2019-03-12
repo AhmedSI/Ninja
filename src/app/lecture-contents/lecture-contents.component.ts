@@ -49,10 +49,9 @@ export class LectureContentsComponent implements OnInit {
       this.lectureContent.fileId=file.fileId;
       this.lectureContent.fileType=file.fileType;
       this.trustedDashboardUrl = this.sanitizer.bypassSecurityTrustResourceUrl(file.fileDownloadUri);
-      // this.lectureContent.fileDownloadUri = this.trustedDashboardUrl;
+      // this.lectureContent.fileDownloadUri = this.trustedDashboardUrl;\
 
-
-        // console.log(this.lectureContent);
+      // console.log(this.lectureContent);
 
     })
   }

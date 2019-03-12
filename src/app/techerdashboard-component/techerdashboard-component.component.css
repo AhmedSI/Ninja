@@ -1,11 +1,31 @@
-/* body{
-    background-color: #F4F7F6;
-    position: relative;
-    box-sizing: border-box;
+.bg-overlay {
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7));
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+.overlayContainer{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
-} */
+#teach{
+  position: relative;
+  left: 80%;
+  top: 50%;
+  border-radius: 20px;
+  background: #f7882f;
+  color:#f7c331;
+  transition: all .5s ease;
+  margin-top: 5%;
+}
 
-#add_class_room{
+
+#add_class_room, #add_course{
   border-radius: 20px;
   background: #f7882f;
   color:#f7c331;
@@ -13,20 +33,9 @@
   left: 78%;
   top: 10%;
   transition: all .5s ease;
-
-}
-#add_course,#teach{
-  border-radius: 20px;
-  background: #f7882f;
-  color:#f7c331;
-  position: absolute;
-  left: 77%;
-  top: 10%;
-  transition: all .5s ease;
-
 }
 
-#add_course:hover , #add_class_room:hover{
+#add_course:hover , #add_class_room:hover, #teach:hover {
   background-color:#f7c331;
   text-decoration-line: none;
   color: white;

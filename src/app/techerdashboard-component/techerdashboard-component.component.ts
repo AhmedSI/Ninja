@@ -22,6 +22,11 @@ export class TecherdashboardComponentComponent implements OnInit {
   submitted = false;
   isTeacher : boolean = false;
   categories : Category[];
+  request:String = new String();
+  requestnum: Number;
+  showOverlay:boolean=false;
+  courseForm:FormGroup;
+
 
   constructor(
     private userService: UserServiceService,
@@ -29,19 +34,36 @@ export class TecherdashboardComponentComponent implements OnInit {
     ) { }
   
     get f() { return this.createClassroomForm.controls; }
+    get g() { return this.courseForm.controls; }
+
 
 
   ngOnInit() {
-  	this.token = localStorage.getItem('token');
+    this.token = localStorage.getItem('token');
+    this.requestOfTeaching();
+
     this.checkTeacher();
   	this.getCourses();
     this.getClassrooms();
-    this.getCategoris()
+    this.getCategoris();
+
+    this.showOverlay=false;
 
     this.createClassroomForm = this.formBuilder.group({
       classroomName: ['', Validators.required]
   });
+
+    
+  this.courseForm =this.formBuilder.group({
+    courseName:['',Validators.required],
+    detaitedTitle:['',Validators.required],
+    category:['',Validators.required],
+    level:['',Validators.required],
+    courseDescription:['',Validators.required]
+  });
   }
+
+  
   getCourses(){
   	this.userService.getCourses(this.token)
       .then(courses => {this.courses = courses;});
@@ -51,14 +73,34 @@ export class TecherdashboardComponentComponent implements OnInit {
       .then(classrooms => {this.classrooms = classrooms;});
   }
 
-  addCourse(courseForm: NgForm){
-      this.courses.unshift(this.newCourse);
+  // addCourse(courseForm: NgForm){
+  //     this.courses.unshift(this.newCourse);
+  // 	this.userService.addCourse(this.token,this.newCourse).then(createCourse => { 
+
+  //       courseForm.reset();
+  //       this.newCourse = new Course();
+  //       console.log(this.courses);
+  //       this.getCourses();
+  //     });
+  // }
+  addCourse(){
+    if (this.courseForm.invalid){
+      this.submitted=true;
+     return;
+    }
+    this.newCourse.title=this.courseForm.value.courseName;
+    this.newCourse.detailed_title=this.courseForm.value.detaitedTitle;
+    this.newCourse.category=this.courseForm.value.category;
+    this.newCourse.level=this.courseForm.value.level;
+    this.newCourse.description=this.courseForm.value.courseDescription;
+
+    this.courseForm.reset();
+
+    this.courses.unshift(this.newCourse);
   	this.userService.addCourse(this.token,this.newCourse).then(createCourse => { 
 
-        courseForm.reset();
         this.newCourse = new Course();
         console.log(this.courses);
-        this.getCourses();
       });
   }
 
@@ -82,7 +124,13 @@ export class TecherdashboardComponentComponent implements OnInit {
 
   checkTeacher(){
     this.userService.getUserData(this.token).then(user=>{
-      if(user.teacher) this.isTeacher = true;
+      if(user.teacher) {
+        this.isTeacher = true;
+        this.showOverlay=false;
+      }
+      else{
+        this.showOverlay=true;
+      }
     });
   }
 
@@ -96,6 +144,20 @@ export class TecherdashboardComponentComponent implements OnInit {
     this.userService.getCategories().then(categories => {
       this.categories = categories;
     });
+  }
+
+  requestOfTeaching(){
+    this.userService.getrequestOfTeaching(this.token).then(request => {
+      this.request = request;
+      console.log(this.request);
+
+      if(this.request=="request approved") this.requestnum=3;
+      else if(this.request=="request already sent and not approved yet") this.requestnum=2;
+      else this.requestnum=1;
+    });
+
+
+
   }
 
 }

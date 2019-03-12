@@ -258,4 +258,8 @@ export class UserServiceService {
     return this.http.get(this.baseUrl+"/teacher/file?token="+token+"&file_id="+id).toPromise().then(response => response.json() as fileContent);
   }
 
+  getrequestOfTeaching(token:string):Promise<string>{
+    return this.http.get(this.baseUrl+"/teacher/request_teaching?token="+token).toPromise().then(response => response.text() as string);
+  }
+
 }
