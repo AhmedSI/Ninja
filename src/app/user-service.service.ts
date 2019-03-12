@@ -10,6 +10,7 @@ import { Question } from './Question';
 import { Answer } from './Answer';
 import { Lecture } from './Lecture';
 import { fileContent } from './fileContent';
+import { StudentSubmission} from './StudentSubmission';
 
 @Injectable()
 export class UserServiceService {
@@ -260,6 +261,20 @@ export class UserServiceService {
 
   getrequestOfTeaching(token:string):Promise<string>{
     return this.http.get(this.baseUrl+"/teacher/request_teaching?token="+token).toPromise().then(response => response.text() as string);
+  }
+
+  startQuiz(token:string,id:Number){
+    return this.http.post(this.baseUrl+"/student/quiz/start?token="+token+"&quiz_id="+id,{}).toPromise().then(
+      response => response.text() as string
+    );
+
+  }
+
+  evaluate(token:string,id:Number,submission:StudentSubmission):Promise<string>{
+    return this.http.post(this.baseUrl+"/student/quiz/submit?token="+token+"&quiz_id="+id,submission).toPromise().then(
+      response => response.text() as string
+    );
+
   }
 
 }

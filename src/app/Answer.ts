@@ -3,4 +3,5 @@ export class Answer {
 	question_id:string;
 	answer_body:string;
 	is_correct:boolean;
+	answerId:Number;
 }

@@ -143,6 +143,9 @@ import { SafePipe } from './safe.pipe';
       path: 'quizdashboard/:id',
       component: QuizdashboardComponent
     },{
+      path: 'quizhome/:id',
+      component: QuizhomeComponent
+    },{
       path: 'courseContent/:id',
       component: LectureComponent
     }])
