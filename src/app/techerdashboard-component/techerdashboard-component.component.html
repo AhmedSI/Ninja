@@ -1,4 +1,4 @@
-<app-navbar-component></app-navbar-component>
+ <app-navbar-component></app-navbar-component>
 <app-sidebar-component></app-sidebar-component>
 
 <div *ngIf="showOverlay" id="overlay" >
@@ -10,7 +10,7 @@
 				<!-- <br><br> -->
 				<!-- <button type="button" class="btn btn-primary btn-lg">Get Started</button> -->
 				<button id="teach" *ngIf="requestnum==1" (click)= "beTeacher()" type="button" class="btn">Be a Teacher</button>
-				<button id="teach" *ngIf="requestnum==2"(click)= "beTeacher()" type="button" disabled class="btn">Request Sent</button>
+				<button id="teach" *ngIf="requestnum==2" (click)= "beTeacher()" type="button" disabled class="btn">Request Sent</button>
 
 			</div>
 		</div>

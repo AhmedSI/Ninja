@@ -138,6 +138,7 @@ export class TecherdashboardComponentComponent implements OnInit {
     this.userService.beTeacher(this.token).then(response => {        
         console.log(response);
       }); 
+      this.requestOfTeaching();
   }
 
   getCategoris(){
