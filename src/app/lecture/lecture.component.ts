@@ -62,6 +62,8 @@ export class LectureComponent implements OnInit {
 
   quizModal(lecture:Lecture){
     this.quiz.title=lecture.name;
+    this.quiz.quizId = lecture.lectureId;
+    console.log(this.quiz.quizId);
   }
 
   getLectureContent(id:Number){
