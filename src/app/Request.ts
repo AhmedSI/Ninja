@@ -4,4 +4,6 @@ export class Request {
 	claimerName:string;
 	claimerEmail:string;
 	approved:boolean;
+	
+	buttonStatus:string;
 }

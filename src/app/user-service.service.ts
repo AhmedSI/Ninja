@@ -37,7 +37,7 @@ export class UserServiceService {
   addCourseForClassroom(token: string,courseData: Course) : Promise<string>{
     return this.http.post(
       this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData).toPromise().then(response => response.text() as string);
-  }
+    }
 
   addClassroom(token: string,classroomData: Classroom):Promise<string> {
     return this.http.post(
@@ -274,7 +274,14 @@ export class UserServiceService {
     return this.http.post(this.baseUrl+"/student/quiz/submit?token="+token+"&quiz_id="+id,submission).toPromise().then(
       response => response.text() as string
     );
-
   }
+
+  NewCourseInClassroom(token:string,classroomId:string,course:Course){
+      return this.http.post(
+        this.baseUrl + '/teacher/classroom_courses?token='+token+'&classroom_id='+classroomId+'&title='+course.title+ '&detailed_title='+course.detailed_title+ '&description='+course.description+ '&category='+course.category+ '&level='+course.level,course)
+        .toPromise().
+        then(response => response.text() as string);
+      }
+  
 
 }

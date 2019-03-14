@@ -26,6 +26,8 @@ export class TecherdashboardComponentComponent implements OnInit {
   requestnum: Number;
   showOverlay:boolean=false;
   courseForm:FormGroup;
+  buttonTeacher:string="Be a teacher";
+  disable:boolean=false;
 
 
   constructor(
@@ -83,6 +85,7 @@ export class TecherdashboardComponentComponent implements OnInit {
   //       this.getCourses();
   //     });
   // }
+  
   addCourse(){
     if (this.courseForm.invalid){
       this.submitted=true;
@@ -139,6 +142,8 @@ export class TecherdashboardComponentComponent implements OnInit {
         console.log(response);
       }); 
       this.requestOfTeaching();
+      this.buttonTeacher="Request Sent";
+      this.disable=true;
   }
 
   getCategoris(){

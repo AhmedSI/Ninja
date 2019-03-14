@@ -8,14 +8,16 @@ import { UserServiceService } from '.././user-service.service';
 })
 export class AdmindashboardComponent implements OnInit {
 	token: string = "initial";
-	requests: Request[];
+  requests: Request[];
+  disable:boolean=false;
+  buttonPlaceholder:string="accept this request";
   constructor(
   	private userService: UserServiceService
   ) { }
 
   ngOnInit() {
   	this.token = localStorage.getItem('token');
-  	this.getRequests();
+    this.getRequests();
   }
 
   getRequests(){
@@ -23,11 +25,11 @@ export class AdmindashboardComponent implements OnInit {
       .then(requests => {this.requests = requests;});
   }
 
-  acceptRequest(id:Number){
+  acceptRequest(id:number){
   	this.userService.acceptTeacher(this.token,id).then(acceptRequest => {        
-        
       });	
-
+      this.disable=true;
+      this.buttonPlaceholder="accepted";
   }
 
 }

@@ -64,6 +64,7 @@
         <i class="fas fa-plus"></i>
         Add Course
       </button>
+
       <div class="modal fade" id="myModal4">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -74,173 +75,125 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-              <small>Select the Course you want to adad from your Courses.if you want to add new course <a target="_blank" rel="noopener noreferrer" href="course_dash.html">goto this link</a></small>
+              <small> Select the Course you want to add from your Courses. if you want to add new course </small>
+              <input type="button"(click)="showForm()" value="New course" class="btn">
+
+              
+             <div *ngIf="show"> 
+              <form [formGroup]="courseForm" class="login-form col-xl" (ngSubmit)="addCourse()" >  
+	
+                <div class="form-group">
+                    <label class="text-uppercase">Course name</label>
+                    <input formControlName="courseName" type="text" class="form-control" placeholder="Course name"[ngClass]="{ 'is-invalid': submitted && g.courseName.errors }" />
+                    <div *ngIf="submitted && g.courseName.errors" class="invalid-feedback">
+                      <div *ngIf="g.courseName.errors.required">Course name is required</div>
+                    </div>
+                  </div>
+            
+                <div class="form-group">
+                  <label class="text-uppercase">Detailed title</label>
+                  <input formControlName="detaitedTitle" type="text" class="form-control" placeholder="Detailed title"[ngClass]="{ 'is-invalid': submitted && g.detaitedTitle.errors }" />
+                  <div *ngIf="submitted && g.detaitedTitle.errors" class="invalid-feedback">
+                    <div *ngIf="g.detaitedTitle.errors.required">Detaited title is required</div>
+                  </div>
+                </div>
+
+            
+                <div class="form-group">
+                  <label class="text-uppercase">Category</label>
+                  <!-- <select id="New_course_cat"  name="category" [(ngModel)]="newCourse.category" placeholder="Category" > -->
+                  <select formControlName="category" type="text" class="form-control" placeholder="Category"[ngClass]="{ 'is-invalid': submitted && g.category.errors }" >
+                      <option disabled value="" >Select level of course</option>
+                    <option *ngFor="let category of categories" [value]="category.categoryStr">{{category.categoryStr}}</option>
+                  </select>
+                  
+                  <!-- <input formControlName="category" type="text" class="form-control" placeholder="Category"[ngClass]="{ 'is-invalid': submitted && g.category.errors }" /> -->
+                  <div *ngIf="submitted && g.category.errors" class="invalid-feedback">
+                    <div *ngIf="g.category.errors.required">Category is required</div>
+                  </div>
+                </div>
+
+                  <div class="form-group">
+                    <label class="text-uppercase">Level</label>
+                    <select class="form-control"  formControlName="level" placeholder="Select a level" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.level.errors }" >
+                      <option disabled value="" >Select level of course</option>
+
+                      <option type="text"  value='1' > Beginner</option>
+                      <option type="text" value='2'> Intermediate </option>
+                      <option type="text" value='3' > Hard </option>
+
+                    </select>
+                    <div *ngIf="submitted && g.level.errors" class="invalid-feedback">
+                      <div *ngIf="g.level.errors.required">level is required</div>
+                    </div>
+                  </div>
+                  
+                    <div class="form-group">
+                      <label class="text-uppercase">Course description</label>
+                      <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+                      <textarea formControlName="courseDescription" class="form-control" placeholder="Course Description" row="6" [ngClass]="{ 'is-invalid': submitted && g.courseDescription.errors }" ></textarea>
+                      <div *ngIf="submitted && g.courseDescription.errors" class="invalid-feedback">
+                        <div *ngIf="g.courseDescription.errors.required">Course description is required</div>
+                      </div>
+                    </div>
+
+            
+
+                  
+            
+                  <div class="modal-footer">
+                    <input type="submit" value="Create course" class="btn btn-create">
+                    <button type="button" class="btn btn-dark" (click)=dontShow()>Close</button>
+                  </div>
+
+                </form>
+                </div>
+              
               <hr>
               <form method="post">
                 <div class="row">
 
-                  <div class="col-md-12 col-lg-6 col-xl-4">
+                  <div *ngFor="let course of classroom.courses" class="col-md-12 col-lg-6 col-xl-4">
                     <div class="form-check alg_bo">
                       <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
                       <label class="form-check-label" for="checkbox1" >
-                        <a target="_blank" rel="noopener noreferrer" href="#" >Course Name here Course Name here</a>
+                        <a target="_blank" rel="noopener noreferrer" href="#" > {{course.title}}</a>
                       </label>
                     </div>
                   </div>
-                  <div class="col-md-12 col-lg-6 col-xl-4">
-                    <div class="form-check alg_bo">
-                      <input class="form-check-input" type="checkbox" id="checkbox2" value="option2">
-                      <label class="form-check-label" for="checkbox2" >
-                        <a target="_blank" rel="noopener noreferrer" href="#" >Course Name here Course Name here</a>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12 col-lg-6 col-xl-4">
-                    <div class="form-check alg_bo">
-                      <input class="form-check-input " type="checkbox" id="checkbox3" value="option3">
-                      <label class="form-check-label" for="checkbox3" >
-                        <a target="_blank" rel="noopener noreferrer" href="#" >Course Name here Course Name here</a>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-lg-6 col-xl-4">
-                    <div class="form-check alg_bo">
-                      <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
-                      <label class="form-check-label" for="checkbox1" >
-                        <a target="_blank" rel="noopener noreferrer" href="#" >Course Name here Course Name here</a>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-lg-6 col-xl-4">
-                    <div class="form-check alg_bo">
-                      <input class="form-check-input" type="checkbox" id="checkbox2" value="option2">
-                      <label class="form-check-label" for="checkbox2" >
-                        <a target="_blank" rel="noopener noreferrer" href="#" >Course Name here Course Name here</a>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12 col-lg-6 col-xl-4">
-                    <div class="form-check alg_bo">
-                      <input class="form-check-input " type="checkbox" id="checkbox3" value="option3">
-                      <label class="form-check-label" for="checkbox3" >
-                        <a target="_blank" rel="noopener noreferrer" href="#" >Course Name here Course Name here</a>
-                      </label>
-                    </div>
-                  </div>
+                  
+                  
                 </div>
+
+
                 <div class="modal-footer">
+                    <input type="submit" value="Add" class="btn btn-dark">
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                  <input type="submit" value="Add" class="btn btn-dark">
                 </div>
               </form>
+
             </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 col-lg-6 col-xl-4">
+        <div *ngFor="let course of classroom.courses" class="col-md-12 col-lg-6 col-xl-4">
           <div class="item">
             <div class="card mb-2">
-              <img class="card-img-top" src="assets/math.jpg"
+              <img class="card-img-top" src="assets/142963-OT8E78-188.jpg"
               alt="Card image cap">
               <div class="card-body" style="overflow: auto">
-                <a href="#"><h4 class="card-title">Mathematics</h4></a>
-                <p class="card-text">This Course for preparatory stuedents you will learn new methods for math</p>
+                <a href="#"><h4 class="card-title"> {{course.title}}</h4></a>
+                <p class="card-text">{{course.description}}</p>
                 <hr>
                 <button type="button" class="btn btn-danger remove_course">remove</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-12 col-lg-6 col-xl-4">
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="assets/cloud.jpg"
-              alt="Card image cap">
-              <div class="card-body" style="overflow: auto">
-                <a href="#"><h4 class="card-title">Cloud Computing</h4></a>
-                <p class="card-text">Cloud computing is shared pools of configurable computer system resources and higher-level services that can be rapidly provisioned with minimal management effort, often over the Internet.</p>
-                <hr>
-                <button type="button" class="btn btn-danger remove_course">remove</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-6 col-xl-4">
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="assets/hack.jpg"
-              alt="Card image cap">
-              <div class="card-body" style="overflow: auto">
-                <a href="#"><h4 class="card-title">Ethical Hacking</h4></a>
-                <p class="card-text">In this course you will learn new method for hacking and security.</p>
-                <hr>
-                <button type="button" class="btn btn-danger remove_course">remove</button>
 
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-6 col-xl-4">
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-              alt="Card image cap">
-              <div class="card-body" style="overflow: auto">
-                <a href="#"><h4 class="card-title">Course Name</h4></a>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <hr>
-                <button type="button" class="btn btn-danger remove_course">remove</button>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-6 col-xl-4">
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-              alt="Card image cap">
-              <div class="card-body" style="overflow: auto">
-                <a href="#"><h4 class="card-title">Course Name</h4></a>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <hr>
-                <button type="button" class="btn btn-danger remove_course">remove</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-6 col-xl-4">
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-              alt="Card image cap">
-              <div class="card-body" style="overflow: auto">
-                <a href="#"><h4 class="card-title">Course Name</h4></a>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <hr>
-                <button type="button" class="btn btn-danger remove_course">remove</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-6 col-xl-4">
-          <div class="item">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
-              alt="Card image cap">
-              <div class="card-body" style="overflow: auto">
-                <a href="#"><h4 class="card-title">Course Name</h4></a>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the	card's content.</p>
-                <hr>
-                <button type="button" class="btn btn-danger remove_course">remove</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+
     </div>
 </div>
 <app-footer-component></app-footer-component>
