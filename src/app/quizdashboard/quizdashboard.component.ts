@@ -20,6 +20,7 @@ export class QuizdashboardComponent implements OnInit {
 	selectedQuestionId:string;
 	newQuestion:Question = new Question();
 	newAnswer:Answer = new Answer();
+  qNumber:Number = 0;
 
   constructor(
   	private userService: UserServiceService,
@@ -74,6 +75,13 @@ export class QuizdashboardComponent implements OnInit {
   	this.userService.deleteAnswer(this.token,answerId).then(response =>{
   		this.getLecture();
   	})
+  }
+
+  setNumber(questionNoForm:NgForm){
+    this.userService.setQuestionsNumber(this.token,this.quiz.quizId,this.qNumber).then(response =>{
+      this.getLecture();
+    })
+    console.log(this.qNumber);
   }
 
 }

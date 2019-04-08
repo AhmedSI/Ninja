@@ -215,7 +215,7 @@ export class UserServiceService {
   }
 
   addQuestion(token:string,question:Question,quizId:Number):Promise<string>{
-    return this.http.post(this.baseUrl + '/teacher/question?token='+token+'&quiz_id='+quizId+'&question_body='+question.question_body+'&is_multiple_choice='+question.is_multiple_choice+'&question_mark='+question.question_mark,question).toPromise().then(response => response.text() as string);
+    return this.http.post(this.baseUrl + '/teacher/question?token='+token+'&quiz_id='+quizId+'&question_body='+question.question_body+'&is_multiple_choice='+question.is_multiple_choice+'&question_mark='+question.question_mark+"&question_level="+question.question_level+"&question_reference="+question.question_reference,question).toPromise().then(response => response.text() as string);
   }
 
   deleteQuestion(token:string,questionId:string):Promise<string>{
@@ -282,6 +282,12 @@ export class UserServiceService {
         .toPromise().
         then(response => response.text() as string);
       }
+
+  setQuestionsNumber(token:string,id:Number,num:Number):Promise<string>{
+    return this.http.post(this.baseUrl+"/teacher/quiz/no_questions?token="+token+"&quiz_id="+id+"&no_of_questions="+num,{}).toPromise().then(
+      response => response.text() as string
+    );
+  }
   
 
 }

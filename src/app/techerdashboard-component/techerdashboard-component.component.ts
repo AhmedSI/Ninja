@@ -103,6 +103,7 @@ export class TecherdashboardComponentComponent implements OnInit {
   	this.userService.addCourse(this.token,this.newCourse).then(createCourse => { 
 
         this.newCourse = new Course();
+        this.getCourses();
         console.log(this.courses);
       });
   }

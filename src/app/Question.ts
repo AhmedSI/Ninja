@@ -8,4 +8,6 @@ export class Question {
 	mark:Number;
 	answers:Answer[];
 	questionId:Number;
+	question_reference:string;
+	question_level:Number;
 }

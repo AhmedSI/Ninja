@@ -13,6 +13,25 @@
     </div>
 
   </div>
+  <hr>
+  <form #questionNoForm="ngForm" (ngSubmit)= "setNumber(questionNoForm)">
+    <select name="qNumber" type="text" placeholder="Category" [(ngModel)]="qNumber">
+      <option *ngFor="let question of quiz.questions; index as i;" [value]="i+1">{{i+1}}</option>
+    </select>
+    <label class="questions-mark">Questions No:</label>
+
+    <div class="input-group col-3 mark-input">
+      <div class="input-group-append">{{quiz.no_of_questions}}
+        <span class="input-group-text">questions</span>
+      
+      </div>
+    </div>
+    <br>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <input type="submit" value="confiirm" class="btn btn-dark">
+    </div>
+  </form>
   <hr >
 
 
@@ -36,8 +55,16 @@
           <div class="modal-body">
             <form #questionForm="ngForm" (ngSubmit)= "addQuestion(questionForm)">
               
-              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="Question here" name = "question_body" [(ngModel)]="newQuestion.question_body" #question_body="ngModel"></textarea>
+              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="Question body here" name = "question_body" [(ngModel)]="newQuestion.question_body" #question_body="ngModel"></textarea><br>
+              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="feedback here" name = "question_body" [(ngModel)]="newQuestion.question_reference" #question_reference="ngModel"></textarea>
               <br>
+              <select name="qNumber" type="text" placeholder="level" [(ngModel)]="newQuestion.question_level">
+                <option [value]="1">easy</option>
+                <option [value]="2">medium</option>
+                <option [value]="3">hard</option>
+              </select>
+              <br>
+
               <label for="ques-mark" class="questions-mark">Question Mark:</label>
               <div class="input-group col-3 mark-input">
                 <input id="ques-mark" type="text" class="form-control" placeholder="Mark" name = "question_mark" [(ngModel)]="newQuestion.question_mark" #question_mark="ngModel">

@@ -61,7 +61,6 @@ export class QuizhomeComponent implements OnInit {
 
   startQuiz(id:Number){
     this.userService.startQuiz(this.token,id).then(response=>{
-        console.log(response);
       
     })
   }
@@ -75,13 +74,8 @@ export class QuizhomeComponent implements OnInit {
       question.question_id = this.quiz.questions[i].questionId;
       question.answers_ids = choices;
       questions[i] = question;
-      //this.submission.questions[i].question_id = this.quiz.questions[i].questionId;
-      //this.submission.questions[i].answers_ids[0] = this.answersList[i];
-
     }
     this.submission.questions = questions;
-    console.log(this.submission);
-
     this.userService.evaluate(this.token,this.quiz.quizId,this.submission).then(lecture=>{
     
     })

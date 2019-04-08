@@ -6,7 +6,7 @@
   <hr >
   <!-- your Mark {{grade}} -->
   <div class="quiz-body">
-    <form #answersForm="ngForm" (ngSubmit)="evaluate(answersForm)">
+    <form #answersForm="ngForm" (ngSubmit)="evaluate()">
       <section *ngFor="let question of quiz.questions; index as i;">
         <p>Q{{i+1}}) <strong> {{question.body}} </strong></p>
 
