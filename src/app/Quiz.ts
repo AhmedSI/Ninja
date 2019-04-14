@@ -7,4 +7,5 @@ export class Quiz {
   quizTime:Number;
   questions:Question[];
   totalMark:Number;
+  no_of_questions:Number;
 }

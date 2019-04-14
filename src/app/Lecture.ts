@@ -1,9 +1,9 @@
 export class Lecture {
 	id: Number;
 	lectureContentId:Number;
-	file:boolean;
+	isFile:boolean;
 	lectureId:Number;
 	name:string;
 	quiz:boolean;
-	video:boolean;  
+	isVideo:boolean;  
 }
