@@ -28,7 +28,8 @@ export class QuizhomeComponent implements OnInit {
   constructor(
 
   	private userService: UserServiceService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+     private router1: Router,
   	) { 
 
   }
@@ -48,21 +49,19 @@ export class QuizhomeComponent implements OnInit {
   }
 
   getQuiz(){
-    this.userService.getQuiz(this.token,this.lecture.lectureContentId).then(quiz=>{
+    this.userService.getQuizAsStudent(this.token,this.lecture.lectureContentId).then(quiz=>{
       this.quiz=quiz;
       this.questionsNum = this.quiz.questions.length;
       for(var i=0;i < this.questionsNum;i++){
         this.answersList[i] = 0;
       }
+      console.log(this.quiz.questions);
     })
-
     this.startQuiz(this.lecture.lectureContentId);
   }
 
   startQuiz(id:Number){
-    this.userService.startQuiz(this.token,id).then(response=>{
-      
-    })
+    //this.userService.startQuiz(this.token,id).then(response=>{})
   }
 
   evaluate(){
@@ -76,9 +75,10 @@ export class QuizhomeComponent implements OnInit {
       questions[i] = question;
     }
     this.submission.questions = questions;
-    this.userService.evaluate(this.token,this.quiz.quizId,this.submission).then(lecture=>{
-    
-    })
+    console.log(this.submission);
+    this.userService.evaluate(this.token,this.quiz.quizId,this.submission).then(res=>{console.log(res)});
+    this.router1.navigate(['/quizResult/'+this.id]);
   }
+
 
 }

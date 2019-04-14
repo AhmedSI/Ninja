@@ -19,9 +19,9 @@ export class UserServiceService {
 
   constructor(private http: Http) { }
 
-  registerUser(userData: User): Promise<User> {
+  registerUser(userData: User){
     return this.http.post(this.baseUrl + '/auth/register?first_name='+userData.firstName+'&last_name='+userData.lastName+'&email='+userData.email+'&username='+userData.username+'&password='+userData.password+'&gender='+userData.gender+'&date_of_birth='+userData.dateOfBirth,userData)
-      .toPromise().then(response => response.json() as User);
+      .toPromise().then(response => response.json() as User,error=> {console.log(error.text());error.text() as string});
   }
 
   loginUser(email: string,password: string): Promise<string> {
@@ -288,6 +288,13 @@ export class UserServiceService {
       response => response.text() as string
     );
   }
-  
+
+  getQuizAsStudent(token:string,quizId:Number):Promise<Quiz>{
+    return this.http.get(this.baseUrl+"/student/quiz/generate?token="+token+"&quiz_id="+quizId).toPromise().then(response => response.json() as Quiz);
+  }
+
+  getQuizInfoForStudent(token:string,quizId:Number){
+    return this.http.get(this.baseUrl+"/student/quiz?token="+token+"&quiz_id="+quizId).toPromise().then(response => response.json().studentMark as string);
+  }
 
 }

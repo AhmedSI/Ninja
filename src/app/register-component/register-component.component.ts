@@ -56,7 +56,8 @@ export class RegisterComponentComponent implements OnInit {
   status:string ="active";
   status1:string="inactive";
   loading = false;
-  
+  errorExisted:boolean = false;
+  errorMessage:string;
   constructor(
     private userService: UserServiceService,
     private router: Router,
@@ -106,6 +107,10 @@ export class RegisterComponentComponent implements OnInit {
         // userForm.reset();
         this.newUser = new User();
         this.router.navigate(['/login']);
+      },error=>{
+      console.log(error);
+      this.errorMessage = error
+      this.errorExisted = true;
       });
   }
 }

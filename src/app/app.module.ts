@@ -33,6 +33,7 @@ import { QuizdashboardComponent } from './quizdashboard/quizdashboard.component'
 import { LectureContentsComponent } from './lecture-contents/lecture-contents.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SafePipe } from './safe.pipe';
+import { ResultComponent } from './result/result.component';
 
 
 
@@ -75,7 +76,10 @@ import { SafePipe } from './safe.pipe';
     LectureContentsComponent,
 
 
-    SafePipe
+    SafePipe,
+
+
+    ResultComponent
   ],
   imports: [
     BrowserModule,
@@ -148,6 +152,9 @@ import { SafePipe } from './safe.pipe';
     },{
       path: 'courseContent/:id',
       component: LectureComponent
+    },{
+      path: 'quizResult/:id',
+      component: ResultComponent
     }])
   ],
   providers: [UserServiceService],

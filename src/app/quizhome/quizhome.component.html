@@ -1,28 +1,25 @@
 <div class="about-quiz">
-    <h1> <strong>{{quiz.title}}</strong></h1>
-    <h3>{{questionsNum}} Questions</h3>
-    <h5>{{quiz.totalMark}} Marks</h5>
-  </div>
-  <hr >
+  <h1> <strong>{{quiz.title}}</strong></h1>
+  <h3>{{questionsNum}} Questions</h3>
+  <h5>{{questionsNum}} Marks</h5>
+</div>
+<hr >
   <!-- your Mark {{grade}} -->
-  <div class="quiz-body">
-    <form #answersForm="ngForm" (ngSubmit)="evaluate()">
-      <section *ngFor="let question of quiz.questions; index as i;">
-        <p>Q{{i+1}}) <strong> {{question.body}} </strong></p>
-
-        <div class="row">
-			<div class="col-sm-10" *ngFor="let answer of question.answers; index as j;">
-				<div class="form-check sol-div">
-				  <input class="form-check-input" type="radio" name="radiogroup{{i}}"  [value]="answer.answerId" [(ngModel)]="answersList[i]" #answersList[i]="ngModel">
-				  <label class="form-check-label">
-				    {{answer.body}}</label>
-				</div>
-			</div>
-        </div>
-        <input type="text" class="form-control col-1 mark-c" placeholder="{{question.mark}} Marks" readonly>
-
-      </section>
-          
-              <input type="submit" class="btn btn-success" id="sub" name="submit" value="submit">
-            </form>
+<div class="quiz-body">
+  <form #answersForm="ngForm" (ngSubmit)="evaluate()">
+    <section *ngFor="let question of quiz.questions; index as i;">
+      <p>Q{{i+1}}) <strong> {{question.body}} </strong></p>
+      <div class="row">
+        <div class="col-sm-10" *ngFor="let answer of question.answers; index as j;">
+          <div class="form-check sol-div">
+            <input class="form-check-input" type="radio" name="radiogroup{{i}}"  [value]="answer.answerId" [(ngModel)]="answersList[i]" #answersList[i]="ngModel">
+            <label class="form-check-label">
+            {{answer.body}}</label>
           </div>
+        </div>
+      </div>
+      <input type="text" class="form-control col-1 mark-c" placeholder="{{question.mark}} Marks" readonly>
+    </section>
+    <input type="submit" class="btn btn-success" id="sub" name="submit" value="submit">
+  </form>
+</div>
