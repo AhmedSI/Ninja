@@ -19,14 +19,22 @@ export class UserServiceService {
 
   constructor(private http: Http) { }
 
-  registerUser(userData: User){
+  registerUser(userData: User): Promise<User> {
     return this.http.post(this.baseUrl + '/auth/register?first_name='+userData.firstName+'&last_name='+userData.lastName+'&email='+userData.email+'&username='+userData.username+'&password='+userData.password+'&gender='+userData.gender+'&date_of_birth='+userData.dateOfBirth,userData)
-      .toPromise().then(response => response.json() as User,error=> {console.log(error.text());error.text() as string});
+      .toPromise()
+      .then(response => response.json() as User)
+      .catch(err => {
+        return Promise.reject(err);
+      });
   }
 
   loginUser(email: string,password: string): Promise<string> {
     return this.http.get(this.baseUrl + '/auth/login?email='+email+ '&password='+ password)
-      .toPromise().then(response => response.text() as string);
+      .toPromise()
+      .then(response => response.text() as string)
+      .catch(err => {
+        return Promise.reject(err);
+      });
   }
 
   addCourse(token: string,courseData: Course):Promise<string> {

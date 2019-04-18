@@ -55,9 +55,9 @@ export class RegisterComponentComponent implements OnInit {
   hidden=true;
   status:string ="active";
   status1:string="inactive";
-  loading = false;
-  errorExisted:boolean = false;
-  errorMessage:string;
+  error:string= "";
+  // loading = false;
+  
   constructor(
     private userService: UserServiceService,
     private router: Router,
@@ -75,7 +75,8 @@ export class RegisterComponentComponent implements OnInit {
         password: ['', Validators.required],
         confirmPassword:['',[Validators.required,this.PasswordValidator('password')]],
         gender:['', Validators.required],
-        dateOfBirth:['',Validators.required]
+        dateOfBirth:['',Validators.required],
+        loading:['false']
       });
 
       // this.newUser.firstName=this.registerForm.value.firstName;
@@ -84,6 +85,9 @@ export class RegisterComponentComponent implements OnInit {
       // this.newUser.username=this.registerForm.get('username').value;
       // this.newUser.email=this.registerForm.get('email').value;
   
+  }
+  ignoreError(){
+    this.error="";
   }
 
   onSubmit(){
@@ -98,6 +102,10 @@ export class RegisterComponentComponent implements OnInit {
     this.newUser.email=this.registerForm.value.email;
     this.newUser.username=this.registerForm.value.username;
     this.newUser.dateOfBirth=this.registerForm.value.dateOfBirth;
+
+    this.registerForm.value.loading="true";
+
+  
     if(this.registerForm.value.gender=="Female") this.newUser.gender=2;
     else this.newUser.gender=1;
     // console.log(this.newUser);
@@ -107,13 +115,15 @@ export class RegisterComponentComponent implements OnInit {
         // userForm.reset();
         this.newUser = new User();
         this.router.navigate(['/login']);
-      },error=>{
-      console.log(error);
-      this.errorMessage = error
-      this.errorExisted = true;
-      });
+      },
+      error =>  {
+        this.registerForm.value.loading="false";
+        this.error= error._body;
+        window.scroll(0,0);
+        console.log(error);
+        // console.log("keep yourself alive..")
+
+      })
+      ;
   }
 }
-
-
-

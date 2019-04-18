@@ -23,6 +23,7 @@ export class LoginComponentComponent implements OnInit {
   showPassword:boolean;
   show= false;
   input:string= "password";
+  errorCode:string= "";
 
   constructor(
     private userService: UserServiceService,
@@ -51,7 +52,9 @@ export class LoginComponentComponent implements OnInit {
     this.token = localStorage.getItem('token');
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      showAlert:["false"],
+      loading:["false"]
   });
 
   }
@@ -65,6 +68,10 @@ export class LoginComponentComponent implements OnInit {
 
     this.newUser.email=this.loginForm.value.email;
     this.newUser.password=this.loginForm.value.password;
+    this.loginForm.value.loading="true";
+    this.loginForm.value.showAlert="false";
+
+
 
     // console.log(this.loginForm.value);
     // this.userService.loginUser(loginForm.value.email,loginForm.value.password)
@@ -76,7 +83,18 @@ export class LoginComponentComponent implements OnInit {
         localStorage.setItem('token', this.token);
         console.log(this.token);
         this.router.navigate(['/home']);
+      },
+      error =>  {
+        this.loginForm.value.showAlert="true";
+        this.loginForm.value.loading="false";
+        // this.errorCode=error.status;
+        // this.hide="true";
+        // this.router.navigateByUrl('/auth/login');
+        console.error(error);
+        console.log(this.errorCode);
+
       });
+      
   }
 
 }
