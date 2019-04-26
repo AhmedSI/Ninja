@@ -34,6 +34,7 @@ import { LectureContentsComponent } from './lecture-contents/lecture-contents.co
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SafePipe } from './safe.pipe';
 import { ResultComponent } from './result/result.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -79,7 +80,10 @@ import { ResultComponent } from './result/result.component';
     SafePipe,
 
 
-    ResultComponent
+    ResultComponent,
+
+
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -155,6 +159,9 @@ import { ResultComponent } from './result/result.component';
     },{
       path: 'quizResult/:id',
       component: ResultComponent
+    },{
+      path: 'error',
+      component: ErrorComponent
     }])
   ],
   providers: [UserServiceService],

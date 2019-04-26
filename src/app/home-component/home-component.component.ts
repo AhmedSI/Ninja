@@ -52,9 +52,5 @@ export class HomeComponentComponent implements OnInit{
     this.router.navigate(['/myCourses']);
   }
 
-  
-
-  
-
 
 }
