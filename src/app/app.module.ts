@@ -162,7 +162,13 @@ import { ErrorComponent } from './error/error.component';
     },{
       path: 'error',
       component: ErrorComponent
-    }])
+    },{ 
+    //   path: '404',
+    //   component: ErrorComponent
+    // },{
+      path: '**',
+      component: ErrorComponent}
+  ])
   ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]
