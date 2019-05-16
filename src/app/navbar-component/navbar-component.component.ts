@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/router';
 import { UserServiceService } from '.././user-service.service';
-
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
   styleUrls: ['./navbar-component.component.css']
 })
-export class NavbarComponentComponent implements OnInit {
+export class NavbarComponentComponent implements OnInit{
 	token: string = "initial";
   isAdmin : boolean = false;
   categories : string[];
+  
   constructor(
   private userService: UserServiceService,
-    private router: Router
+    private router: Router ,private cdRef : ChangeDetectorRef
     ) { }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class NavbarComponentComponent implements OnInit {
     this.checkUserPermisions();
   
   }
-
+  
   logoutUser(): void {
     
     this.userService.logoutUser(this.token)
