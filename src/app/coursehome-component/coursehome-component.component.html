@@ -18,7 +18,7 @@
             <strong class="mr-2">Description:</strong>
             {{course.description}}
           </p>
-          <mat-card-actions>
+          <mat-card-actions *ngIf="course.role == '' ">
             <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;">Save Course</button>
             
             <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 20%">Enroll</button>
@@ -28,7 +28,7 @@
       <div class="col-3 mt-3" style="margin-left:5%;">
         <img mat-card-image src="assets\hack.jpg" alt="Photo of Course">
         <mat-card-subtitle style="margin-bottom:1%;margin-left:29%;">Average Rating</mat-card-subtitle>
-        <star-rating labelText="3.6" [rating]="3.6"  [showHalfStars]="true" [readOnly]="true"  labelPosition="right"></star-rating>
+        <star-rating [labelText]="course.rate" [rating]="course.rate"  [showHalfStars]="true" [readOnly]="true"  labelPosition="right"></star-rating>
         
 
       </div>

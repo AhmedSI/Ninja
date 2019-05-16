@@ -4,9 +4,11 @@ export class Course {
   courseId: string;
   publisher: User;
   title: string;
-  detailed_title: string;
+  detailedTitle: string;
   description: string;
   category: string;
   level:Number;
   sections:Section[];
+  rate:number;
+  role:string;
 }

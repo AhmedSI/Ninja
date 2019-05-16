@@ -91,7 +91,7 @@ export class TecherdashboardComponentComponent implements OnInit {
      return;
     }
     this.newCourse.title=this.courseForm.value.courseName;
-    this.newCourse.detailed_title=this.courseForm.value.detaitedTitle;
+    this.newCourse.detailedTitle=this.courseForm.value.detaitedTitle;
     this.newCourse.category=this.courseForm.value.category;
     this.newCourse.level=this.courseForm.value.level;
     this.newCourse.description=this.courseForm.value.courseDescription;
