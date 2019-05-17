@@ -44,9 +44,7 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">categories</a>
 				<div class="dropdown-menu dropdown">
-					<a class="dropdown-item" routerLink="/category/math">math</a>
-					<a class="dropdown-item" routerLink="/category/IT">IT</a>
-					<a class="dropdown-item" routerLink="/category/science">science</a>
+					<a *ngFor ="let category of categories" class="dropdown-item" routerLink="/category/{{category.categoryId}}">{{category.categoryStr}}</a>
 				</div>
 			</li>
 			<!-- Settings -->

@@ -80,7 +80,8 @@
                 <ul class="lecturesList">
                   <li  *ngFor="let lecture of section.fancyLectures"><a *ngIf="lecture.isQuiz" routerLink="/quizdashboard/{{lecture.lectureId}}">{{lecture.name}}</a>
                     <a *ngIf="! lecture.isQuiz" routerLink="/lecture/{{lecture.lectureId}}">{{lecture.name}}</a>
-                    <button type="button" name="button" class="remove_lec" (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> remove </button>
+                    <button *ngIf="lecture.isQuiz" type="button" name="button" class="remove_lec" (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> remove </button>
+                    <button *ngIf="! lecture.isQuiz" type="button" name="button" class="remove_lec" (click)="deleteLecture([lecture.lectureId])"><i class="fas fa-times"></i> remove </button>
                   </li>
                 </ul>
               </div>
@@ -89,6 +90,11 @@
           </div>
         </div>
       </div>
+      <hr>
+      <h4>Students in this course</h4>
+      <ul class="input-group ques-c col-10" *ngFor="let student of courseStudents">
+        <li>{{student.username}}</li>
+      </ul>
       <input type="submit" name="Save" value="Save" class="save_edit">
     </div>
   </div>

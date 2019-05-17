@@ -6,6 +6,7 @@ import { Classroom } from '.././Classroom';
 import { UserServiceService } from '.././user-service.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Category } from '.././Category';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-techerdashboard-component',
@@ -13,6 +14,9 @@ import { Category } from '.././Category';
   styleUrls: ['./techerdashboard-component.component.css']
 })
 export class TecherdashboardComponentComponent implements OnInit {
+  @ViewChild('closeBtn1') closeBtn1: ElementRef;
+  @ViewChild('closeBtn2') closeBtn2: ElementRef;
+
 	token: string = "initial";
 	newCourse : Course = new Course();
   newClassroom : Classroom = new Classroom();
@@ -106,6 +110,7 @@ export class TecherdashboardComponentComponent implements OnInit {
         this.getCourses();
         console.log(this.courses);
       });
+    this.closeBtn1.nativeElement.click();
   }
 
   addClassroom(){
@@ -123,7 +128,7 @@ export class TecherdashboardComponentComponent implements OnInit {
         // this.createClassroomForm.reset();
         this.newClassroom = new Classroom();
       });	
-      
+      this.closeBtn2.nativeElement.click();
   }
 
   checkTeacher(){
