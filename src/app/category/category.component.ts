@@ -24,7 +24,7 @@ export class CategoryComponent implements OnInit {
   }
 
   getCourses(){
-  	this.userService.getCoursesByCategory(this.category)
+  	this.userService.getCoursesByCategoryId(this.category)
     .then(courses => {
         this.courses=courses;
     });

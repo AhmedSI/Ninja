@@ -126,8 +126,8 @@ export class UserServiceService {
 
   }
 
-  getCoursesByCategory(category:string):Promise<Course[]>{
-    return this.http.get(this.baseUrl + '/category_courses?category='+category)
+  getCoursesByCategoryId(id:string):Promise<Course[]>{
+    return this.http.get(this.baseUrl + '/category_courses?category_id='+id)
     .toPromise()
     .then(response => response.json() as Course[]);
   }
@@ -201,6 +201,13 @@ export class UserServiceService {
     return this.http.delete(this.baseUrl + '/teacher/quiz?token='+token+'&quiz_id='+id)
       .toPromise()
       .then(response => response.text() as string);
+  }
+
+  deleteLecture(id: Number,token:string):  Promise<string> {
+    return this.http.delete(this.baseUrl + '/teacher/file?token='+token+'&file_id='+id)
+      .toPromise()
+      .then(response => response.text() as string);
+    
   }
 
   pushLectureContent(file:File,token:string,id:string):Promise<String>{
@@ -297,4 +304,29 @@ export class UserServiceService {
     return this.http.get(this.baseUrl+"/student/quiz?token="+token+"&quiz_id="+quizId).toPromise().then(response => response.json().studentMark as string);
   }
 
+  updateQuestionById(token:string,question:Question){
+    return this.http.put(this.baseUrl+"/teacher/question?token="+token+"&question_id="+question.questionId+"&question_body="+question.question_body+"&is_multiple_choice="+question.is_multiple_choice+"&question_mark="+question.question_mark,{})
+    .toPromise()
+    .then(response => response.json().studentMark as string);
+  }
+
+  updateAnswerById(token:string,answer:Answer){
+    return this.http.put(this.baseUrl+"/teacher/answer?token="+token+"&answer_id="+answer.answerId+"&answer_body="+answer.answer_body,{})
+    .toPromise()
+    .then(response => response.json().studentMark as string);
+  }
+
+  updateQuiz(token:string,id:Number,quiz:Quiz){
+    return this.http.put(this.baseUrl+"/teacher/quiz?token="+token+"&quiz_id="+id+'&quiz_title='+quiz.title+'&quiz_instructions='+quiz.instructions+'&quiz_time='+quiz.time,{})
+    .toPromise()
+    .then(response => response.json().studentMark as string);
+  }
+
+  getUsersforSomeCourse(token:string,id:string){
+    return this.http.get(this.baseUrl+"/teacher/course/students?token="+token+"&course_id="+id)
+    .toPromise()
+    .then(response => response.json() as User[]);
+  }
+
+  
 }

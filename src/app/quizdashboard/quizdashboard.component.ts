@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Quiz } from '.././Quiz';
 import { Question } from '.././Question';
 import { Answer } from '.././Answer';
+import { User } from '.././User';
 import { Lecture } from '.././Lecture';
 import { UserServiceService } from '.././user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
@@ -21,6 +22,7 @@ export class QuizdashboardComponent implements OnInit {
 	newQuestion:Question = new Question();
 	newAnswer:Answer = new Answer();
   qNumber:Number = 0;
+  newQuiz:Quiz = new Quiz();
 
   constructor(
   	private userService: UserServiceService,
@@ -40,6 +42,8 @@ export class QuizdashboardComponent implements OnInit {
     })
   }
 
+  
+
   getLecture(){
   	this.userService.getLecture(this.token,this.id).then(lecture=>{
   		this.lecture=lecture;
@@ -52,10 +56,19 @@ export class QuizdashboardComponent implements OnInit {
   }
 
   addQuestion(questionForm:NgForm){
-  this.newQuestion.is_multiple_choice = false;
+    //this.newQuestion.is_multiple_choice = false;
+    console.log(this.newQuestion.is_multiple_choice);
   	this.userService.addQuestion(this.token,this.newQuestion,this.quiz.quizId).then(response =>{
   		this.getLecture();
   	})
+  }
+
+  updateQuestion(updteQuestionForm:NgForm){
+    this.newQuestion.is_multiple_choice = false;
+    this.newQuestion.questionId = parseInt(this.selectedQuestionId, 10);
+    this.userService.updateQuestionById(this.token,this.newQuestion).then(response =>{
+      this.getLecture();
+    })
   }
 
   deleteQuestion(questionId:string){
@@ -70,6 +83,13 @@ export class QuizdashboardComponent implements OnInit {
   	})
   }
 
+  updateAnswer(updteAnswerForm:NgForm){
+    this.newQuestion.questionId = parseInt(this.selectedQuestionId, 10);
+    this.userService.updateAnswerById(this.token,this.newAnswer).then(response =>{
+      this.getLecture();
+    })
+  }
+
   deleteAnswer(answerId:string){
   console.log(answerId);
   	this.userService.deleteAnswer(this.token,answerId).then(response =>{
@@ -81,7 +101,13 @@ export class QuizdashboardComponent implements OnInit {
     this.userService.setQuestionsNumber(this.token,this.quiz.quizId,this.qNumber).then(response =>{
       this.getLecture();
     })
-    console.log(this.qNumber);
+  }
+
+  updateQuiz(quizForm:NgForm){
+    console.log(this.newQuiz);
+    this.userService.updateQuiz(this.token,this.quiz.quizId,this.newQuiz).then(response =>{
+      this.getLecture();
+    })
   }
 
 }

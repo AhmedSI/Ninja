@@ -2,16 +2,18 @@
   <div class="about-quiz">
     <h5>About Quiz</h5>
     <hr width="50%" >
-    <input class="form-control form-control-lg quiz-name" type="text" [placeholder]="quiz.title">
+    <form #updateQuizForm="ngForm" (ngSubmit)= "updateQuiz(updateQuizForm)">
+    <input class="form-control form-control-lg quiz-name" type="text" [placeholder]="quiz.title" name="title" [(ngModel)]="newQuiz.title">
 
-    <textarea name="name" class="form-control quiz-des col-7" rows="4" style="resize:none" [placeholder]="quiz.instructions"></textarea>
+    <textarea name="name" class="form-control quiz-des col-7" rows="4" style="resize:none" [placeholder]="quiz.instructions" [(ngModel)]="newQuiz.instructions"></textarea>
     <div class="input-group col-2 time-c">
-      <input type="text" class="form-control" placeholder="Time">
+      <input type="text" class="form-control" placeholder="Time" name="time"  [(ngModel)]="newQuiz.time">
       <div class="input-group-append">
         <span class="input-group-text">{{quiz.time}}</span>
       </div>
     </div>
-
+    <input type="submit" value="update quiz" class="btn btn-dark">
+  </form>
   </div>
   <hr>
   <form #questionNoForm="ngForm" (ngSubmit)= "setNumber(questionNoForm)">
@@ -29,7 +31,7 @@
     <br>
     <div class="modal-footer">
       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      <input type="submit" value="confiirm" class="btn btn-dark">
+      <input type="submit" value="confirm" class="btn btn-dark">
     </div>
   </form>
   <hr >
@@ -65,6 +67,12 @@
               </select>
               <br>
 
+              <select name="qType" type="text" placeholder="question type" [(ngModel)]="newQuestion.is_multiple_choice">
+                <option [value]=true>multiple choice</option>
+                <option [value]=false>one choice</option>
+              </select>
+              <br>
+
               <label for="ques-mark" class="questions-mark">Question Mark:</label>
               <div class="input-group col-3 mark-input">
                 <input id="ques-mark" type="text" class="form-control" placeholder="Mark" name = "question_mark" [(ngModel)]="newQuestion.question_mark" #question_mark="ngModel">
@@ -96,13 +104,13 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <form >
+            <form #updateQuestionForm="ngForm" (ngSubmit)= "updateQuestion(updteQuestionForm)">
               <p>Q1)</p>
-              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="Question here"></textarea>
+              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="Question here" name = "question_body" [(ngModel)]="newQuestion.question_body" #question_body="ngModel"></textarea>
               <br>
               <label for="ques-mark" class="questions-mark">Question Mark:</label>
               <div class="input-group col-3 mark-input">
-                <input id="ques-mark" type="text" class="form-control" placeholder="Mark">
+                <input id="ques-mark" type="text" class="form-control" placeholder="Mark" name = "question_mark" [(ngModel)]="newQuestion.question_mark" #question_mark="ngModel">
                 <div class="input-group-append">
                   <span class="input-group-text">marks</span>
                 </div>
@@ -224,7 +232,7 @@
           <i class="fas fa-edit"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" data-toggle="modal" data-target="#myModal3">Edit question</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#myModal3" (click)="setSelectedquestion(question.questionId)">Edit question</a>
           <a class="dropdown-item" (click)="deleteQuestion(question.questionId)" >Remove question</a>
           <a class="dropdown-item" data-toggle="modal" data-target="#myModal2" (click)="setSelectedquestion(question.questionId)">Add solution</a>
         </div>
@@ -251,6 +259,7 @@
         </div>
         <span style="color: green;margin-left: 100px;" *ngIf="answer.correct">Correct</span>
       </div>
+      
     </section>
   </div>
 </div>

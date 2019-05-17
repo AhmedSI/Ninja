@@ -31,34 +31,34 @@
 			rank: 1000
 		</li>
 
-		<!-- notifications -->
-		<li class="nav-item dropdown flex-fill" >
-			<a class="nav-link dropdown-toggle flex-fill" href="" data-toggle="dropdown">notifications</a>
-			<div class="dropdown-menu dropdown">
-				<a class="dropdown-item">not1</a>
-				<a class="dropdown-item">not2</a>
-				<a class="dropdown-item">not3</a>
-			</div>
-		</li>
-		<!-- Categories -->
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">categories</a>
-			<div class="dropdown-menu dropdown">
-				<a class="dropdown-item" routerLink="/category/math">math</a>
-				<a class="dropdown-item" routerLink="/category/IT">IT</a>
-				<a class="dropdown-item" routerLink="/category/science">science</a>
-			</div>
-		</li>
-		<!-- Settings -->
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">settings</a>
-			<div class="dropdown-menu">
-				<a class="dropdown-item">s1</a>
-				<a class="dropdown-item">s2</a>
-				<a class="dropdown-item">s3</a>
-				<a class="dropdown-item" *ngIf ="isAdmin" routerLink="/admindashboard">admin dashboard</a>
-				<a class="dropdown-item" (click)="logoutUser()">logout</a>
-				
+
+			<!-- notifications -->
+			<li class="nav-item dropdown flex-fill" >
+				<a class="nav-link dropdown-toggle flex-fill" href="" data-toggle="dropdown">notifications</a>
+				<div class="dropdown-menu dropdown">
+					<a class="dropdown-item">not1</a>
+					<a class="dropdown-item">not2</a>
+					<a class="dropdown-item">not3</a>
+				</div>
+			</li>
+			<!-- Categories -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">categories</a>
+				<div class="dropdown-menu dropdown">
+					<a *ngFor ="let category of categories" class="dropdown-item" routerLink="/category/{{category.categoryId}}">{{category.categoryStr}}</a>
+				</div>
+			</li>
+			<!-- Settings -->
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">settings</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item">s1</a>
+					<a class="dropdown-item">s2</a>
+					<a class="dropdown-item">s3</a>
+					<a class="dropdown-item" *ngIf ="isAdmin" routerLink="/admindashboard">admin dashboard</a>
+					<a class="dropdown-item" (click)="logoutUser()">logout</a>
+					
+
 
 			</div>
 		</li>

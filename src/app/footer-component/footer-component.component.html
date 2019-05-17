@@ -50,21 +50,12 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Categories</h6>
 
-            <div class="categories">
+            <div class="categories" *ngFor ="let category of categories" >
               <p>
-                <a routerLink="/category/math">Math</a>
+                <a routerLink="/category/{{category.categoryId}}">{{category.categoryStr}}</a>
               </p>
             </div>
-            <div class="categories">
-              <p>
-                <a routerLink="/category/IT">IT</a>
-              </p>
-            </div>
-            <div class="categories">
-              <p>
-                <a routerLink="/category/science">science</a>
-              </p>
-            </div>
+            
 
           </div>
 

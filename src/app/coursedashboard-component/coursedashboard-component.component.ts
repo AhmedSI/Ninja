@@ -26,8 +26,12 @@ export class CoursedashboardComponentComponent implements OnInit {
   aims: string [];
   selectedFiles: FileList;
   currentFileUpload: File;
+
   panelOpenState = false;
   buthide: number = -1;
+
+
+  courseStudents:User[];
 
 
   constructor(
@@ -41,6 +45,8 @@ export class CoursedashboardComponentComponent implements OnInit {
   ) {
   	this.token = localStorage.getItem('token');
     this.getCourse();
+
+    this.getCourseStudents();
     this.aims = [];
     this.aimForm = this.formBuilder.group({
       aim:['']
@@ -62,6 +68,12 @@ export class CoursedashboardComponentComponent implements OnInit {
 			}
 		}
     });
+  }
+
+  getCourseStudents(){
+    this.userService.getUsersforSomeCourse(this.token,this.router.snapshot.paramMap.get("id")).then(students=>{
+      this.courseStudents=students;
+    })
   }
 
   addAim(){
@@ -120,12 +132,17 @@ export class CoursedashboardComponentComponent implements OnInit {
 
   deleteQuiz(id:Number){
         
-    this.userService.deleteQuiz(id,this.token).then(section => {
+    this.userService.deleteQuiz(id,this.token).then(res => {
         this.getCourse();
     });
 
   }
 
+  deleteLecture(id: Number){
+    this.userService.deleteLecture(id,this.token).then(res => {
+        this.getCourse();
+    });
+  }
 
 
 }
