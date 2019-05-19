@@ -8,8 +8,7 @@ import { UserServiceService } from '.././user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
-
+import { FormGroup,FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-coursedashboard-component',
@@ -27,13 +26,10 @@ export class CoursedashboardComponentComponent implements OnInit {
   aims: string [];
   selectedFiles: FileList;
   currentFileUpload: File;
-<<<<<<< HEAD
 
   panelOpenState = false;
   buthide: number = -1;
 
-=======
->>>>>>> parent of 210d5d2... new branch
 
   courseStudents:User[];
 
@@ -41,7 +37,7 @@ export class CoursedashboardComponentComponent implements OnInit {
   constructor(
   	private userService: UserServiceService,
     private router: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
 
     ) { }
 
@@ -55,9 +51,10 @@ export class CoursedashboardComponentComponent implements OnInit {
     this.aimForm = this.formBuilder.group({
       aim:['']
     });
-
   }
-
+  onHover(i:number){
+    this.buthide = i;
+   }
   getCourse(){
   	//console.log(this.router.snapshot.routeConfig.path);
   	this.userService.getCourses(this.token)

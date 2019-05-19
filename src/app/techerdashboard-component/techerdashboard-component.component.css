@@ -24,14 +24,16 @@
   margin-top: 5%;
 }
 
-
+.nav-link.active{
+  border-bottom: 2px solid orangered;
+}
 #add_class_room, #add_course{
   border-radius: 20px;
   background: #f7882f;
   color:#f7c331;
   position: absolute;
-  left: 78%;
-  top: 10%;
+  left: 45%;
+  top: 29%;
   transition: all .5s ease;
 }
 
@@ -42,13 +44,6 @@
   box-shadow:0 0 5px #f7882f;
 }
 
-.navs_pages{
-  padding-top: 80px;
-}
-.navs_pages .nav-link {
-  position: relative;
-  left: 600px;
-}
 .img-circle {
 width: 200px;
 height: 200px;
@@ -71,4 +66,13 @@ background-color: orange;
 
 .btn-create:hover {
   background-color: #ff7e16;
+}
+.cssv{
+  background-color: #6b7a8f;
+  color: white;
+  
+
+}
+.cssv:hover{
+  background-color: orange;
 }

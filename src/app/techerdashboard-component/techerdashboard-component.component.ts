@@ -52,7 +52,6 @@ export class TecherdashboardComponentComponent implements OnInit {
   	this.getCourses();
     this.getClassrooms();
     this.getCategoris();
-
     this.showOverlay=false;
 
     this.createClassroomForm = this.formBuilder.group({

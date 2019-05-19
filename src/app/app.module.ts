@@ -34,9 +34,9 @@ import { LectureContentsComponent } from './lecture-contents/lecture-contents.co
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { SafePipe } from './safe.pipe';
 import { ResultComponent } from './result/result.component';
-import { ErrorComponent } from './error/error.component';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -81,17 +81,17 @@ import { ErrorComponent } from './error/error.component';
 
 
     ResultComponent,
-
-
-    ErrorComponent
   ],
   imports: [
+    MaterialModule,
+    BrowserAnimationsModule,
     BrowserModule,
     OwlModule, 
     PdfViewerModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    StarRatingModule.forRoot(),
     RouterModule.forRoot([{
       path: 'register',
       component: RegisterComponentComponent
@@ -160,27 +160,15 @@ import { ErrorComponent } from './error/error.component';
       path: 'quizResult/:id',
       component: ResultComponent
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
     },{
       path: 'error',
       component: ErrorComponent
 >>>>>>> parent of 2e8870d... 404 to be handled
     }])
-=======
-    },{
-      path: 'error',
-      component: ErrorComponent
-    },{ 
-    //   path: '404',
-    //   component: ErrorComponent
-    // },{
-      path: '**',
-      component: ErrorComponent}
-  ])
->>>>>>> parent of 210d5d2... new branch
   ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
