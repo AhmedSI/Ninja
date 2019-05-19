@@ -1,25 +1,32 @@
-import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/router';
 import { UserServiceService } from '.././user-service.service';
 
+<<<<<<< HEAD
 import { Category } from '../Category';
 
+=======
+>>>>>>> parent of 210d5d2... new branch
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
   styleUrls: ['./navbar-component.component.css']
 })
-export class NavbarComponentComponent implements OnInit{
+export class NavbarComponentComponent implements OnInit {
 	token: string = "initial";
   isAdmin : boolean = false;
+<<<<<<< HEAD
 
   
 
   categories : Category[];
 
+=======
+  categories : string[];
+>>>>>>> parent of 210d5d2... new branch
   constructor(
   private userService: UserServiceService,
-    private router: Router ,private cdRef : ChangeDetectorRef
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -28,7 +35,7 @@ export class NavbarComponentComponent implements OnInit{
     this.getCategories();
   
   }
-  
+
   logoutUser(): void {
     
     this.userService.logoutUser(this.token)

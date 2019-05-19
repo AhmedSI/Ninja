@@ -1,6 +1,7 @@
 <app-navbar-component></app-navbar-component>
 <app-sidebar-component></app-sidebar-component>
 
+<<<<<<< HEAD
 <body>
   <mat-card class="example-card mr-5" style="margin-left:8%;">
     <div class="row">
@@ -30,69 +31,76 @@
         <mat-card-subtitle style="margin-bottom:1%;margin-left:29%;">Average Rating</mat-card-subtitle>
         <star-rating [labelText]="course.rate" [rating]="course.rate"  [showHalfStars]="true" [readOnly]="true"  labelPosition="right"></star-rating>
         
+=======
+<div>
+  
+  <div class="descriptionAndName">
+    <div class="container media">
+      <img src="https://olc-wordpress-assets.s3.amazonaws.com/uploads/2018/06/INSTRUCTIONAL-DESIGNER-WEBINAR-COURSE-DESIGN-01.png" class="align-self-center mr-3" style="width:150px">
+      <div class="media-body">
+          <strong id="courseName"> {{course.title}}</strong>
+>>>>>>> parent of 210d5d2... new branch
 
+          <!-- <h5 class="title">Description:</h5> -->
+            <p>{{course.description}}</p>
+          <!-- </div> -->
       </div>
-    </div>
-  </mat-card>
-
-
-  <br>
-  <div class="container course-container">
-
-    <h5 class="title">What you will learn:</h5>
-    <div class="container">
-      <ul>
-        <li>first item in list</li>
-        <li>second item in list</li>
-        <li>third item in list</li>
-      </ul>
-    </div>
-    <br>
-
-    <h5 class="title">Creator:</h5>
-    <div class="container">
-      <div class="media border p-2">
-        <img src="https://www.3dprintingstudios.com/wp-content/uploads/2017/10/person-dummy.jpg" alt="teacher"
-          class="mr-2 rounded-circle" style="width:60px;">
-        <div class="media-body">
-          <h6>{{course.publisher.firstName}} {{course.publisher.lastName}}<small><i> professor at XYZ
-                university</i></small></h6>
-          <p>Lorem ipsum...</p>
-        </div>
-      </div>
-    </div>
-    <br>
-
-    <div class="section">
-      <h6 class="title">Content:</h6>
-
-      <div class="container wrapper center-block">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default " *ngFor="let section of sections">
-            <div class="panel-heading active" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion"
-                  href="#collapseOne{{section.sectionId}}" aria-expanded="true" aria-controls="collapseOne">
-                  <i class="fas fa-caret-right"></i>
-                  {{section.title}}
-                </a>
-              </h4>
-            </div>
-            <div id="collapseOne{{section.sectionId}}" class="container panel-collapse collapse in" role="tabpanel"
-              aria-labelledby="headingOne">
-              <div class="panel-body">
-                <ul class="lecturesList">
-                  <li *ngFor="let lecture of section.fancyLectures">{{lecture.name}}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
+  </div>
   </div>
 
-</body>
+
+  <div class="container course-container">
+
+      <h5 class="title">What you will learn:</h5>
+      <div class="container">
+        <ul>
+          <li>first item in list</li>
+          <li>second item in list</li>
+          <li>third item in list</li>
+        </ul>
+      </div>
+      <br>
+
+      <h5 class="title">Creator:</h5>
+      <div class="container">
+         <div class="media border p-2">
+             <img src="https://www.3dprintingstudios.com/wp-content/uploads/2017/10/person-dummy.jpg" alt="teacher" class="mr-2 rounded-circle" style="width:60px;">
+             <div class="media-body">
+               <h6>{{course.publisher.firstName}} {{course.publisher.lastName}}<small><i> professor at XYZ university</i></small></h6>
+               <p>Lorem ipsum...</p>
+             </div>
+           </div>
+         </div>
+         <br>
+
+         <div class="section">
+             <h6 class="title">Content:</h6>
+
+             <div class="container wrapper center-block">
+                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                 <div class="panel panel-default " *ngFor = "let section of sections" >
+                   <div class="panel-heading active" role="tab" id="headingOne">
+                     <h4 class="panel-title">
+                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{section.sectionId}}" aria-expanded="true" aria-controls="collapseOne">
+                          <i class="fas fa-caret-right" ></i>
+                        {{section.title}}
+                      </a>
+                     </h4>
+                   </div>
+                   <div id="collapseOne{{section.sectionId}}" class="container panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                     <div class="panel-body">
+                      <ul class="lecturesList" >
+                          <li *ngFor = "let lecture of section.fancyLectures">{{lecture.name}}</li>
+                      </ul>
+                    </div>
+                   </div>
+                 </div>
+
+               </div>
+               </div>
+
+    </div>
+              </div>
+
+
 <app-footer-component></app-footer-component>

@@ -80,3 +80,11 @@ p{
     font-size: 20px;
     color: #d97400;
 }
+
+.loadingGif{
+    width:30%;
+    margin:auto;
+}
+.alert{
+    background-color: rgba(217,116,0, 0.1);
+}

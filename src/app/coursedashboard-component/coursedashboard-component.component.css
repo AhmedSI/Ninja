@@ -1,7 +1,3 @@
-body{
-  background-color: #F4F7F6;
-  padding-top: 7%;
-}
 .descriptionAndName{
     width: 100%;
     margin-top: 100px;
@@ -11,12 +7,10 @@ body{
     padding-bottom: 30px;
     padding-top: 50px;
 }
-
 .media img{
     box-shadow: 0px 0pc 10px rgba(220,199,170,0.6);
     /* width: 200px; */
 }
-
 #courseName{
     color:black;
     /* text-shadow: 0px 0pc 10px rgb(107,122,143);; */
@@ -49,6 +43,24 @@ body{
   width:100%;
 }
 }
+.panel-heading {
+  padding: 0;
+	border:0;
+}
+.panel-title>a, .panel-title>a:active{
+	display:block;
+	padding:15px;
+  color:#555;
+  font-size:16px;
+  font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+  word-spacing:3px;
+	text-decoration:none;
+}
+.panel-collapse{
+    margin-bottom: 30px;
+}
 
 li{
     padding: 10px;
@@ -58,9 +70,24 @@ li{
 p{
   text-align: justify;
 }
+.add_what_u_will_learn{
+background-color: #F7882F;
+border: none; /* Remove borders */
+border-radius: 15%;
+color: white; /* White text */
+font-size: 14px; /* Set a font size */
+padding: 10px 10px; /* Some padding */
+cursor: pointer; /* Mouse pointer on hover */
+position: relative;
+top:  -40px;
+left: 640px;
+}
+.add_what_u_will_learn:hover {
+  background-color:black;
+}
 
 .remove_what_u_will_learn{
-background-color: black;
+background-color: red;
 border: none; /* Remove borders */
 /* border-radius: 15%; */
 color: white; /* White text */
@@ -68,15 +95,11 @@ font-size: 14px; /* Set a font size */
 /* padding: 10px 10px; /* Some padding */ 
 cursor: pointer; /* Mouse pointer on hover */
 position: relative;
-/* left: 10px; */
-margin-left: -5%;
+left: 10px;
 }
-
 .remove_what_u_will_learn:hover {
-  background-color:red;
+  background-color:black;
 }
-
-
 .save_edit{
   background-color: #F7882F;
   border: none; /* Remove borders */
@@ -92,33 +115,49 @@ margin-left: -5%;
 .save_edit:hover{
   background-color: black;
 }
+.add_new_sec{
+  background-color: #F7882F;
+  border: none; /* Remove borders */
+  border-radius: 15%;
+  color: white; /* White text */
+  font-size: 14px; /* Set a font size */
+  padding: 10px 10px; /* Some padding */
+  cursor: pointer; /* Mouse pointer on hover */
+  left: 450px;
+  top: -40px;
+  position: relative;
+}
+.add_new_sec:hover{
+  background-color: black;
+}
 
 .upload_lec{
-  font-size: 14px;
-  background-color: white;
-  /* height: 90%; */
-  
+  background-color: #F7882F;
+  border: none; /* Remove borders */
+  border-radius: 15%;
+  color: white; /* White text */
+  font-size: 14px; /* Set a font size */
+  padding: 10px 10px; /* Some padding */
+  cursor: pointer; /* Mouse pointer on hover */
+  left: 30px;
+  top: 1px;
+  position: relative;
 }
 .upload_lec:hover{
-  background-color: gray;
-  color: white;
+  background-color: black;
 }
 .remove_lec{
 background-color: red;
 border: none; /* Remove borders */
 /* border-radius: 15%; */
-color: white; 
+color: white; /* White text */
 font-size: 14px; /* Set a font size */
 /* padding: 10px 10px; /* Some padding */ 
 cursor: pointer; /* Mouse pointer on hover */
 position: relative;
 left: 100px;
-/* top: -32; */
-/* height: 90%; */
+top: -32;
 }
 .remove_lec:hover {
-  background-color:gray;
-  color: white; 
+  background-color:black;
 }
-
-
