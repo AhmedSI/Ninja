@@ -159,12 +159,6 @@ import { StarRatingModule } from 'angular-star-rating';
     },{
       path: 'quizResult/:id',
       component: ResultComponent
-<<<<<<< HEAD
-=======
-    },{
-      path: 'error',
-      component: ErrorComponent
->>>>>>> parent of 2e8870d... 404 to be handled
     }])
   ],
   providers: [UserServiceService],
