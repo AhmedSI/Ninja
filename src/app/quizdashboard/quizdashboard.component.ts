@@ -32,7 +32,8 @@ export class QuizdashboardComponent implements OnInit {
   ngOnInit() {
   	this.token = localStorage.getItem('token');
   	this.id = this.router.snapshot.paramMap.get("id");
-  	this.getLecture();
+    this.getLecture();
+    console.log(this.id);
   }
 
   getQuiz(id:Number){
@@ -86,7 +87,7 @@ export class QuizdashboardComponent implements OnInit {
   updateAnswer(updteAnswerForm:NgForm){
     this.newQuestion.questionId = parseInt(this.selectedQuestionId, 10);
     this.userService.updateAnswerById(this.token,this.newAnswer).then(response =>{
-      this.getLecture();
+      this.getLecture();console.log("fa")
     })
   }
 

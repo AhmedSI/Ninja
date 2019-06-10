@@ -29,6 +29,8 @@ export class CoursedashboardComponentComponent implements OnInit {
 
   panelOpenState = false;
   buthide: number = -1;
+  sectionspinner:boolean=true;
+  uploadspinner:boolean=true;
 
 
   courseStudents:User[];
@@ -66,7 +68,7 @@ export class CoursedashboardComponentComponent implements OnInit {
    				console.log(courses[i]);
    				break;
 			}
-		}
+		};this.sectionspinner=false;
     });
   }
 
@@ -91,7 +93,7 @@ export class CoursedashboardComponentComponent implements OnInit {
   addSection(sectionForm:NgForm){
     this.userService.addSectionForCourse(this.token,this.course.courseId,this.newSection)
     .then(section => {
-        this.getCourse();
+        this.getCourse();this.sectionspinner=true;
     });
 
   }
@@ -125,7 +127,7 @@ export class CoursedashboardComponentComponent implements OnInit {
   deleteSection(id:Number){
         
     this.userService.deleteSection(id,this.token).then(section => {
-        this.getCourse();
+      this.getCourse(); this.sectionspinner = true;
     });
 
   }

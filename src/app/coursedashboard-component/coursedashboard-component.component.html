@@ -5,37 +5,37 @@
 <body>
 
   <mat-card class="example-card mr-5" style="margin-left:8%;">
-      <div class="row">
-        <div class="col-7 ml-5">
-      <mat-card-header>
-        <mat-card-title><h4><strong id="courseName"> {{course.title}} </strong></h4></mat-card-title>
-        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-      </mat-card-header>
-      <br>
-      <mat-card-content >
+    <div class="row">
+      <div class="col-7 ml-5">
+        <mat-card-header>
+          <mat-card-title>
+            <h4><strong id="courseName"> {{course.title}} </strong></h4>
+          </mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <br>
+        <mat-card-content>
           <p class="ml-3">
-              {{course.description}}
+            {{course.description}}
           </p>
         </mat-card-content>
+      </div>
+      <div class="col-3 mt-3" style="margin-left:5%;">
+        <img mat-card-image src="assets\hack.jpg" alt="Photo of Course">
+
+        <mat-card-actions>
+          <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;">Change Course
+            Photo</button>
+        </mat-card-actions>
+
+      </div>
     </div>
-    <div class="col-3 mt-3" style="margin-left:5%;">
-      <img mat-card-image src="assets\hack.jpg" alt="Photo of Course">
-      
-      <mat-card-actions>
-          <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;">Change Course Photo</button>
-      </mat-card-actions>
-      
-    </div>
-    </div>
-    </mat-card>
-    
+  </mat-card>
+
 
 
 
   <form>
-
-
-
 
     <div class="container course-container mt-4">
 
@@ -129,7 +129,11 @@
 
 
           </form>
-          <mat-accordion >
+          <div *ngIf="sectionspinner">
+            <mat-progress-spinner color="accent" mode="indeterminate" class="mt-4" style="margin-left: 45%;">
+            </mat-progress-spinner>
+          </div>
+          <mat-accordion *ngIf="!sectionspinner">
 
             <mat-expansion-panel *ngFor="let section of sections" class="mb-4 mat-elevation-z1">
 
@@ -146,9 +150,9 @@
                     class="fas fa-file-pdf"></i></button>
 
 
-                <button mat-icon-button matTooltip="Upload Video" matTooltipPosition="above" class="upload_lec mr-5 ml-5"
-                  data-toggle="modal" data-target="#videoModal" (click)="setSelectedSection(section.sectionId)"><i
-                    class="fas fa-video"></i></button>
+                <button mat-icon-button matTooltip="Upload Video" matTooltipPosition="above"
+                  class="upload_lec mr-5 ml-5" data-toggle="modal" data-target="#videoModal"
+                  (click)="setSelectedSection(section.sectionId)"><i class="fas fa-video"></i></button>
 
 
                 <button mat-icon-button matTooltip="Creat Quiz" matTooltipPosition="above" class="upload_lec ml-5"
@@ -226,7 +230,7 @@
 
               <mat-label>New Quiz time in min</mat-label>
 
-              <input  matInput placeholder="New Quiz time in min" name="title" [(ngModel)]="newQuiz.quizTime"
+              <input matInput placeholder="New Quiz time in min" name="title" [(ngModel)]="newQuiz.quizTime"
                 #quizTime="ngModel">
 
             </mat-form-field>

@@ -32,9 +32,8 @@ body{
 }
 
 .delete-que{
-  margin-left: 93%;
-  margin-top: -2%;
-  margin-bottom: 1%;
+  position: absolute;
+  left: 91%;
 }
 .questions-mark{
   margin-top: 3%;
@@ -45,8 +44,9 @@ body{
   margin-left: 15%;
 }
 #add-que{
-  margin-left: 86%;
+  margin-left: 46%;
   margin-bottom: 3%;
+  margin-top: 3%;
 }
 #add-sol{
   margin-left: 87%;
@@ -68,4 +68,11 @@ section{
   margin-left: 45%;
   margin-top: 5%;
   margin-bottom: 4%;
+}
+
+.white-icon {
+    color: orangered;
+}
+.white-icon svg {
+    fill: orangered;
 }

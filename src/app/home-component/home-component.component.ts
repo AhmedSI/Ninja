@@ -19,7 +19,9 @@ export class HomeComponentComponent implements OnInit{
   topCoursesSlide :number[];
   newCoursesSlide:number[];
   suggestedCoursesSlide:number[];
-  
+  topcoursespinner:boolean=true;
+  newcoursespinner: boolean = true;
+  suggestcoursespinner: boolean = true;
   
   constructor(
   private userService:UserServiceService,
@@ -37,17 +39,17 @@ export class HomeComponentComponent implements OnInit{
   }
   getTopCourses(){
     this.userService.topCourses()
-    .then(courses =>{this.topCourses=courses;this.topCoursesSlide= Array(Math.ceil(this.topCourses.length/3)).fill(1);});
+    .then(courses =>{this.topCourses=courses;this.topCoursesSlide= Array(Math.ceil(this.topCourses.length/3)).fill(1);this.topcoursespinner=false;});
   }
 
   getNewCourses(){
     this.userService.newCourses()
-    .then(courses =>{this.newCourses=courses;this.newCoursesSlide= Array(Math.ceil(this.newCourses.length/3)).fill(1);});
+    .then(courses =>{this.newCourses=courses;this.newCoursesSlide= Array(Math.ceil(this.newCourses.length/3)).fill(1);this.newcoursespinner=false;});
   }
 
   getSuggestedCourses(){
     this.userService.suggestedCourses()
-    .then(courses =>{this.suggestedCourses=courses;this.suggestedCoursesSlide= Array(Math.ceil(this.suggestedCourses.length/3)).fill(1);});
+    .then(courses =>{this.suggestedCourses=courses;this.suggestedCoursesSlide= Array(Math.ceil(this.suggestedCourses.length/3)).fill(1);this.suggestcoursespinner=false;});
   }
 
   enroll(course:Course){
