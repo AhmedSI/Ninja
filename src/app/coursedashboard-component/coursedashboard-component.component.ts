@@ -91,9 +91,10 @@ export class CoursedashboardComponentComponent implements OnInit {
 
 
   addSection(sectionForm:NgForm){
+    this.sectionspinner = true;
     this.userService.addSectionForCourse(this.token,this.course.courseId,this.newSection)
     .then(section => {
-        this.getCourse();this.sectionspinner=true;
+        this.getCourse();
     });
 
   }
@@ -125,9 +126,9 @@ export class CoursedashboardComponentComponent implements OnInit {
   }
 
   deleteSection(id:Number){
-        
+    this.sectionspinner = true;
     this.userService.deleteSection(id,this.token).then(section => {
-      this.getCourse(); this.sectionspinner = true;
+      this.getCourse(); 
     });
 
   }

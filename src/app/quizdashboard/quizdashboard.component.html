@@ -289,22 +289,23 @@
   <mat-step>
     <ng-template matStepLabel>Finishing</ng-template>
     <form #questionNoForm="ngForm" (ngSubmit)="setNumber(questionNoForm)">
+      <div class="input-group mark-input">
+        Currently quiz Question Numbers : 
+        <strong class="ml-2"> {{quiz.no_of_questions}} </strong>
+        
+
+      </div>
+      
+      <div style="margin-left: 37%;">
       <label class="questions-mark">Select Question number for this quiz : </label>
       <select name="qNumber" type="text" placeholder="Category" [(ngModel)]="qNumber">
         <option *ngFor="let question of quiz.questions; index as i;" [value]="i+1">{{i+1}}</option>
       </select>
-
-      <div class="input-group col-3 mark-input" style="margin-left: 20%;">
-        <div class="input-group-append">
-
-          <span>Currently quiz Question Numbers</span>
-          {{quiz.no_of_questions}}
-        </div>
       </div>
       <br>
-      <div>
-        <button mat-button matStepperPrevious class="btn btn-dark">Back</button>
-        <button mat-button routerLink="/teacherDashboard" class="btn btn-dark">finish</button>
+      <div style="margin-left: 45%;margin-top: 4%;">
+        <button  matStepperPrevious class="btn btn-dark mr-4">Back</button>
+        <button  type="submit"  class="btn btn-dark">finish</button>
       </div>
     </form>
   </mat-step>

@@ -26,7 +26,8 @@ export class QuizdashboardComponent implements OnInit {
 
   constructor(
   	private userService: UserServiceService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private route: Router,
     ) { }
 
   ngOnInit() {
@@ -99,9 +100,11 @@ export class QuizdashboardComponent implements OnInit {
   }
 
   setNumber(questionNoForm:NgForm){
+    console.log(this.qNumber)
     this.userService.setQuestionsNumber(this.token,this.quiz.quizId,this.qNumber).then(response =>{
       this.getLecture();
     })
+    this.route.navigate(['/home'])
   }
 
   updateQuiz(quizForm:NgForm){
