@@ -50,7 +50,7 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Categories</h6>
 
-            <div class="categories" *ngFor ="let category of categories" >
+            <div class="categories" *ngFor ="let category of categories|slice: 0:5" >
               <p>
                 <a routerLink="/category/{{category.categoryId}}">{{category.categoryStr}}</a>
               </p>
@@ -105,22 +105,22 @@
               <ul class="list-unstyled list-inline text-center">
                 <li class="list-inline-item">
                   <a href="#" class="btn-floating btn-fb mx-1">
-                    <i class="fa fa-facebook-f"> </i>
+                    <i class="fab fa-facebook-f"> </i>
                   </a>
                 </li>
                 <li class="list-inline-item">
                   <a href="#" class="btn-floating btn-tw mx-1">
-                    <i class="fa fa-twitter"> </i>
+                    <i class="fab fa-twitter"> </i>
                   </a>
                 </li>
                 <li class="list-inline-item">
                   <a href="#" class="btn-floating btn-gplus mx-1">
-                    <i class="fa fa-google-plus-g"> </i>
+                    <i class="fab fa-google-plus-g"> </i>
                   </a>
                 </li>
                 <li class="list-inline-item">
                   <a href="#" class="btn-floating btn-li mx-1">
-                    <i class="fa fa-linkedin-in"> </i>
+                    <i class="fab fa-linkedin-in"> </i>
                   </a>
                 </li>
               </ul>

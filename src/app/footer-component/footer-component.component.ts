@@ -18,10 +18,27 @@ export class FooterComponentComponent implements OnInit {
   ngOnInit() {
   	this.getCategories();
   }
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
 	getCategories(){
 		this.userService.getCategories().then(categories=>{
-		  this.categories = categories;
+		  this.categories = categories;this.categories = this.shuffle(this.categories);
 		});
   	}
 

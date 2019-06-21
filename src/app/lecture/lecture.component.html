@@ -47,7 +47,7 @@
     <mat-sidenav #snav mode="side" opened="true">
       <mat-nav-list>
 
-        <li class="as" *ngFor="let section of course.sections;let i = index">
+        <li  *ngFor="let section of course.sections;let i = index">
           <a href="#{{section.sectionId}}" data-toggle="collapse" (click)="togglearrow(i)" class="bs">
             <i *ngIf="toggeled.indexOf(i) != -1" style="position: absolute;margin-left: 80%;margin-top: 3%;"
               class="fas fa-angle-up"></i>
@@ -55,12 +55,12 @@
               class="fas fa-angle-down"></i> {{section.title}} </a>
 
           <ul class="collapse list-unstyled" id="{{section.sectionId}}">
-            <li *ngFor="let lecture of section.fancyLectures" style="background-color: black;">
+            <li class="lect-li" *ngFor="let lecture of section.fancyLectures" style="background-color: black;">
               <!-- <a *ngIf="!lecture.quiz" routerLink="lecture/{{lecture.lectureId}}">{{lecture.name}}</a> -->
-              <a *ngIf="!lecture.isQuiz" (click)="setLecture(lecture)"
+              <a class="lect-li" *ngIf="!lecture.isQuiz" (click)="setLecture(lecture)"
                 (click)="setlectertitle(lecture.name,lect.id)">{{lecture.name}}</a>
 
-              <a *ngIf="lecture.isQuiz" data-toggle="modal" data-target="#myModal"
+              <a class="lect-li" *ngIf="lecture.isQuiz" data-toggle="modal" data-target="#myModal"
                 (click)="quizModal(lecture)">{{lecture.name}}</a>
 
             </li>

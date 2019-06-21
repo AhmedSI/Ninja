@@ -34,7 +34,7 @@ export class HomeComponentComponent implements OnInit{
     this.getNewCourses();
     this.getSuggestedCourses();
     $('.carousel').carousel({
-      interval: 10000
+      interval: 2000
     })
   }
   getTopCourses(){

@@ -28,10 +28,11 @@ main {
      height: 40px;
      width:430px;
  }
- /deep/ .cdk-overlay-container { 
+::ng-deep .cdk-overlay-container { 
      z-index: 9999; 
     }
-
-
-
- 
+::ng-deep .mat-autocomplete-panel{
+  border-radius: 10px;
+  color: #f7882f;
+  background-color: #dcc7aa;
+}

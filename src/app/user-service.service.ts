@@ -12,6 +12,13 @@ import { Lecture } from './Lecture';
 import { fileContent } from './fileContent';
 import { StudentSubmission} from './StudentSubmission';
 
+
+export interface search_course {
+  name: string;
+  id:number;
+}
+
+
 @Injectable()
 export class UserServiceService {
   //private baseUrl = 'http://localhost:8080';
