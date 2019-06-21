@@ -46,14 +46,14 @@ export class UserServiceService {
 
   addCourse(token: string,courseData: Course):Promise<string> {
     return this.http.post(
-      this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData)
+      this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailedTitle='+courseData.detailedTitle+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData)
       .toPromise()
       .then(response => response.text() as string);
   }
 
   addCourseForClassroom(token: string,courseData: Course) : Promise<string>{
     return this.http.post(
-      this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailed_title='+courseData.detailed_title+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData)
+      this.baseUrl + '/teacher/courses?token='+token+ '&title='+courseData.title+ '&detailedTitle='+courseData.detailedTitle+ '&description='+courseData.description+ '&category='+courseData.category+ '&level='+courseData.level,courseData)
       .toPromise()
       .then(response => response.text() as string);
     }
@@ -334,7 +334,7 @@ export class UserServiceService {
 
   NewCourseInClassroom(token:string,classroomId:string,course:Course){
     return this.http.post(
-      this.baseUrl + '/teacher/classroom_courses?token='+token+'&classroom_id='+classroomId+'&title='+course.title+ '&detailed_title='+course.detailed_title+ '&description='+course.description+ '&category='+course.category+ '&level='+course.level,course)
+      this.baseUrl + '/teacher/classroom_courses?token='+token+'&classroom_id='+classroomId+'&title='+course.title+ '&detailedTitle='+course.detailedTitle+ '&description='+course.description+ '&category='+course.category+ '&level='+course.level,course)
       .toPromise().
       then(response => response.text() as string);
       }
