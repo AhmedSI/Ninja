@@ -82,7 +82,7 @@ export class UserServiceService {
       .toPromise()
       .then(response => response.json() as User[]);
   }
-    
+
   addChild(token: string,childData: User):Promise<string> {
     return this.http.post(
       this.baseUrl + '/parent/add_child?token='+token+ '&first_name='+childData.firstName+'&date_of_birth='+childData.dateOfBirth+'&email='+childData.email+'&password='+childData.password+'&username='+childData.username+'&gender='+1+'&grade='+childData.grade,childData)
@@ -220,7 +220,7 @@ export class UserServiceService {
       .then(response => response.json() as User);
   }
 
-  enrollChildInClassroom(token:string,passcode:string,name:string): Promise<string>{  
+  enrollChildInClassroom(token:string,passcode:string,name:string): Promise<string>{
     const formData : FormData = new FormData();
     return this.http.post(this.baseUrl+'/parent/join_child_classroom?token='+token+'&first_name='+name+'&passcode='+passcode,formData)
     .toPromise()
@@ -243,7 +243,7 @@ export class UserServiceService {
     return this.http.delete(this.baseUrl + '/teacher/file?token='+token+'&file_id='+id)
       .toPromise()
       .then(response => response.text() as string);
-    
+
   }
 
   pushLectureContent(file:File,token:string,id:string):Promise<String>{
@@ -382,5 +382,5 @@ export class UserServiceService {
     .then(response => response.json() as User[]);
   }
 
-  
+
 }
