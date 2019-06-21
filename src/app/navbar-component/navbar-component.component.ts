@@ -1,9 +1,10 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/router';
 import { UserServiceService } from '.././user-service.service';
-
+import {Observable} from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { Category } from '../Category';
-
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
@@ -12,9 +13,28 @@ import { Category } from '../Category';
 export class NavbarComponentComponent implements OnInit{
 	token: string = "initial";
   isAdmin : boolean = false;
-
-  
-
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three', 'cYWNEVgWno',
+'OnNxaExUfW',
+'KsRDWBabW',
+'IzYWkkBoI',
+'cgSWKeFwG',
+'yDGNhvicBw',
+'GtyMhZKr',
+'eAkCTybO',
+'BivOJtXm',
+'jfJkXTlq',
+'lrtsRUAM',
+'lbOKVSXk',
+'SIwdsYli',
+'MzFEXHEG',
+'AMoIJmHZ',
+'xnCJSyaa',
+'cWvCafCS',
+'MsqIJOCO',
+'poIljTmG',
+'KZogjZDC'];
+  filteredOptions: Observable<string[]>;
   categories : Category[];
 
   constructor(
@@ -26,9 +46,17 @@ export class NavbarComponentComponent implements OnInit{
   	this.token = localStorage.getItem('token');
     this.checkUserPermisions();
     this.getCategories();
-  
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => value.length >= 1 ? this._filter(value):[])
+      );
   }
-  
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
   logoutUser(): void {
     
     this.userService.logoutUser(this.token)

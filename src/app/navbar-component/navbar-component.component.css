@@ -28,7 +28,9 @@ main {
      height: 40px;
      width:430px;
  }
-
+ /deep/ .cdk-overlay-container { 
+     z-index: 9999; 
+    }
 
 
 
