@@ -14,27 +14,25 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./quizdashboard.component.css']
 })
 export class QuizdashboardComponent implements OnInit {
-	token: string = "initial";
+  token: string = "initial";
   quiz: Quiz = new Quiz();
-	lecture: Lecture = new Lecture();
-	id : string ;
-	selectedQuestionId:string;
-	newQuestion:Question = new Question();
-	newAnswer:Answer = new Answer();
+  lecture: Lecture = new Lecture();
+  id : string ;
+  selectedQuestionId:string;
+  newQuestion:Question = new Question();
+  newAnswer:Answer = new Answer();
   qNumber:Number = 0;
   newQuiz:Quiz = new Quiz();
 
   constructor(
-  	private userService: UserServiceService,
-    private router: ActivatedRoute,
-    private route: Router,
+    private userService: UserServiceService,
+    private router: ActivatedRoute
     ) { }
 
   ngOnInit() {
-  	this.token = localStorage.getItem('token');
-  	this.id = this.router.snapshot.paramMap.get("id");
+    this.token = localStorage.getItem('token');
+    this.id = this.router.snapshot.paramMap.get("id");
     this.getLecture();
-    console.log(this.id);
   }
 
   getQuiz(id:Number){
@@ -47,10 +45,10 @@ export class QuizdashboardComponent implements OnInit {
   
 
   getLecture(){
-  	this.userService.getLecture(this.token,this.id).then(lecture=>{
-  		this.lecture=lecture;
+    this.userService.getLecture(this.token,this.id).then(lecture=>{
+      this.lecture=lecture;
       this.getQuiz(this.lecture.lectureContentId);
-  	})
+    })
   }
 
   setSelectedquestion(id:string){
@@ -60,9 +58,9 @@ export class QuizdashboardComponent implements OnInit {
   addQuestion(questionForm:NgForm){
     //this.newQuestion.is_multiple_choice = false;
     console.log(this.newQuestion.is_multiple_choice);
-  	this.userService.addQuestion(this.token,this.newQuestion,this.quiz.quizId).then(response =>{
-  		this.getLecture();
-  	})
+    this.userService.addQuestion(this.token,this.newQuestion,this.quiz.quizId).then(response =>{
+      this.getLecture();
+    })
   }
 
   updateQuestion(updteQuestionForm:NgForm){
@@ -74,37 +72,35 @@ export class QuizdashboardComponent implements OnInit {
   }
 
   deleteQuestion(questionId:string){
-  	this.userService.deleteQuestion(this.token,questionId).then(response =>{
-  		this.getLecture();
-  	})
+    this.userService.deleteQuestion(this.token,questionId).then(response =>{
+      this.getLecture();
+    })
   }
 
   addAnswer(AnswerForm:NgForm){
-  	this.userService.addAnswer(this.token,this.newAnswer,this.selectedQuestionId).then(response =>{
-  		this.getLecture();
-  	})
+    this.userService.addAnswer(this.token,this.newAnswer,this.selectedQuestionId).then(response =>{
+      this.getLecture();
+    })
   }
 
   updateAnswer(updteAnswerForm:NgForm){
     this.newQuestion.questionId = parseInt(this.selectedQuestionId, 10);
     this.userService.updateAnswerById(this.token,this.newAnswer).then(response =>{
-      this.getLecture();console.log("fa")
+      this.getLecture();
     })
   }
 
   deleteAnswer(answerId:string){
   console.log(answerId);
-  	this.userService.deleteAnswer(this.token,answerId).then(response =>{
-  		this.getLecture();
-  	})
+    this.userService.deleteAnswer(this.token,answerId).then(response =>{
+      this.getLecture();
+    })
   }
 
   setNumber(questionNoForm:NgForm){
-    console.log(this.qNumber)
     this.userService.setQuestionsNumber(this.token,this.quiz.quizId,this.qNumber).then(response =>{
       this.getLecture();
     })
-    this.route.navigate(['/home'])
   }
 
   updateQuiz(quizForm:NgForm){

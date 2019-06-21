@@ -37,6 +37,7 @@ import { ResultComponent } from './result/result.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { StarRatingModule } from 'angular-star-rating';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,8 @@ import { StarRatingModule } from 'angular-star-rating';
 
 
     ResultComponent,
+
+     ErrorComponent
   ],
   imports: [
     MaterialModule,
@@ -159,7 +162,16 @@ import { StarRatingModule } from 'angular-star-rating';
     },{
       path: 'quizResult/:id',
       component: ResultComponent
-    }])
+      },{
+    path: 'error',  
+      component: ErrorComponent 
+    },{   
+    //   path: '404', 
+    //   component: ErrorComponent  
+    // },{  
+      path: '**', 
+      component: ErrorComponent}  
+  ])
   ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]

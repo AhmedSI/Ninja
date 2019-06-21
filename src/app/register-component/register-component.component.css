@@ -14,7 +14,7 @@
     margin-right: auto;
     /* margin-top:50px; */
     /* background: #212c39; */
-    background: rgba(220, 199, 170,0.7);
+    background: #dcc7aa;
     /* border-radius: 20px; */
     width: 700px; 
     position:relative;
@@ -239,4 +239,9 @@ input{
 a{
     font-size: 24px;
     color: #d97400;
+}
+
+
+.alert{
+    background-color: rgba(217,116,0, 0.1);
 }
