@@ -42,12 +42,6 @@ export class NavbarComponentComponent implements OnInit{
     
   }
   ngOnInit() {
-    this.router.routeReuseStrategy.shouldReuseRoute = function (future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot) {
-      if (future.url.toString() === 'view' && curr.url.toString() === future.url.toString()) {
-        return false;
-      }
-      return (future.routeConfig === curr.routeConfig);
-    };
   	this.token = localStorage.getItem('token');
     this.checkUserPermisions();
     this.getCategories();

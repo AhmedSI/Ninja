@@ -11,7 +11,7 @@ import { SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import {
   ClickEvent,
 } from 'angular-star-rating';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-lecture',
   templateUrl: './lecture.component.html',
@@ -32,19 +32,20 @@ export class LectureComponent implements OnInit {
   request: string;
   toggeled: number[]=[];
   openedlecture:string="";
-  ratetitle: string ="Rate This Coursee";
-  alredyrated:boolean=false;
+  ratetitle: string ="Rate This Course";
   
   
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
-    private sanitizer: DomSanitizer,
+    private sanitizer: DomSanitizer, private _snackBar: MatSnackBar
   ) { }
   
   onClick = ($event: ClickEvent) => {
     this.userService.ratCourseForStudent(this.token, +this.id, +$event.rating);
-    console.log($event.rating);
+    this._snackBar.open('Sucssefully rated Course By ' + $event.rating + ' Stars', '', {
+      duration: 2000,
+    });
   };
 
   ngOnInit() {

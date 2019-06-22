@@ -41,7 +41,7 @@
         </button>
       </div> -->
       <div class="modal-body">
-        <star-rating (starClickChange)="onClick($event)" labelText="{{ratetitle}}" [readOnly]="alredyrated" labelPosition="top" size="large" [hoverEnabled]="true"></star-rating>
+        <star-rating (starClickChange)="onClick($event)" speed="slow" labelText="{{ratetitle}}"  labelPosition="top" size="large" [hoverEnabled]="true"></star-rating>
       </div>
 
       <div class="modal-footer">
@@ -63,8 +63,8 @@
     <p id="lect-title" #lect style="margin-left:35%;margin-top: 2.5%;">WELCOME TO
       {{course.title}}</p>
 
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rateModal">
-        rate this course
+      <button style="margin-left:15%;margin-top:.5%;" mat-button data-toggle="modal" data-target="#rateModal">
+        <i class="fas fa-star"></i> rate this course
       </button>
 
   </mat-toolbar>

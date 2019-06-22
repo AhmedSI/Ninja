@@ -10,12 +10,16 @@
         <mat-card-header>
           <mat-card-title>
             <h4><strong id="courseName"> {{course.title}} </strong></h4>
+            <mat-card-subtitle>Category: {{course.category}} <span class="ml-3 mr-3">//</span> Level: <span
+                *ngIf="course.level == 1">Beginner</span> <span *ngIf="course.level == 2">Intermediate</span> <span
+                *ngIf="course.level == 3">Advanced</span> </mat-card-subtitle>
           </mat-card-title>
           <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
         </mat-card-header>
         <br>
         <mat-card-content>
           <p class="ml-3">
+            <strong class="mr-2">Description:</strong>
             {{course.description}}
           </p>
         </mat-card-content>
