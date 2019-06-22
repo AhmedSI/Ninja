@@ -30,6 +30,27 @@
 </div>
 
 
+<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="ratemodal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-body">
+        <star-rating (starClickChange)="onClick($event)" labelText="{{ratetitle}}" [readOnly]="alredyrated" labelPosition="top" size="large" [hoverEnabled]="true"></star-rating>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="example-container">
   <mat-toolbar class="example-toolbar" style="background-color:#dcc7aa;color:#f7882f;position: fixed;z-index:999;">
@@ -41,6 +62,11 @@
     </button>
     <p id="lect-title" #lect style="margin-left:35%;margin-top: 2.5%;">WELCOME TO
       {{course.title}}</p>
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rateModal">
+        rate this course
+      </button>
+
   </mat-toolbar>
 
   <mat-sidenav-container>

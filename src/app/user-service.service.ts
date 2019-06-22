@@ -65,6 +65,12 @@ export class UserServiceService {
       .then(response => response.text() as string);
   }
 
+  ratCourseForStudent(token: string , courseId: number, rate: number):Promise<string>{
+    return this.http.post(
+      this.baseUrl + '/student/rate_course?token=' + token + '&course_id=' + courseId + '&rate=' +rate,rate)
+      .toPromise()
+      .then(response => response.text() as string);
+  }
   getCourses(token: string):  Promise<Course[]> {
     return this.http.get(this.baseUrl + '/teacher/courses?token='+token)
       .toPromise()

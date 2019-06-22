@@ -8,7 +8,9 @@ import { Quiz } from '../Quiz';
 import { fileContent } from '../fileContent';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-
+import {
+  ClickEvent,
+} from 'angular-star-rating';
 
 @Component({
   selector: 'app-lecture',
@@ -30,13 +32,20 @@ export class LectureComponent implements OnInit {
   request: string;
   toggeled: number[]=[];
   openedlecture:string="";
-
-
+  ratetitle: string ="Rate This Coursee";
+  alredyrated:boolean=false;
+  
+  
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer,
   ) { }
+  
+  onClick = ($event: ClickEvent) => {
+    this.userService.ratCourseForStudent(this.token, +this.id, +$event.rating);
+    console.log($event.rating);
+  };
 
   ngOnInit() {
     this.course = new Course();
@@ -50,7 +59,7 @@ export class LectureComponent implements OnInit {
     this.userService.getCourseById(this.token, this.id)
       .then(coursef => {
         this.course = JSON.parse(JSON.stringify(coursef))
-        // console.log(this.course);
+        console.log(this.course);
       });
   }
 
