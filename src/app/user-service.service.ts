@@ -36,13 +36,25 @@ export class UserServiceService {
   }
 
   loginUser(email: string,password: string): Promise<string> {
-    return this.http.get(this.baseUrl + '/auth/login?email='+email+ '&password='+ password)
+    if(email.includes("@")){
+      return this.http.get(this.baseUrl + '/auth/login?email='+email+ '&password='+ password)
       .toPromise()
       .then(response => response.text() as string)
       .catch(err => {
         return Promise.reject(err);
       });
+    }
+    else{
+      return this.http.get(this.baseUrl + '/auth/login?username='+email+ '&password='+ password)
+      .toPromise()
+      .then(response => response.text() as string)
+      .catch(err => {
+        return Promise.reject(err);
+      });
+    }
+
   }
+
 
   addCourse(token: string,courseData: Course):Promise<string> {
     return this.http.post(
@@ -388,6 +400,18 @@ export class UserServiceService {
     return this.http.get(this.baseUrl+"/teacher/course/students?token="+token+"&course_id="+id)
     .toPromise()
     .then(response => response.json() as User[]);
+  }
+  
+  saveCourse(token:string,course:Course){
+    return this.http.post(this.baseUrl+"/saved_courses?token="+token+"&course_id="+course.courseId,course)
+    .toPromise()
+    .then( response => response.text() as string );
+  }
+  
+  getSavedCourses(token:string){
+    return this.http.get(this.baseUrl+"/saved_courses?token="+token)
+    .toPromise()
+    .then(response => response.json() as Course[]); 
   }
 
 
