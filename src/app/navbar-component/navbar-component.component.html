@@ -8,22 +8,22 @@
 
 
 	<!-- search form -->
-	<form class="form-inline" action="" style="width:35%;margin:auto 2.5%">
+	<form #usersearch = "ngForm" class="form-inline" (ngSubmit)="navigateTo(usersearch)" action="" style="width:35%;margin:auto 2.5%">
 		<!-- <input type="text" name="searchword" class="form-control mr-sm-2" placeholder="Search" style="width:75%;">
 		<button class="btn" type="submit" >Search</button> -->
 		<div class="input-group">
-			<input type="text" class="form-control search" placeholder="Search" aria-label="Number"
-				[formControl]="myControl" [matAutocomplete]="auto">
+			<input ngModel name="searchcontent" type="text" class="form-control search" placeholder="Search" aria-label="Number"
+				[(ngModel)]="nas" [formControl]="myControl" [matAutocomplete]="auto">
 			<div class="input-group-append">
 				<button class="btn btn-secondary" type="button">
 					<i class="fa fa-search"></i>
 				</button>
 			</div>
 			<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-				<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-					<!-- routerLink="/course/{{course.courseId}}" -->
-					<span style="color: #f7882f;">{{option}}</span>
-					</mat-option>
+				<mat-option *ngFor="let option of filteredOptions | async" [value]="option.title" routerLink='/course/{{option.courseId}}'>
+
+					<span style="color: #f7882f;">{{option.title}}</span>
+				</mat-option>
 			</mat-autocomplete>
 		</div>
 	</form>

@@ -70,7 +70,9 @@ export class UserServiceService {
       .toPromise()
       .then(response => response.json() as Course[]);
   }
-
+  getAllCoursesForsearch(): Promise<Course[]>{
+    return this.http.get(this.baseUrl + '/all_courses').toPromise().then(response => response.json() as Course[]);
+  }
   getClassrooms(token: string):  Promise<Classroom[]> {
     return this.http.get(this.baseUrl + '/teacher/classrooms?token='+token)
       .toPromise()
