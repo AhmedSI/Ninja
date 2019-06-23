@@ -33,7 +33,7 @@ export class NavbarComponentComponent implements OnInit{
     for (var i in this.options)
     {
       if (this.options[i].title == this.nas){
-        this.router.navigate(['/course/' + this.options[i].courseId]);
+        this.router.navigate(['/alter/'+ this.options[i].courseId]);
         console.log(i)
         break;
       }

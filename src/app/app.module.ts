@@ -39,9 +39,11 @@ import { MaterialModule } from './material/material.module';
 import { StarRatingModule } from 'angular-star-rating';
 import { ErrorComponent } from './error/error.component';
 import { SavedComponent } from './saved/saved.component';
+import { AlternativeSearchComponent } from './alternative-search/alternative-search.component';
 
 @NgModule({
   declarations: [
+    AlternativeSearchComponent,
     AppComponent,
     LoginComponentComponent,
     RegisterComponentComponent,
@@ -86,7 +88,9 @@ import { SavedComponent } from './saved/saved.component';
 
      ErrorComponent,
 
-     SavedComponent
+     SavedComponent,
+
+     AlternativeSearchComponent
   ],
   imports: [
     MaterialModule,
@@ -99,6 +103,9 @@ import { SavedComponent } from './saved/saved.component';
     ReactiveFormsModule,
     StarRatingModule.forRoot(),
     RouterModule.forRoot([{
+      path: 'alter/:id',
+      component:AlternativeSearchComponent
+    },{
       path: 'register',
       component: RegisterComponentComponent
     },{
