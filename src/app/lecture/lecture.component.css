@@ -68,3 +68,6 @@ mat-sidenav{
   color: black;
   cursor: pointer;
 }
+::ng-deep .custom-snackbar-one{
+    color:#00e600;
+}

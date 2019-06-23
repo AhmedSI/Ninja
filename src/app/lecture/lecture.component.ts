@@ -38,13 +38,13 @@ export class LectureComponent implements OnInit {
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
-    private sanitizer: DomSanitizer, private _snackBar: MatSnackBar
+    private sanitizer: DomSanitizer, private _snackBar1: MatSnackBar
   ) { }
   
   onClick = ($event: ClickEvent) => {
     this.userService.ratCourseForStudent(this.token, +this.id, +$event.rating);
-    this._snackBar.open('Sucssefully rated Course By ' + $event.rating + ' Stars', '', {
-      duration: 2000,
+    this._snackBar1.open('Sucssefully rated Course By ' + $event.rating + ' Stars', '', {
+      duration: 2000, panelClass: ['custom-snackbar-one']
     });
   };
 

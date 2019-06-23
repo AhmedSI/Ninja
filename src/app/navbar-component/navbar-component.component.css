@@ -36,3 +36,6 @@ main {
   color: #f7882f;
   background-color: #dcc7aa;
 }
+::ng-deep .custom-snackbar{
+    color:#ff3333;
+}
