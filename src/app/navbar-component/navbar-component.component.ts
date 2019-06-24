@@ -38,9 +38,11 @@ export class NavbarComponentComponent implements OnInit{
         return;
       }
     }
-    this._snackBar.open('No Such ' + this.nas +' Course Was Found', '', {
+    if (this.nas !== '' && this.nas !== undefined ){
+      this._snackBar.open('No Such ' + '"' + this.nas + '"' +' Course Was Found', '', {
       duration: 3000, panelClass: ['custom-snackbar']
     });
+    }
     
     
   }
