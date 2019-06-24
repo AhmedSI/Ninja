@@ -1,0 +1,66 @@
+/* body{
+    background-color: #F4F7F6;
+    position: relative;
+    box-sizing: border-box;
+} */
+
+
+#add_child{
+  border-radius: 20px;
+  background: #f7882f;
+  color:#f7c331;
+  position: absolute;
+  left: 77%;
+  top: 10%;
+  transition: all .5s ease;
+
+}
+
+#add_child:hover{
+  background-color:#f7c331;
+  text-decoration-line: none;
+  color: white;
+  box-shadow:0 0 5px #f7882f;
+}
+
+.navs_pages{
+  padding-top: 80px;
+}
+.navs_pages .nav-link {
+  position: relative;
+  left: 600px;
+}
+.img-circle {
+width: 200px;
+height: 200px;
+background-size: cover;
+display: block;
+border-radius: 100px;
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+align-self: center;
+background-color: orange;
+}
+.card-title{
+  padding-left: 80px;
+}
+
+.btn-create{
+  background-color: #f7882f;
+  color: white;
+}
+
+.firstAndLastName{
+  display:flex;
+  flex-wrap: row wrap;
+}
+
+.firstAndLastName input{
+  width: 100%;
+}
+
+.firstAndLastName .lastName{
+  display: block;
+  margin-left: 10%;
+  /* background-color: red; */
+}

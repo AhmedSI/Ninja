@@ -1,0 +1,75 @@
+
+<!-- <app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component> -->
+
+    <div class="container">
+      <span class="badge">Joined Classrooms</span>
+      <div class="row">
+       
+
+        
+          <button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
+              <i class="fas fa-plus"></i>
+              Join Classroom
+            </button>
+            <div class="modal fade" id="myModal2">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Classroom</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <!-- <form #classroomForm="ngForm" (ngSubmit)="joinClassroom(classroomForm)"> -->
+                      <!-- <input id="New_classroom_name" type="text"  value="" placeholder="classroom Passcode" required name="title" [(ngModel)]="toBeJoinedClassroom.passCode"> -->
+                      
+
+                    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <!-- <label> Classroom Passcode</label>  -->
+                            <br>
+                            <div class="inline">
+                            <input id="New_classroom_name" type="text" value='' class="form-control" name="passCode" placeholder="classroom Passcode" [(ngModel)]="toBeJoinedClassroom.passCode" #passCode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && passCode.invalid }" required />
+                            <div *ngIf="f.submitted && passCode.invalid" class="invalid-feedback">
+                                <div *ngIf="passCode.errors.required">Passcode is required</div>
+                            </div>
+                            </div>
+                            <br>
+                        </div>
+
+                      <div class="modal-footer">
+                        <button type="submit" name="button" class="btn btn-create ">Join classroom</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                      </div>
+                    <!-- </form> -->
+                    </form>
+
+
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <div *ngFor = "let classroom of enrolledClassroom" class="col-md-12 col-lg-6 col-xl-4">
+                  <!--div of the course .. -->
+                  <div class="thumbnail">
+                    <div class="caption">
+                        <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+                        <a routerLink="/classroom/{{classroom.classroomId}}"> <h4>{{classroom.classroomName}}</h4></a>
+                        <p>{{classroom.creatorId}}</p>
+                      <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
+                      <a href="#"class="courseButton">see classroom</a>
+                    </div>
+                  </div>
+                </div>
+
+
+      </div><!--/row-->
+    </div><!--/container -->
+
+    <app-footer-component></app-footer-component>
+
+    

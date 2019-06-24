@@ -1,0 +1,247 @@
+<app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component>
+<!-- nav pages start -->
+
+<section class="navs_pages">
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active" data-toggle="tab" href="#home">My Children</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#menu1">Courses</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane container active" id="home">
+			<div class="container">
+				<button id="add_child" type="button" class="btn" data-toggle="modal" data-target="#myModal">
+					<!-- <img src="assets/adduser.png" id="add_child_photo"> -->
+					<i class="fas fa-user-plus"></i>
+					Add New Children
+				</button>
+				<div class="modal fade" id="myModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">Add Child</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<!-- Modal body -->
+							<div class="modal-body">
+
+								<form [formGroup]="addChildForm" class="login-form col-xl" (ngSubmit)="addChild()">
+
+									<div class="firstAndLastName">
+										<div class="form-group">
+											<label class="text-uppercase">First Name</label>
+											<input formControlName="firstName" type="text" class="form-control"
+												placeholder="first name"
+												[ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+											<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+												<div *ngIf="f.firstName.errors.required">First name is required
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group lastName">
+											<label class="text-uppercase">Last Name</label>
+											<input formControlName="lastName" type="text" class="form-control"
+												placeholder="last name"
+												[ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+											<div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+												<div *ngIf="f.lastName.errors.required">Last name is required</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="text-uppercase">email</label>
+										<input formControlName="email" type="email" class="form-control"
+											placeholder="Enter child's email"
+											[ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+										<!-- <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+												<div *ngIf="f.email.errors.required">Email is required</div>
+												<div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+											</div> -->
+									</div>
+
+									<div class="firstAndLastName">
+										<div class="form-group">
+											<label class="text-uppercase">username</label>
+											<input formControlName="username" type="text" class="form-control"
+												placeholder="username"
+												[ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+											<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+												<div *ngIf="f.username.errors.required">username is required</div>
+											</div>
+										</div>
+
+										<div class="form-group lastName">
+											<label class="text-uppercase">Password</label>
+											<input formControlName="password" type="password" class="form-control"
+												placeholder="Password" id="passwordInput"
+												[ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+											<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+												<div *ngIf="f.password.errors.required">Password is required</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="text-uppercase">Grade</label>
+										<!-- <input formControlName="grade" type="text" class="form-control" placeholder="Grade" [ngClass]="{ 'is-invalid': submitted && f.grade.errors }" > -->
+										<select class="form-control" formControlName="grade"
+											placeholder="Select a grade" type="text" class="form-control"
+											[ngClass]="{ 'is-invalid': submitted && f.grade.errors }">
+											<option disabled value="">Select grade</option>
+
+											<option type="text" value="1stGrade"> 1'st Grade</option>
+											<option type="text" value="2ndGrade"> 2'nd Grade</option>
+											<option type="text" value="3rdGrade"> 3'rd Grade</option>
+											<option type="text" value="3rdGrade"> 4'th Grade</option>
+											<option type="text" value="3rdGrade"> 5'th Grade</option>
+											<option type="text" value="3rdGrade"> 6'th Grade</option>
+											<option type="text" value="3rdGrade"> 7'th Grade</option>
+											<option type="text" value="3rdGrade"> 8'th Grade</option>
+											<option type="text" value="3rdGrade"> 9'th Grade</option>
+											<option type="text" value="3rdGrade"> 10'th Grade</option>
+											<option type="text" value="3rdGrade"> 11'th Grade</option>
+											<option type="text" value="2ndGrade"> 12'th Grade</option>
+										</select>
+										<div *ngIf="submitted && f.grade.errors" class="invalid-feedback">
+											<div *ngIf="f.grade.errors.required">Grade is required</div>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label class="text-uppercase">Gender</label>
+										<select name="gender" class="controls" formControlName="gender"
+											placeholder="Select gender" type="text" class="form-control"
+											[ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+											<option disabled value="">Select gender</option>
+											<option value="1" name="gender" id="optionsRadios1">Male</option>
+											<option value="2" name="gender" id="optionsRadios1">Female</option>
+										</select>
+
+										<!-- <div class="controls" formControlName = "gender"> -->
+										<!-- <input type="radio" value="Male" name="gender" id="optionsRadios1" formControlName = "gender">
+											  <label for="optionsRadios1"> Male </label>
+											  <input type="radio" value="Female"name="gender" id="optionsRadios2" formControlName = "gender">
+											  <label for="optionsRadios2"> Female </label> -->
+										<div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+											<div *ngIf="f.gender.errors.required">Gender is required</div>
+										</div>
+										<!-- </div> -->
+									</div>
+
+									<div class="form-group">
+										<label class="text-uppercase">Date Of Birth </label>
+										<input type="date" ngbDatepicker id="dateOfBirth" class="form-control"
+											name="dateOfBirth" formControlName="dateOfBirth"
+											[ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }">
+										<div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+											<div *ngIf="f.dateOfBirth.errors.required">Date of birth is required
+											</div>
+										</div>
+									</div>
+
+									<div class="modal-footer">
+										<input type="submit" value="Add child" class="btn btn-create">
+										<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+									</div>
+
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div *ngFor="let child of children" class="col-md-12 col-lg-6 col-xl-4">
+						<div class="item">
+							<div class="card mb-2">
+								<img class="img-circle" src="assets/user.png" alt="Card image cap">
+								<div class="card-body">
+									<a routerLink="../childprofile/{{child.userId}}">
+										<h4 class="card-title">{{child.firstName}}</h4>
+									</a>
+									<p class="card-text">{{child.dateOfBirth}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane container fade" id="menu1">
+			<div class="container">
+				<!-- <span class="badge">Suggested Courses</span> -->
+				<div class="row">
+					<div class="modal fade" id="myModal2">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">Enroll</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								<!-- Modal body -->
+								<div class="modal-body">
+									<small>Select the Child you want to enroll to :</small>
+
+									<form #enrollForm="ngForm" (ngSubmit)="enrollChildInCourse(enrollForm)">
+										<input type="text" id="course_name_style" class="form-control scrollabletextbox"
+											name="course-name" value="course name here" disabled>
+										<hr>
+										<div class="row">
+											<label for="gender">child:</label>
+											<select name="id" [(ngModel)]="chosenChild.firstName">
+
+												<option *ngFor="let child of children" value="{{child.firstName}}">
+													{{child.firstName}}</option>
+											</select>
+
+										</div>
+										<div class="modal-footer">
+											<input type="submit" value="Enroll" class="btn btn-create">
+											<button type="button" class="btn btn-dark"
+												data-dismiss="modal">Close</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div *ngFor="let course of courses" class="col-md-12 col-lg-6 col-xl-4">
+						<div class="item">
+							<div class="card mb-2">
+								<img class="card-img-top"
+									src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png"
+									alt="Card image cap">
+								<div class="card-body">
+									<a routerLink="/course/{{course.courseId}}">
+										<h4 class="card-title">{{course.title}}</h4>
+									</a>
+									<p class="card-text">{{course.description}}</p>
+									<button type="button" name="button" class="btn btn-primary enroll_child_but"
+										data-toggle="modal" data-target="#myModal2"
+										(click)="detectCourse([course.courseId])">Enroll Child</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<!-- <app-footer-component></app-footer-component> -->

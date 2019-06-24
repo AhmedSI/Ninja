@@ -1,0 +1,117 @@
+<!-- modal for quiz desription -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{quiz.title}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <h5>Quiz notes:</h5>
+        <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+          nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+          id est laborum.</small>
+        <br>
+        <br>
+        <p><strong>Time: 30 minutes</strong></p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <a routerLink="../../quizhome/{{this.quiz.quizId}}" class="btn btn-dark">Take Quiz</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="ratemodal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div> -->
+      <div class="modal-body">
+        <star-rating (starClickChange)="onClick($event)" speed="slow" labelText="{{ratetitle}}"  labelPosition="top" size="large" [hoverEnabled]="true"></star-rating>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="example-container">
+  <mat-toolbar class="example-toolbar" style="background-color:#dcc7aa;color:#f7882f;position: fixed;z-index:999;">
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/home" class="ml-5 mr-5">
+      <mat-icon>home</mat-icon>Go to home page
+    </button>
+    <p id="lect-title" #lect style="margin-left:35%;margin-top: 2.5%;">WELCOME TO
+      {{course.title}}</p>
+
+      <button style="margin-left:15%;margin-top:.5%;" mat-button data-toggle="modal" data-target="#rateModal">
+        <i class="fas fa-star"></i> rate this course
+      </button>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #snav mode="side" opened="true">
+      <mat-nav-list>
+
+        <li  *ngFor="let section of course.sections;let i = index">
+          <a href="#{{section.sectionId}}" data-toggle="collapse" (click)="togglearrow(i)" class="bs">
+            <i *ngIf="toggeled.indexOf(i) != -1" style="position: absolute;margin-left: 80%;margin-top: 3%;"
+              class="fas fa-angle-up"></i>
+            <i *ngIf="toggeled.indexOf(i) == -1" style="position: absolute;margin-left: 80%;margin-top: 3%;"
+              class="fas fa-angle-down"></i> {{section.title}} </a>
+
+          <ul class="collapse list-unstyled" id="{{section.sectionId}}">
+            <li class="lect-li" *ngFor="let lecture of section.fancyLectures" style="background-color: black;">
+              <!-- <a *ngIf="!lecture.quiz" routerLink="lecture/{{lecture.lectureId}}">{{lecture.name}}</a> -->
+              <a class="lect-li" *ngIf="!lecture.isQuiz" (click)="setLecture(lecture)"
+                (click)="setlectertitle(lecture.name,lect.id)">{{lecture.name}}</a>
+
+              <a class="lect-li" *ngIf="lecture.isQuiz" data-toggle="modal" data-target="#myModal"
+                (click)="quizModal(lecture)">{{lecture.name}}</a>
+
+            </li>
+
+          </ul>
+        </li>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="cont">
+
+        <h1 *ngIf="!selectedLecture" style="text-align: center;margin-top:250px;height: 400px;width: 100%">WELCOME TO
+          {{course.title}}</h1>
+        <video *ngIf="lecture.isVideo" [src]=videoURL() type="video/mp4" width="90%" height="540" controls> </video>
+
+        <iframe *ngIf="lecture.isFile" [src]=pdfTrustedURL() width="100%" height="650px" frameborder="0"
+          style="display: block;"></iframe>
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+
+<!-- </div> -->

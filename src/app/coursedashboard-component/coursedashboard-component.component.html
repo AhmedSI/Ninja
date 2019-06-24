@@ -1,0 +1,317 @@
+<app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component>
+
+
+<body>
+
+  <mat-card class="example-card mr-5" style="margin-left:8%;">
+    <div class="row">
+      <div class="col-7 ml-5">
+        <mat-card-header>
+          <mat-card-title>
+            <h4><strong id="courseName"> {{course.title}} </strong></h4>
+            <mat-card-subtitle>Category: {{course.category}} <span class="ml-3 mr-3">//</span> Level: <span
+                *ngIf="course.level == 1">Beginner</span> <span *ngIf="course.level == 2">Intermediate</span> <span
+                *ngIf="course.level == 3">Advanced</span> </mat-card-subtitle>
+          </mat-card-title>
+          <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+        </mat-card-header>
+        <br>
+        <mat-card-content>
+          <p class="ml-3">
+            <strong class="mr-2">Description:</strong>
+            {{course.description}}
+          </p>
+        </mat-card-content>
+      </div>
+      <div class="col-3 mt-3" style="margin-left:5%;">
+        <img mat-card-image src="assets\hack.jpg" alt="Photo of Course">
+
+        <mat-card-actions>
+          <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;">Change Course
+            Photo</button>
+        </mat-card-actions>
+
+      </div>
+    </div>
+  </mat-card>
+
+
+
+
+  <form>
+
+    <div class="container course-container mt-4">
+
+
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            Creator
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="container">
+          <div class="media border p-2">
+            <img src="https://www.3dprintingstudios.com/wp-content/uploads/2017/10/person-dummy.jpg" alt="teacher"
+              class="mr-2 rounded-circle" style="width:60px;">
+            <div class="media-body">
+              <h6>{{course.publisher.firstName}}</h6>
+              <p>Lorem ipsum...</p>
+            </div>
+          </div>
+
+        </div>
+      </mat-expansion-panel>
+
+      <br>
+      <!-- <h5 class="title">What you will learn:</h5>
+    <div class="container">
+      <div class="col-11">
+        <input type="text" class="form-control" placeholder="New item">
+      </div>
+      <button type="button" name="button" class="add_what_u_will_learn"><i class="fas fa-plus-circle"></i>add</button>
+      <ul>
+        <li>first item <button type="button" name="button" class="remove_what_u_will_learn"><i class="fas fa-times"></i> remove</button></li>
+      </ul>
+    </div> -->
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            What you will learn:
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="container">
+          <form [formGroup]="aimForm" class="login-form col-xl" (ngSubmit)="addAim()">
+
+
+            <mat-form-field class="col-11" appearance="outline" required>
+              <mat-label>Add New Item</mat-label>
+              <input matInput placeholder="Add New  Item" formControlName="aim">
+
+              <mat-hint>Press "Enter Key" to add</mat-hint>
+            </mat-form-field>
+            <!-- <input type="text" class="form-control mt-2 col-11" placeholder="New item" formControlName="aim" style="margin-left:-2%;"> -->
+
+          </form>
+          <ul>
+            <li *ngFor="let aim of aims ;let i = index" (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)"><button
+                type="button" name="button" class="remove_what_u_will_learn" (click)="onDeleteAim(aim);onHover(-1)"
+                *ngIf="i == buthide"><i class="fas fa-times"></i></button> {{aim}} </li>
+          </ul>
+        </div>
+
+      </mat-expansion-panel>
+
+      <br>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="title">
+            Course Content:
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+          {{panelOpenState ? '' : 'add Content'}}
+        </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <div class="container ">
+          <form #sectionForm="ngForm" (ngSubmit)="addSection(sectionForm)" class="login-form col-xl">
+
+            <!-- <input type="text" class="form-control" placeholder="New Section name" name="title"
+                [(ngModel)]="newSection.title" #title="ngModel"> -->
+            <mat-form-field class="col-11 mb-5 mt-3" appearance="outline" required>
+
+              <mat-label>New Section name</mat-label>
+
+              <input matInput placeholder="New Section name" name="title" [(ngModel)]="newSection.title"
+                #title="ngModel">
+
+              <mat-hint>Press "Enter Key" to add</mat-hint>
+            </mat-form-field>
+
+
+          </form>
+          <div *ngIf="sectionspinner">
+            <mat-progress-spinner color="accent" mode="indeterminate" class="mt-4" style="margin-left: 45%;">
+            </mat-progress-spinner>
+          </div>
+          <mat-accordion *ngIf="!sectionspinner">
+
+            <mat-expansion-panel *ngFor="let section of sections" class="mb-4 mat-elevation-z1">
+
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h5>{{section.title}}</h5>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-toolbar class="mb-4">
+
+                <button mat-icon-button matTooltip="Upload File" matTooltipPosition="above" class="upload_lec mr-5 ml-3"
+                  data-toggle="modal" data-target="#documentModal" (click)="setSelectedSection(section.sectionId)"><i
+                    class="fas fa-file-pdf"></i></button>
+
+
+                <button mat-icon-button matTooltip="Upload Video" matTooltipPosition="above"
+                  class="upload_lec mr-5 ml-5" data-toggle="modal" data-target="#videoModal"
+                  (click)="setSelectedSection(section.sectionId)"><i class="fas fa-video"></i></button>
+
+
+                <button mat-icon-button matTooltip="Creat Quiz" matTooltipPosition="above" class="upload_lec ml-5"
+                  data-toggle="modal" data-target="#quizModal" (click)="setSelectedSection(section.sectionId)"><i
+                    class="fas fa-file-signature"></i></button>
+
+
+                <button mat-icon-button matTooltip="Delete Section" matTooltipPosition="above" class="remove_lec"
+                  (click)="deleteSection([section.sectionId])"><i class="fas fa-trash-alt"></i></button>
+
+              </mat-toolbar>
+
+              <ul class="lecturesList">
+                <li *ngFor="let lecture of section.fancyLectures ;let i = index" (mouseenter)="onHover(i)"
+                  (mouseleave)="onHover(-1)">
+
+                  <button *ngIf="i == buthide" class="remove_what_u_will_learn"
+                    (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> </button>
+
+                  <a *ngIf="lecture.isQuiz" routerLink="/quizdashboard/{{lecture.lectureId}}">{{lecture.name}}</a>
+
+                  <a *ngIf="! lecture.isQuiz" routerLink="/lecture/{{lecture.lectureId}}">{{lecture.name}}</a>
+
+
+                </li>
+              </ul>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+
+
+      </mat-expansion-panel>
+
+
+      <input type="submit" name="Save" value="Save" class="save_edit">
+
+    </div>
+  </form>
+  <hr>
+      <h4>Students in this course</h4>
+      <ul class="input-group ques-c col-10" *ngFor="let student of courseStudents">
+        <li>{{student.username}}</li>
+      </ul>
+
+  <div class="modal fade" id="quizModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">New Quiz Creation</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form #quizForm="ngForm" (ngSubmit)="addQuiz(quizForm)">
+
+
+            <mat-form-field appearance="outline" required class="col-6">
+              <mat-label>New Quiz title</mat-label>
+              <input matInput placeholder="New Quiz title" name="title" [(ngModel)]="newQuiz.title" #title="ngModel">
+            </mat-form-field>
+
+
+
+            <mat-form-field class="col-11 mt-3" appearance="outline" required>
+
+              <mat-label>New Quiz instructions</mat-label>
+
+              <input matInput placeholder="New Quiz instructions" name="title" [(ngModel)]="newQuiz.instructions"
+                #instructions="ngModel">
+
+            </mat-form-field>
+            <!-- <input type="textarea" class="form-control" placeholder="New Quiz instructions" name="title"
+                [(ngModel)]="newQuiz.instructions" #instructions="ngModel"> -->
+
+
+
+            <mat-form-field class="col-6 mb-2" appearance="outline" required>
+
+              <mat-label>New Quiz time in min</mat-label>
+
+              <input matInput placeholder="New Quiz time in min" name="title" [(ngModel)]="newQuiz.quizTime"
+                #quizTime="ngModel">
+
+            </mat-form-field>
+            <!-- <input type="text" class="form-control" placeholder="New Quiz time in min" name="title"
+                [(ngModel)]="newQuiz.quizTime" #quizTime="ngModel"> -->
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+              <input type="submit" value="Create quiz" class="btn btn-create">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="videoModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Video</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form #videoForm="ngForm" (ngSubmit)="upload(videoForm)">
+            <div class="col-11">
+              <input type="text" class="form-control" placeholder="New video title" name="title"
+                [(ngModel)]="newQuiz.title" #title="ngModel">
+            </div>
+            <div class="col-11">
+              <input type="file" class="form-control" (change)="selectFile($event)">
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+              <input type="submit" value="Create Video Lecture" class="btn btn-create">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="documentModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Document</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form #documentForm="ngForm" (ngSubmit)="upload(documentForm)">
+            <div class="col-11">
+              <input type="text" class="form-control" placeholder="New Document title" name="title"
+                [(ngModel)]="newQuiz.title" #title="ngModel">
+            </div>
+            <div class="col-11">
+              <input type="file" class="form-control" (change)="selectFile($event)">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+              <input type="submit" value="Create Document Lecture" class="btn btn-create">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<app-footer-component></app-footer-component>
+<!-- <app-footer-component></app-footer-component> -->

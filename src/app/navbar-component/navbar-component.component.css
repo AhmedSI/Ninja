@@ -1,0 +1,38 @@
+.mainNav a, .mainNav button{
+    color: #6b7a8f;
+}
+.mainNav .btn{
+    background-color:#f7882f;
+    color: #f7c331;
+    border-color: #f7c331;
+    transition: all .3s ease-in;
+
+}
+.mainNav .btn:hover{
+    background-color:#f7c331;
+    color:#f7882f;
+    font-size: 20px;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+ .search{
+     background-color: rgb(255, 255, 255,0.7);
+     width:400px;
+     transition: all .3s ease-in;
+ }
+ .search:active{
+     height: 40px;
+     width:430px;
+ }
+::ng-deep .cdk-overlay-container { 
+     z-index: 9999; 
+    }
+::ng-deep .mat-autocomplete-panel{
+  border-radius: 10px;
+  color: #f7882f;
+  background-color: #dcc7aa;
+}

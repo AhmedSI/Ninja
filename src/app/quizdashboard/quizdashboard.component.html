@@ -1,0 +1,265 @@
+<div class="container">
+  <div class="about-quiz">
+    <h5>About Quiz</h5>
+    <hr width="50%" >
+    <form #updateQuizForm="ngForm" (ngSubmit)= "updateQuiz(updateQuizForm)">
+    <input class="form-control form-control-lg quiz-name" type="text" [placeholder]="quiz.title" name="title" [(ngModel)]="newQuiz.title">
+
+    <textarea name="name" class="form-control quiz-des col-7" rows="4" style="resize:none" [placeholder]="quiz.instructions" [(ngModel)]="newQuiz.instructions"></textarea>
+    <div class="input-group col-2 time-c">
+      <input type="text" class="form-control" placeholder="Time" name="time"  [(ngModel)]="newQuiz.time">
+      <div class="input-group-append">
+        <span class="input-group-text">{{quiz.time}}</span>
+      </div>
+    </div>
+    <input type="submit" value="update quiz" class="btn btn-dark">
+  </form>
+  </div>
+  <hr>
+  <form #questionNoForm="ngForm" (ngSubmit)= "setNumber(questionNoForm)">
+    <select name="qNumber" type="text" placeholder="Category" [(ngModel)]="qNumber">
+      <option *ngFor="let question of quiz.questions; index as i;" [value]="i+1">{{i+1}}</option>
+    </select>
+    <label class="questions-mark">Questions No:</label>
+
+    <div class="input-group col-3 mark-input">
+      <div class="input-group-append">{{quiz.no_of_questions}}
+        <span class="input-group-text">questions</span>
+      
+      </div>
+    </div>
+    <br>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <input type="submit" value="confirm" class="btn btn-dark">
+    </div>
+  </form>
+  <hr >
+
+
+
+  <div class="quiz_description">
+    <h5>Questions</h5>
+    <hr width="50%">
+    <button id="add-que" type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">
+      add Question
+    </button>
+    <!-- question modal  -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add New Question</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form #questionForm="ngForm" (ngSubmit)= "addQuestion(questionForm)">
+              
+              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="Question body here" name = "question_body" [(ngModel)]="newQuestion.question_body" #question_body="ngModel"></textarea><br>
+              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="feedback here" name = "question_body" [(ngModel)]="newQuestion.question_reference" #question_reference="ngModel"></textarea>
+              <br>
+              <select name="qNumber" type="text" placeholder="level" [(ngModel)]="newQuestion.question_level">
+                <option [value]="1">easy</option>
+                <option [value]="2">medium</option>
+                <option [value]="3">hard</option>
+              </select>
+              <br>
+
+              <select name="qType" type="text" placeholder="question type" [(ngModel)]="newQuestion.is_multiple_choice">
+                <option [value]=true>multiple choice</option>
+                <option [value]=false>one choice</option>
+              </select>
+              <br>
+
+              <label for="ques-mark" class="questions-mark">Question Mark:</label>
+              <div class="input-group col-3 mark-input">
+                <input id="ques-mark" type="text" class="form-control" placeholder="Mark" name = "question_mark" [(ngModel)]="newQuestion.question_mark" #question_mark="ngModel">
+                <div class="input-group-append">
+                  <span class="input-group-text">marks</span>
+                </div>
+              </div>
+              <br>
+              <br>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <input type="submit" value="Add" class="btn btn-dark">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- edit question modal -->
+    <div class="modal fade" id="myModal3">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Question</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form #updateQuestionForm="ngForm" (ngSubmit)= "updateQuestion(updteQuestionForm)">
+              <p>Q1)</p>
+              <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="Question here" name = "question_body" [(ngModel)]="newQuestion.question_body" #question_body="ngModel"></textarea>
+              <br>
+              <label for="ques-mark" class="questions-mark">Question Mark:</label>
+              <div class="input-group col-3 mark-input">
+                <input id="ques-mark" type="text" class="form-control" placeholder="Mark" name = "question_mark" [(ngModel)]="newQuestion.question_mark" #question_mark="ngModel">
+                <div class="input-group-append">
+                  <span class="input-group-text">marks</span>
+                </div>
+              </div>
+              <br>
+              <br>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <input type="submit" value="edit" class="btn btn-dark">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- solution modal  -->
+    <div class="modal fade" id="myModal2">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Add new Choice</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form #choiceForm="ngForm" (ngSubmit)= "addAnswer(choiceForm)">
+
+
+              <textarea name="answer_body" class="form-control " rows="1" style="resize:none" placeholder="Sol" [(ngModel)]="newAnswer.answer_body" #answer_body="ngModel"></textarea>
+              <br>
+              <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0">Answer Is:</legend>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="is_correct" id="gridRadios1" value="true" checked [(ngModel)]="newAnswer.is_correct" #is_correct="ngModel">
+                      <label class="form-check-label" for="gridRadios1">
+                        Correct
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="is_correct" id="gridRadios2" value="false" [(ngModel)]="newAnswer.is_correct" #is_correct="ngModel">
+                      <label class="form-check-label" for="gridRadios2">
+                        False
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <br>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <input type="submit" value="Add" class="btn btn-dark">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- edit sol modal -->
+    <div class="modal fade" id="myModal4">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">edit Choice</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form >
+
+
+              <textarea name="body" class="form-control " rows="1" style="resize:none" placeholder="Sol" ></textarea>
+              <br>
+              <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0">Answer Is:</legend>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                      <label class="form-check-label" for="gridRadios1">
+                        Correct
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                      <label class="form-check-label" for="gridRadios2">
+                        False
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <br>
+              <br>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <input type="submit" value="edit" class="btn btn-dark">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <section *ngFor="let question of quiz.questions; index as i;">
+      <p>Q{{i+1}})</p>
+
+      <div class="dropdown delete-que">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-edit"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" data-toggle="modal" data-target="#myModal3" (click)="setSelectedquestion(question.questionId)">Edit question</a>
+          <a class="dropdown-item" (click)="deleteQuestion(question.questionId)" >Remove question</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#myModal2" (click)="setSelectedquestion(question.questionId)">Add solution</a>
+        </div>
+      </div>
+
+
+      <textarea name="name" class="form-control " rows="4" style="resize:none" [placeholder]="question.body" readonly></textarea>
+
+
+      <div class="input-group ques-c col-10" *ngFor="let answer of question.answers">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="radio" name="q1" disabled>
+          </div>
+        </div>
+        <textarea name="name" class="form-control " rows="1" style="resize:none" [placeholder]="answer.body" readonly></textarea>
+
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-edit"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" data-toggle="modal" data-target="#myModal4" >Edit Sol</a>
+          <a class="dropdown-item" (click)="deleteAnswer(answer.answerId)">Remove Sol</a>
+        </div>
+        <span style="color: green;margin-left: 100px;" *ngIf="answer.correct">Correct</span>
+      </div>
+      
+    </section>
+  </div>
+</div>

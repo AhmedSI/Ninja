@@ -1,0 +1,219 @@
+<!-- <app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component> -->
+<div class="container emp-profile">
+    <form method="post" action="editing_profile.html">
+      <div class="row">
+      	<button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
+              <i class="fas fa-plus"></i>
+              Join Classroom
+            </button>
+            <div class="modal fade" id="myModal2">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title">Classroom</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="modal-body">
+                    <!-- <form #classroomForm="ngForm" (ngSubmit)="joinClassroom(classroomForm)"> -->
+                      <!-- <input id="New_classroom_name" type="text"  value="" placeholder="classroom Passcode" required name="title" [(ngModel)]="toBeJoinedClassroom.passCode"> -->
+                      
+
+                    <form name="form" (ngSubmit)="f.form.valid && enrollChildinClassRoom()" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <!-- <label> Classroom Passcode</label>  -->
+                            <br>
+                            <div class="inline">
+                            <input id="New_classroom_name" type="text" value='' class="form-control" name="passCode" placeholder="classroom Passcode" [(ngModel)]="toBeJoinedClassroom.passCode" #passCode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && passCode.invalid }" required />
+                            <div *ngIf="f.submitted && passCode.invalid" class="invalid-feedback">
+                                <div *ngIf="passCode.errors.required">Passcode is required</div>
+                            </div>
+                            </div>
+                            <br>
+                        </div>
+
+                      <div class="modal-footer">
+                        <button type="submit" name="button" class="btn btn-create ">Join classroom</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                      </div>
+                    <!-- </form> -->
+                    </form>
+
+
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              
+        <div class="col-md-4">
+          <div class="profile-img">
+            <img class="profile_pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+            <div class="file btn btn-lg btn-primary">
+              Change Photo
+              <input type="file" name="file"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h5>
+              {{child.username}}
+            </h5>
+            <h6>
+              About Me
+            </h6>
+            <p class="proile-rating">RANKINGS : <span>1000</span></p>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Information</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Completed Courses</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <a routerLink="../editprofile"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-work">
+            <p>Contact Me On</p>
+            <div id="social_icons" class="col-md-2 col-lg-2 text-center mx-auto my-4 cont_me">
+              <!-- Facebook -->
+              <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-fb mx-1">
+                    <i class="fab fa-facebook-f"> </i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-tw mx-1">
+                    <i class="fab fa-twitter"> </i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-gplus mx-1">
+                    <i class="fab fa-google-plus-g"> </i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#" class="btn-floating btn-li mx-1">
+                    <i class="fab fa-linkedin-in"> </i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content profile-tab" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="row">
+                <!-- <div class="col-md-4">
+                  <label>User Id</label>
+                </div> -->
+                <div class="col-md-6">
+                  <p>{{child.id}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label>User Name</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{child.username}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label>First Name</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{child.firstName}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Last Name</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{child.lastName}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Email</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{child.email}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Gender</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{child.gender}}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label>Date Of birth</label>
+                </div>
+                <div class="col-md-6">
+                  <p>{{child.dateOfBirth}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <div class="row">
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                  <div class="completed_course">
+                    <i class="fas fa-check-double"></i>
+                    <div class="ad">
+                      <a href="#">Course Name here Course Name here Course Name here</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                  <div class="completed_course">
+                    <i class="fas fa-check-double"></i>
+                    <div class="ad">
+                      <a href="#">Course Name here</a>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                  <div class="completed_course">
+                    <i class="fas fa-check-double"></i>
+                    <div class="ad">
+                      <a href="#">Course Name here</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                  <div class="completed_course">
+                    <i class="fas fa-check-double"></i>
+                    <div class="ad">
+                      <a href="#">Course Name here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+<app-footer-component></app-footer-component>

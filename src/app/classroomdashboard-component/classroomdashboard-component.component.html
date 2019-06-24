@@ -1,0 +1,199 @@
+<!-- <app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component> -->
+<div class="container emp-profile">
+    <div class="classroom_head row ">
+      <img class="classroom_pic" src="assets/344142-PAM4RR-780.jpg" alt=""/>
+      <div class="about_class col-md-3">
+        <h4>{{classroom.classroomName}} </h4>
+        <p>About Classroom About Classroom About Classroom About Classroom </p>
+      </div>
+      <div class="container col-md-4 creator_box">
+        <p>Created by:</p>
+        <div class="media border p-2">
+          <img src="assets/creator.png" alt="teacher" class="mr-2 rounded-circle" style="width:60px;">
+          <div class="media-body">
+            <h6>{{classroom.creatorId}} <small><i>professor at washington dc university</i></small></h6>
+            <p>Lorem ...</p>
+          </div>
+        </div>
+        <div class="classroom_passcode ">
+          <label for="class_code">Passcode:</label>
+          <input id="class_code" class="form-control "  type="text" name="classcode"value="{{classroom.passCode}}" readonly>
+        </div>
+        <button id="invite_user" type="button" class="btn" data-toggle="modal" data-target="#myModal3">
+          <img src="assets/adduser.png" id="add_child_photo">
+          Invite Student
+        </button>
+        <div class="modal fade" id="myModal3">
+          <div class="modal-dialog modal-ku">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Add Student</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <!-- Modal body -->
+              <div class="modal-body">
+                <form method="post">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <select class="btn btn-light dropdown-toggle" name="gender" >
+                        <option value="userid">User ID</option>
+                        <option value="username">User Name</option>
+                      </select>
+                    </div>
+                    <input type="text" class="form-control col-md-6" aria-label="Text input with dropdown button" placeholder="User ID OR User Name" name="add_student" required>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Add" class="btn btn-dark">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="classroom_body">
+      <h5>courses:</h5>
+      <br>
+      <button id="add_course_toclassroom" type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal4">
+        <i class="fas fa-plus"></i>
+        Add Course
+      </button>
+
+      <div class="modal fade" id="myModal4">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Add Course</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <small> Select the Course you want to add from your Courses. if you want to add new course </small>
+              <input type="button"(click)="showForm()" value="New course" class="btn">
+
+              
+             <div *ngIf="show"> 
+              <form [formGroup]="courseForm" class="login-form col-xl" (ngSubmit)="addCourse()" >  
+	
+                <div class="form-group">
+                    <label class="text-uppercase">Course name</label>
+                    <input formControlName="courseName" type="text" class="form-control" placeholder="Course name"[ngClass]="{ 'is-invalid': submitted && g.courseName.errors }" />
+                    <div *ngIf="submitted && g.courseName.errors" class="invalid-feedback">
+                      <div *ngIf="g.courseName.errors.required">Course name is required</div>
+                    </div>
+                  </div>
+            
+                <div class="form-group">
+                  <label class="text-uppercase">Detailed title</label>
+                  <input formControlName="detaitedTitle" type="text" class="form-control" placeholder="Detailed title"[ngClass]="{ 'is-invalid': submitted && g.detaitedTitle.errors }" />
+                  <div *ngIf="submitted && g.detaitedTitle.errors" class="invalid-feedback">
+                    <div *ngIf="g.detaitedTitle.errors.required">Detaited title is required</div>
+                  </div>
+                </div>
+
+            
+                <div class="form-group">
+                  <label class="text-uppercase">Category</label>
+                  <!-- <select id="New_course_cat"  name="category" [(ngModel)]="newCourse.category" placeholder="Category" > -->
+                  <select formControlName="category" type="text" class="form-control" placeholder="Category"[ngClass]="{ 'is-invalid': submitted && g.category.errors }" >
+                      <option disabled value="" >Select level of course</option>
+                    <option *ngFor="let category of categories" [value]="category.categoryStr">{{category.categoryStr}}</option>
+                  </select>
+                  
+                  <!-- <input formControlName="category" type="text" class="form-control" placeholder="Category"[ngClass]="{ 'is-invalid': submitted && g.category.errors }" /> -->
+                  <div *ngIf="submitted && g.category.errors" class="invalid-feedback">
+                    <div *ngIf="g.category.errors.required">Category is required</div>
+                  </div>
+                </div>
+
+                  <div class="form-group">
+                    <label class="text-uppercase">Level</label>
+                    <select class="form-control"  formControlName="level" placeholder="Select a level" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && g.level.errors }" >
+                      <option disabled value="" >Select level of course</option>
+
+                      <option type="text"  value='1' > Beginner</option>
+                      <option type="text" value='2'> Intermediate </option>
+                      <option type="text" value='3' > Hard </option>
+
+                    </select>
+                    <div *ngIf="submitted && g.level.errors" class="invalid-feedback">
+                      <div *ngIf="g.level.errors.required">level is required</div>
+                    </div>
+                  </div>
+                  
+                    <div class="form-group">
+                      <label class="text-uppercase">Course description</label>
+                      <!-- <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+                      <textarea formControlName="courseDescription" class="form-control" placeholder="Course Description" row="6" [ngClass]="{ 'is-invalid': submitted && g.courseDescription.errors }" ></textarea>
+                      <div *ngIf="submitted && g.courseDescription.errors" class="invalid-feedback">
+                        <div *ngIf="g.courseDescription.errors.required">Course description is required</div>
+                      </div>
+                    </div>
+
+            
+
+                  
+            
+                  <div class="modal-footer">
+                    <input type="submit" value="Create course" class="btn btn-create">
+                    <button type="button" class="btn btn-dark" (click)=dontShow()>Close</button>
+                  </div>
+
+                </form>
+                </div>
+              
+              <hr>
+              <form method="post">
+                <div class="row">
+
+                  <div *ngFor="let course of classroom.courses" class="col-md-12 col-lg-6 col-xl-4">
+                    <div class="form-check alg_bo">
+                      <input class="form-check-input" type="checkbox" id="checkbox1" value="option1">
+                      <label class="form-check-label" for="checkbox1" >
+                        <a target="_blank" rel="noopener noreferrer" href="#" > {{course.title}}</a>
+                      </label>
+                    </div>
+                  </div>
+                  
+                  
+                </div>
+
+
+                <div class="modal-footer">
+                    <input type="submit" value="Add" class="btn btn-dark">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngFor="let course of classroom.courses" class="col-md-12 col-lg-6 col-xl-4">
+          <div class="item">
+            <div class="card mb-2">
+              <img class="card-img-top" src="assets/142963-OT8E78-188.jpg"
+              alt="Card image cap">
+              <div class="card-body" style="overflow: auto">
+                <a href="#"><h4 class="card-title"> {{course.title}}</h4></a>
+                <p class="card-text">{{course.description}}</p>
+                <hr>
+                <button type="button" class="btn btn-danger remove_course">remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+</div>
+<app-footer-component></app-footer-component>

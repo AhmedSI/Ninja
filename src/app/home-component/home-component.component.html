@@ -1,0 +1,237 @@
+<app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component>
+
+
+
+<body>
+  <br>
+  <div class="container">
+    <span class="badge">Top Courses</span>
+    <div class="border-badge"></div>
+    <div *ngIf="topcoursespinner">
+      <mat-progress-spinner color="accent" mode="indeterminate" class="mt-4" style="margin-left: 45%;">
+      </mat-progress-spinner>
+    </div>
+    <div class="col-sm-12 body-cards" *ngIf="!topcoursespinner">
+      <div id="carouselTopCourses" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+
+          <li *ngFor="let slide of topCoursesSlide ,let i = index" data-target="#carouselTopCourses"
+            attr.data-slide-to="{{i}}" class="{{ (i == 0) ? 'active' : '' }}"></li>
+
+        </ol>
+
+        <div class="carousel-inner">
+          <div *ngFor="let slide of topCoursesSlide ,let i = index"
+            class="{{ (i == 0) ? 'carousel-item active' : 'carousel-item' }}">
+            <div class="row">
+              <mat-card *ngFor="let course of topCourses | slice: i*3 : i*3 + 3"
+                class="col-sm-4 example-card ml-3 mb-1">
+                <!-- <span class="notify-badge">NEW</span> -->
+                <img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
+
+
+                <mat-card-title style="color:orange;">
+                  {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
+                </mat-card-title>
+                <br>
+
+                <mat-card-content>
+                  <mat-card-subtitle>
+                    {{course.description|slice:0:230}}<strong
+                      *ngIf="course.description.length > 230">..................</strong>
+                  </mat-card-subtitle>
+                </mat-card-content>
+
+                <mat-card-actions>
+                  <!-- <button mat-button>LIKE</button> -->
+                  <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
+                    detailes</button>
+                  <button mat-icon-button matTooltip="Save Course" matTooltipPosition="below" class="csa ml-5"
+                    style="margin-top:-1%;">
+                    <mat-icon>save</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="Enroll" matTooltipPosition="below" class="csa"
+                    style="margin-top:-2%;" (click)="enroll(course)">
+                    <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
+                  </button>
+
+
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev prev-top" href="#carouselTopCourses" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      <a class="carousel-control-next next-top" href="#carouselTopCourses" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <br>
+  <br>
+  <hr>
+
+
+  <div class="container">
+
+    <span class="badge">New Courses</span>
+    <div class="border-badge"></div>
+    <div *ngIf="newcoursespinner">
+      <mat-progress-spinner color="accent" mode="indeterminate" class="mt-4" style="margin-left: 45%;">
+      </mat-progress-spinner>
+    </div>
+    <div class="col-sm-12 body-cards" *ngIf="!newcoursespinner">
+      <div id="carouselNewCourses" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+
+          <li *ngFor="let slide of newCoursesSlide ,let i = index" data-target="#carouselNewCourses"
+            attr.data-slide-to="{{i}}" class="{{ (i == 0) ? 'active' : '' }}"></li>
+
+        </ol>
+
+        <div class="carousel-inner">
+          <div *ngFor="let slide of newCoursesSlide ,let i = index"
+            class="{{ (i == 0) ? 'carousel-item active' : 'carousel-item' }}">
+            <div class="row">
+              <mat-card *ngFor="let course of newCourses | slice: i*3 : i*3 + 3"
+                class="col-sm-4 example-card ml-3 mb-1">
+                <!-- <span class="notify-badge">NEW</span> -->
+                <img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
+
+
+                <mat-card-title style="color:orange;">
+                  {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
+                </mat-card-title>
+                <br>
+
+                <mat-card-content>
+                  <mat-card-subtitle>
+                    {{course.description|slice:0:230}}<strong
+                      *ngIf="course.description.length > 230">..................</strong>
+                  </mat-card-subtitle>
+                </mat-card-content>
+
+                <mat-card-actions>
+                  <!-- <button mat-button>LIKE</button> -->
+                  <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
+                    detailes</button>
+                  <button mat-icon-button matTooltip="Save Course" matTooltipPosition="below" class="csa ml-5"
+                    style="margin-top:-1%;">
+                    <mat-icon>save</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="Enroll" matTooltipPosition="below" class="csa"
+                    style="margin-top:-2%;" (click)="enroll(course)">
+                    <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
+                  </button>
+
+
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev prev-new" href="#carouselNewCourses" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      <a class="carousel-control-next next-new" href="#carouselNewCourses" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+  </div>
+
+  <br>
+  <br>
+  <hr>
+
+
+  <div class="container">
+
+    <span class="badge">Suggested Courses</span>
+    <div class="border-badge"></div>
+    <div *ngIf="suggestcoursespinner">
+      <mat-progress-spinner color="accent" mode="indeterminate" class="mt-4" style="margin-left: 45%;">
+      </mat-progress-spinner>
+    </div>
+    <div class="col-sm-12 body-cards" *ngIf="!suggestcoursespinner">
+      <div id="carouselSuggestedCourses" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+
+          <li *ngFor="let slide of suggestedCoursesSlide ,let i = index" data-target="#carouselSuggestedCourses"
+            attr.data-slide-to="{{i}}" class="{{ (i == 0) ? 'active' : '' }}"></li>
+
+        </ol>
+
+        <div class="carousel-inner">
+          <div *ngFor="let slide of suggestedCoursesSlide ,let i = index"
+            class="{{ (i == 0) ? 'carousel-item active' : 'carousel-item' }}">
+            <div class="row">
+              <mat-card *ngFor="let course of suggestedCourses | slice: i*3 : i*3 + 3"
+                class="col-sm-4 example-card ml-3 mb-1">
+                <!-- <span class="notify-badge">NEW</span> -->
+                <img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
+
+
+                <mat-card-title style="color:orange;">
+                  {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
+                </mat-card-title>
+                <br>
+
+                <mat-card-content>
+                  <mat-card-subtitle>
+                    {{course.description|slice:0:230}}<strong
+                      *ngIf="course.description.length > 230">..................</strong>
+                  </mat-card-subtitle>
+                </mat-card-content>
+
+                <mat-card-actions>
+                  <!-- <button mat-button>LIKE</button> -->
+                  <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
+                    detailes</button>
+                  <button mat-icon-button matTooltip="Save Course" matTooltipPosition="below" class="csa ml-5"
+                    style="margin-top:-1%;">
+                    <mat-icon>save</mat-icon>
+                  </button>
+                  <button mat-icon-button matTooltip="Enroll" matTooltipPosition="below" class="csa"
+                    style="margin-top:-2%;" (click)="enroll(course)">
+                    <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
+                  </button>
+
+
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev prev-sug" href="#carouselSuggestedCourses" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      <a class="carousel-control-next next-sug" href="#carouselSuggestedCourses" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- <app-footer-component></app-footer-component> -->
+</body>
+<app-footer-component></app-footer-component>

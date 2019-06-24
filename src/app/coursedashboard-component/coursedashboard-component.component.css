@@ -1,0 +1,124 @@
+body{
+  background-color: #F4F7F6;
+  padding-top: 7%;
+}
+.descriptionAndName{
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 0;
+    background-color: rgba(107,122,143,0.7);
+    box-shadow: 0px 0pc 10px rgba(220,199,170,0.6);
+    padding-bottom: 30px;
+    padding-top: 50px;
+}
+
+.media img{
+    box-shadow: 0px 0pc 10px rgba(220,199,170,0.6);
+    /* width: 200px; */
+}
+
+#courseName{
+    color:black;
+    /* text-shadow: 0px 0pc 10px rgb(107,122,143);; */
+    font-size: 30px;
+    /* margin-left: 5%; */
+    margin-bottom: 20px;
+}
+.course-container{
+    width: 60%;
+  background-color: rgba(220,199,170,0.1);
+  box-shadow: 0px 0pc 10px rgba(220,199,170,0.6);
+  padding-top: 20px;
+  padding-bottom: 70px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-align: justify;
+  margin-top: 0;
+}
+
+.title{
+  color: #F7882F;
+  font-size: 23px;
+}
+
+.wrapper{
+  width:70%;
+}
+@media(max-width:992px){
+ .wrapper{
+  width:100%;
+}
+}
+
+li{
+    padding: 10px;
+    color:rgb(107,122,143);
+
+}
+p{
+  text-align: justify;
+}
+
+.remove_what_u_will_learn{
+background-color: black;
+border: none; /* Remove borders */
+/* border-radius: 15%; */
+color: white; /* White text */
+font-size: 14px; /* Set a font size */
+/* padding: 10px 10px; /* Some padding */ 
+cursor: pointer; /* Mouse pointer on hover */
+position: relative;
+/* left: 10px; */
+margin-left: -5%;
+}
+
+.remove_what_u_will_learn:hover {
+  background-color:red;
+}
+
+
+.save_edit{
+  background-color: #F7882F;
+  border: none; /* Remove borders */
+  border-radius: 15%;
+  color: white; /* White text */
+  font-size: 14px; /* Set a font size */
+  padding: 10px 10px; /* Some padding */
+  cursor: pointer; /* Mouse pointer on hover */
+  left: 630px;
+  top: 30px;
+  position: relative;
+}
+.save_edit:hover{
+  background-color: black;
+}
+
+.upload_lec{
+  font-size: 14px;
+  background-color: white;
+  /* height: 90%; */
+  
+}
+.upload_lec:hover{
+  background-color: gray;
+  color: white;
+}
+.remove_lec{
+background-color: red;
+border: none; /* Remove borders */
+/* border-radius: 15%; */
+color: white; 
+font-size: 14px; /* Set a font size */
+/* padding: 10px 10px; /* Some padding */ 
+cursor: pointer; /* Mouse pointer on hover */
+position: relative;
+left: 100px;
+/* top: -32; */
+/* height: 90%; */
+}
+.remove_lec:hover {
+  background-color:gray;
+  color: white; 
+}
+
+

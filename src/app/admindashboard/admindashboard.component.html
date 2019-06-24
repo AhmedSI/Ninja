@@ -1,0 +1,26 @@
+<!-- <app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component> -->
+
+<div class="container">
+
+<h1>Hello Admin, Here You Can Practice All Your Previliges</h1>
+
+
+<div *ngFor="let request of requests" class="list-group">
+
+				<a class="list-group-item">{{request.claimerName}}
+					<br>
+					
+					<!-- {{request.approved}}					 -->
+				</a>
+
+
+
+
+	<!-- <p>{{request.claimerName}}</p>
+	<p>{{request.approved}}</p> -->
+	<button class="btn" (click)="acceptRequest(request.claimerId)" [disabled]="request.approved"> {{buttonPlaceholder}}</button>
+<!-- </a> -->
+</div>
+
+</div>

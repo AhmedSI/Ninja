@@ -1,0 +1,78 @@
+.bg-overlay {
+  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7));
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+.overlayContainer{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#teach{
+  position: relative;
+  left: 80%;
+  top: 50%;
+  border-radius: 20px;
+  background: #f7882f;
+  color:#f7c331;
+  transition: all .5s ease;
+  margin-top: 5%;
+}
+
+.nav-link.active{
+  border-bottom: 2px solid orangered;
+}
+#add_class_room, #add_course{
+  border-radius: 20px;
+  background: #f7882f;
+  color:#f7c331;
+  position: absolute;
+  left: 45%;
+  top: 29%;
+  transition: all .5s ease;
+}
+
+#add_course:hover , #add_class_room:hover, #teach:hover {
+  background-color:#f7c331;
+  text-decoration-line: none;
+  color: white;
+  box-shadow:0 0 5px #f7882f;
+}
+
+.img-circle {
+width: 200px;
+height: 200px;
+background-size: cover;
+display: block;
+border-radius: 100px;
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+align-self: center;
+background-color: orange;
+}
+.card-title{
+  padding-left: 80px;
+}
+
+.btn-create{
+  background-color: #f7882f;
+  color: white;
+}
+
+.btn-create:hover {
+  background-color: #ff7e16;
+}
+.cssv{
+  background-color: #6b7a8f;
+  color: white;
+  
+
+}
+.cssv:hover{
+  background-color: orange;
+}

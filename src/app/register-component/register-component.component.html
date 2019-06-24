@@ -1,0 +1,103 @@
+
+<!-- <div class="login-block" style ="background-image: url('assets/registraionBackground.jpg')"> -->
+  <div class="login-block" style ="background-image: url('assets/142963-OT8E78-188.jpg')">
+
+    <div class="container">
+  
+          <h2 id='registerNow' class="text-center">Register Now</h2>
+          <hr>
+          <div class="row">
+            <!--form starts here-->
+  
+          <form [formGroup]="registerForm" class="login-form col-xl" (ngSubmit)="onSubmit()" >  
+  
+              <div class="form-group">
+                <label class="text-uppercase">First Name</label>
+                <input formControlName="firstName" type="text" class="form-control" placeholder="first name"[ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">First name is required</div>
+                </div>
+              </div>
+  
+            <div class="form-group">
+              <label class="text-uppercase">Last Name</label>
+              <input formControlName="lastName" type="text" class="form-control" placeholder="last name"[ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+              <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">Last name is required</div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="text-uppercase">username</label>
+              <input (click)="ignoreError()" formControlName="username" type="text" class="form-control" placeholder="username"[ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">username is required</div>      
+              </div>
+              <div *ngIf="error == 'Username is used'" class="alert alert-dark invalid-feedback">Username is used </div>
+            </div>
+  
+            <div class="form-group">
+              <label class="text-uppercase">email</label>
+              <input (click)="ignoreError()" formControlName="email" type="email" class="form-control" placeholder="Enter your email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+              <div *ngIf="error == 'Email is used'" class="alert alert-dark invalid-feedback">Email is used </div>
+  
+            </div>
+        
+            <div class="form-group">
+              <label class="text-uppercase">Password</label>
+              <input formControlName="password" type="password" class="form-control" placeholder="Password" id="passwordInput"[ngClass]="{ 'is-invalid': submitted && f.password.errors }" >
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+              </div>
+            </div>
+                  
+            <div class="form-group">
+              <label class="text-uppercase">Confirm your Password</label>
+              <input formControlName="confirmPassword" type="password" class="form-control" placeholder="Password" id="confirmPasswordInput"[ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" >
+              <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">Password is required</div>
+                <div *ngIf="f.confirmPassword.errors.notMatch" >Password doesn't match the first!</div>
+              </div>
+            </div>
+  
+            <div class="form-group">
+                <label class="text-uppercase">Gender</label>
+                <!-- <div class="controls" formControlName = "gender"> -->
+                <input type="radio" value="Male" name="gender" id="optionsRadios1" formControlName = "gender">
+                <label for="optionsRadios1"> Male </label>
+                <input type="radio" value="Female"name="gender" id="optionsRadios2" formControlName = "gender">
+                <label for="optionsRadios2"> Female </label>
+                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                  <div *ngIf="f.gender.errors.required">Gender is required</div>
+                  </div>
+              <!-- </div> -->
+            </div>
+  
+            <div class="form-group">
+              <label class="text-uppercase">Date Of Birth </label>
+              <input type="date"  ngbDatepicker 
+              id="dateOfBirth" class="form-control" placeholder="dateOfBirth" name="dateOfBirth" formControlName = "dateOfBirth">
+              <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                  <div *ngIf="f.dateOfBirth.errors.required">Date of birth is required</div>
+                </div>
+            </div>
+  
+            
+          <button class="btn btnLogin" type="submit"> Sign Up</button>
+  
+          <!-- <button routerLink='/login'class="btn btnLogin" style="margin-top: 30px"> I have an account</button> -->
+          <p>Already Have an account? <a routerLink="/login"> Login Now</a> </p>
+  
+          <!-- <img *ngIf="registerForm.value.loading == 'true'" class="loadingGif" src="assets/loading.gif" alt="loading.." > -->
+  
+        </form>
+  
+  
+      </div>
+    </div>
+  </div>
+  
