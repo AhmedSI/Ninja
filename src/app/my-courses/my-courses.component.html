@@ -1,23 +1,30 @@
+<app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component>
 
-<!-- <app-navbar-component></app-navbar-component>
-<app-sidebar-component></app-sidebar-component> -->
+<div class="container">
+  <span class="badge">Enrolled Courses</span>
+  <mat-card *ngFor="let course of enrolledCourses" class="course-card">
+    <div class="row">
+      <img class="courseImg col-md-3"
+        src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+      <div class="col-md">
+      <mat-card-header>
+        <h4 style="color: orangered;">{{course.title}}</h4>
+      </mat-card-header>
+      <mat-card-content style="margin-left: 4%;">
+        {{course.description}}
+      </mat-card-content>
+      </div>
+    </div>
+      <div>
+        <mat-card-actions>
+          <button class="play-button" routerLink="/courseContent/{{course.courseId}}" mat-button>
+            <i class="fas fa-play"></i> Play Course
+          </button>
+        </mat-card-actions>
+      </div>
+  </mat-card>
 
-    <div class="container">
-      <span class="badge">Enrolled Courses</span>
-      <div class="row">
-        <div *ngFor = "let course of enrolledCourses" class="col-md-12 col-lg-6 col-xl-4">
-          <!--div of the course .. -->
-          <div class="thumbnail">
-            <div class="caption">
-                <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                 <h4>{{course.title}}</h4>
-                <p>{{course.creator}}</p>
-              <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
-              <a routerLink="/courseContent/{{course.courseId}}"class="courseButton">see course</a>
-            </div>
-          </div>
-        </div>
-      </div><!--/row-->
-    </div><!--/container -->
-    
-    <app-footer-component></app-footer-component>
+</div>
+
+<app-footer-component></app-footer-component>
