@@ -85,3 +85,31 @@ p{
     font-size: 20px;
     color: #d97400;
 }
+
+
+.loadingGif{
+    width:30%;
+    margin:auto;
+}
+
+.invalid-feedback{
+    color: red;
+    display: block
+}
+
+/* p{
+    margin-top: 3%;
+    text-align : center;
+    color:#4f4351;
+    font-size: 18px;
+}
+
+a{
+    font-size: 24px;
+    color: #d97400;
+}
+ */
+
+.alert{
+    background-color: rgba(217,116,0, 0.15);
+}

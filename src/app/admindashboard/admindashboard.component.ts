@@ -26,10 +26,9 @@ export class AdmindashboardComponent implements OnInit {
   }
 
   acceptRequest(id:number){
-  	this.userService.acceptTeacher(this.token,id).then(acceptRequest => {        
+  	this.userService.acceptTeacher(this.token,id).then(acceptRequest => {   
+      this.getRequests();
       });	
-      this.disable=true;
-      this.buttonPlaceholder="accepted";
-  }
+    }
 
 }

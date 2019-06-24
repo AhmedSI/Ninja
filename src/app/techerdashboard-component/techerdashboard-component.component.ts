@@ -14,8 +14,8 @@ import { ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./techerdashboard-component.component.css']
 })
 export class TecherdashboardComponentComponent implements OnInit {
-  @ViewChild('closeBtn1') closeBtn1: ElementRef;
-  @ViewChild('closeBtn2') closeBtn2: ElementRef;
+  // @ViewChild('closeBtn1') closeBtn1: ElementRef;
+  // @ViewChild('closeBtn2') closeBtn2: ElementRef;
 
 	token: string = "initial";
 	newCourse : Course = new Course();
@@ -109,7 +109,7 @@ export class TecherdashboardComponentComponent implements OnInit {
         this.getCourses();
         console.log(this.courses);
       });
-    this.closeBtn1.nativeElement.click();
+    // this.closeBtn1.nativeElement.click();
   }
 
   addClassroom(){
@@ -127,7 +127,7 @@ export class TecherdashboardComponentComponent implements OnInit {
         // this.createClassroomForm.reset();
         this.newClassroom = new Classroom();
       });	
-      this.closeBtn2.nativeElement.click();
+      // this.closeBtn2.nativeElement.click();
   }
 
   checkTeacher(){
