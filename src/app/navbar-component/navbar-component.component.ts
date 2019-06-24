@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 import { Course } from '../Course';
 import { NgForm } from '@angular/forms';
 import { ActivatedRouteSnapshot } from '@angular/router' ;
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
@@ -24,7 +24,7 @@ export class NavbarComponentComponent implements OnInit{
   nas:string;
   constructor(
   private userService: UserServiceService,
-    private router: Router ,private cdRef : ChangeDetectorRef
+    private router: Router, private cdRef: ChangeDetectorRef, private _snackBar: MatSnackBar
     ) { }
   
 
@@ -33,11 +33,14 @@ export class NavbarComponentComponent implements OnInit{
     for (var i in this.options)
     {
       if (this.options[i].title == this.nas){
-        this.router.navigate(['/course/' + this.options[i].courseId]);
+        this.router.navigate(['/alter/'+ this.options[i].courseId]);
         console.log(i)
-        break;
+        return;
       }
     }
+    this._snackBar.open('No Such ' + this.nas +' Course Was Found', '', {
+      duration: 3000, panelClass: ['custom-snackbar']
+    });
     
     
   }
