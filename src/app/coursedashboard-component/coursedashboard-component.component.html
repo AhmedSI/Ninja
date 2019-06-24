@@ -25,10 +25,10 @@
         </mat-card-content>
       </div>
       <div class="col-3 mt-3" style="margin-left:5%;">
-        <img mat-card-image src="assets\hack.jpg" alt="Photo of Course">
+        <img mat-card-image [src]="img" alt="Photo of Course">
 
         <mat-card-actions>
-          <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;">Change Course
+          <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;" data-toggle="modal" data-target="#photoModal">Change Course
             Photo</button>
         </mat-card-actions>
 
@@ -306,6 +306,30 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
               <input type="submit" value="Create Document Lecture" class="btn btn-create">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="photoModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Change Course Photo</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form #imgForm="ngForm" (ngSubmit)="uploadPicture(imgForm)">
+            <div class="col-11">
+              <input type="file" class="form-control" (change)="selectFile($event)">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+              <input type="submit" value="Change" class="btn btn-create">
             </div>
           </form>
         </div>

@@ -19,9 +19,9 @@
             {{course.description}}
           </p>
           <mat-card-actions *ngIf="course.role == '' ">
-            <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;">Save Course</button>
+            <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;" (click)="saveCourse(course)">Save Course</button>
             
-            <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 20%">Enroll</button>
+            <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 20%" (click)="enroll(course)">Enroll</button>
         </mat-card-actions>
         </mat-card-content>
       </div>

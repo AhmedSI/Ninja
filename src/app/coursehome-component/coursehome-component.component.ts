@@ -18,7 +18,8 @@ export class CoursehomeComponentComponent implements OnInit {
   sections:Section[];
   constructor(
     private userService: UserServiceService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+  private rout: Router
 
   ) { }
 
@@ -31,6 +32,18 @@ export class CoursehomeComponentComponent implements OnInit {
   getCourseById(){
   	this.userService.getCourseById(this.token,this.courseID)
       .then(course => {this.course = course; this.sections =course.sections;});
+  }
+  enroll(course:Course){
+    // console.log(course);
+    this.userService.enrollIntoCourse(this.token,course)
+    .then(course =>{});
+    this.rout.navigate(['/myCourses']);
+  }
+  saveCourse(course:Course){
+    // console.log(course);
+    this.userService.saveCourse(this.token,course)
+    .then(course =>{});
+    this.rout.navigate(['/savedCourses']);
   }
 
 }  

@@ -414,5 +414,12 @@ export class UserServiceService {
     .then(response => response.json() as Course[]); 
   }
 
+  setCoursePicture(file:File,token:string,id:string):Promise<String>{
+    const formData : FormData = new FormData();
+    formData.append('file',file);
+    return this.http.post(this.baseUrl + '/coursePic?token='+token+'&course_id='+id,formData)
+    .toPromise()
+    .then(response => response.text() as string);
+  }
 
 }

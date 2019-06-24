@@ -31,7 +31,7 @@ export class CoursedashboardComponentComponent implements OnInit {
   buthide: number = -1;
   sectionspinner:boolean=true;
   uploadspinner:boolean=true;
-
+  img: string = "assets\coursepic.png";
 
   courseStudents:User[];
 
@@ -69,6 +69,7 @@ export class CoursedashboardComponentComponent implements OnInit {
    				break;
 			}
 		};this.sectionspinner=false;
+    this.img = this.course.course_picture.fileDownloadUri;
     });
   }
 
@@ -114,6 +115,17 @@ export class CoursedashboardComponentComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
     this.userService.pushLectureContent(
       this.currentFileUpload,this.token,this.selectedSectionId)
+      .then(event => {
+          console.log(event);
+          this.getCourse();
+      }
+    );
+  }
+
+  uploadPicture(pictureForm:NgForm){
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.userService.setCoursePicture(
+      this.currentFileUpload,this.token,this.course.courseId)
       .then(event => {
           console.log(event);
           this.getCourse();
