@@ -63,7 +63,7 @@ export class NavbarComponentComponent implements OnInit{
     return this.options.filter(option => option.title.toLowerCase().includes(filterValue));
   }
   getCourseForSearsh(){
-    this.userService.getAllCoursesForsearch().then(options => {this.options = options;});
+    this.userService.getAllCoursesForsearch().then(options => {this.options = options;console.log(this.options);});
   }
   logoutUser(): void {
     

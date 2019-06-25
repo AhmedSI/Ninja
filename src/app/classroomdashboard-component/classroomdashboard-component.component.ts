@@ -8,7 +8,7 @@ import { Router,ActivatedRoute} from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Category } from '.././Category';
 
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-classroomdashboard-component',
@@ -29,7 +29,7 @@ export class ClassroomdashboardComponentComponent implements OnInit {
   constructor(
   	private userService: UserServiceService,
     private router: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,private _snackBar2: MatSnackBar
     ) { }
     get g() { return this.courseForm.controls; }
 
@@ -89,6 +89,14 @@ export class ClassroomdashboardComponentComponent implements OnInit {
   getCategoris(){
     this.userService.getCategories().then(categories => {
       this.categories = categories;
+    });
+  }
+  copyInputMessage(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+    this._snackBar2.open('Sucssefully Copied to clipboard', '', {
+      duration: 2000, panelClass: ['custom-snackbar-one']
     });
   }
 }

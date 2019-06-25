@@ -16,6 +16,7 @@ export class CoursehomeComponentComponent implements OnInit {
   courseID:string=this.router.snapshot.paramMap.get("id");
   course : Course = new Course();
   sections:Section[];
+  toggeled: number[] = [];
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
@@ -45,5 +46,18 @@ export class CoursehomeComponentComponent implements OnInit {
     .then(course =>{});
     this.rout.navigate(['/savedCourses']);
   }
+  togglearrow(index: number) {
+    var flag = true;
+    for (var i = 0; i < this.toggeled.length; i++) {
+      if (this.toggeled[i] === index) {
+        this.toggeled.splice(i, 1);
+        flag = false;
+        break;
+      }
+    }
+    if (flag) {
+      this.toggeled.push(index);
+    }
 
+  }
 }  

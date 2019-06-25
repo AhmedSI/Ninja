@@ -144,7 +144,7 @@ import { AlternativeSearchComponent } from './alternative-search/alternative-sea
       component: MyCoursesComponent
     },{
       path: 'classroom/:id',
-      component: CoursehomeComponentComponent
+      component: ClassroomhomeComponentComponent
     }
     ,{
       path: 'category/:category',
