@@ -7,7 +7,11 @@
     <div *ngFor = "let course of courses" class="col-md-12 col-lg-6 col-xl-4">
       <!--div of the course .. -->
       <div class="thumbnail">
-        <div class="caption">
+        <div class="caption">  
+          <!-- <button class="far">          -->
+            <button  (click)="removeSavedCourse(course.courseId)" mat-icon-button matTooltip="remove" matTooltipPosition="left" class="remove">
+                <mat-icon><i class="far fa-times-circle"></i></mat-icon>
+            </button>
             <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
             <a routerLink="/course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
             <p>{{course.creator}}</p>

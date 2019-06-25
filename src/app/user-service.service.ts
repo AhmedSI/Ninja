@@ -422,4 +422,10 @@ export class UserServiceService {
     .then(response => response.text() as string);
   }
 
+  removeSavedCourse(token:string,course_id:string){
+    return this.http.delete(this.baseUrl+"/saved_courses?token="+token+"&course_id="+course_id)
+    .toPromise()
+    .then(response => response.text() as string);
+  }
+
 }

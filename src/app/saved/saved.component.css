@@ -55,3 +55,30 @@
     color: #fff;
     margin: 20px auto;
 }
+
+/* .fa-times-circle{ */
+    .far{
+    color: #F7882F;
+    display: block;
+    text-align: right;
+    padding-bottom: 3%;
+    float: right;
+    font-size: 120%;
+}
+
+/* .fa-times-circle:hover{ */
+    .far:hover{
+    color: #f7c331;
+}
+
+.remove:hover{
+    color: orange;
+  }
+  .remove{
+    position: relative;
+    /* top: 87%;
+    left: 70%; */
+    /* right: 5%; */
+    left: 85%;
+  }
+

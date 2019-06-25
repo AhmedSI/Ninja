@@ -27,4 +27,13 @@ export class SavedComponent implements OnInit {
     this.userService.getSavedCourses(this.token)
     .then(course =>this.courses=course);
   }
+
+  removeSavedCourse(id:string){
+    this.userService.removeSavedCourse(this.token,id)
+    .then(
+      response => {
+        this.getSavedCourses();
+      }
+      );
+  }
 }
