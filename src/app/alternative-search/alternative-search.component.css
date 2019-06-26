@@ -1,0 +1,35 @@
+.csa:hover{
+    color: orange;
+  }
+  .csa{
+    position: absolute;
+    top: 87%;
+    left: 70%;
+  }
+  .cssv{
+    background-color: #6b7a8f;
+    color: white;
+    position: absolute;
+    top:87%;
+
+  }
+  .cssv:hover{
+    background-color: orange;
+  }
+  .example-card {
+    max-width: 350px;
+    max-height: 470px;
+    min-height: 470px;
+    box-shadow:0 0 20px rgba(79, 67, 81, 0.3);
+  }
+  .container{
+    margin-bottom: 0px;
+    margin-top: 70px;
+}
+.container .badge{
+  background-color:  #f7c331 ;
+  font-size: 20px;
+  color: white;
+  margin: 20px auto;
+ border-radius: 2px;
+}

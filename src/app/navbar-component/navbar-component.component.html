@@ -20,7 +20,7 @@
 				</button>
 			</div>
 			<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-				<mat-option *ngFor="let option of filteredOptions | async" [value]="option.title" routerLink='/alter/{{option.courseId}}'>
+				<mat-option *ngFor="let option of filteredOptions | async" [value]="option.title" routerLink='/search/{{option.title}}'>
 
 					<span style="color: #f7882f;">{{option.title}}</span>
 				</mat-option>

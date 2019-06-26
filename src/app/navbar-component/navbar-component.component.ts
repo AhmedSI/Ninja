@@ -19,6 +19,7 @@ export class NavbarComponentComponent implements OnInit{
   isAdmin : boolean = false;
   myControl = new FormControl();
   options: Course[] ;
+  uniqueoptions:Course[]=[];
   filteredOptions: Observable<Course[]>;
   categories : Category[];
   nas:string;
@@ -33,8 +34,7 @@ export class NavbarComponentComponent implements OnInit{
     for (var i in this.options)
     {
       if (this.options[i].title == this.nas){
-        this.router.navigate(['/alter/'+ this.options[i].courseId]);
-        console.log(i)
+        this.router.navigate(['/search/'+ this.options[i].title]);
         return;
       }
     }
@@ -60,19 +60,33 @@ export class NavbarComponentComponent implements OnInit{
   private _filter(value: string): Course[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.title.toLowerCase().includes(filterValue));
+    return this.uniqueoptions.filter(uniqueoptions => uniqueoptions.title.toLowerCase().includes(filterValue));
   }
   getCourseForSearsh(){
-    this.userService.getAllCoursesForsearch().then(options => {this.options = options;console.log(this.options);});
+    this.userService.getAllCoursesForsearch().then(options => { this.options = options; this.makeUniqueSearch(this.options);});
+  }
+  makeUniqueSearch(notUnique:Course[]){
+    var uniqe;
+    for(var i=0;i < notUnique.length;i++){
+      uniqe = true;
+      for(var j=i+1;j<notUnique.length;j++){
+        if(notUnique[i].title==notUnique[j].title){
+          uniqe = false;
+          break;
+        }
+        
+      }
+      if (uniqe){
+        this.uniqueoptions.push(notUnique[i]);
+      }
+    }
   }
   logoutUser(): void {
     
     this.userService.logoutUser(this.token)
-      .then(str => {        
-        console.log(str);
+      .then(str => { 
       });
       localStorage.removeItem('token');
-       console.log(localStorage.getItem('token'));
       this.router.navigate(['/login']);
 
   }

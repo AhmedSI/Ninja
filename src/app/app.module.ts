@@ -41,9 +41,11 @@ import { StarRatingModule } from 'angular-star-rating';
 import { ErrorComponent } from './error/error.component';
 import { SavedComponent } from './saved/saved.component';
 import { AlternativeSearchComponent } from './alternative-search/alternative-search.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   declarations: [
+    ReportsComponent,
     AlternativeSearchComponent,
     AppComponent,
     LoginComponentComponent,
@@ -91,7 +93,9 @@ import { AlternativeSearchComponent } from './alternative-search/alternative-sea
 
      SavedComponent,
 
-     AlternativeSearchComponent
+     AlternativeSearchComponent,
+
+     ReportsComponent
   ],
   imports: [
     MaterialModule,
@@ -104,7 +108,10 @@ import { AlternativeSearchComponent } from './alternative-search/alternative-sea
     ReactiveFormsModule,
     StarRatingModule.forRoot(),
     RouterModule.forRoot([{
-      path: 'alter/:id',
+      path:'reports',
+      component: ReportsComponent
+    },{
+      path: 'search/:course',
       component:AlternativeSearchComponent
     },{
       path: 'register',
@@ -185,10 +192,13 @@ import { AlternativeSearchComponent } from './alternative-search/alternative-sea
     // },{  
       path: '**', 
       component: ErrorComponent}  
-  ])
+    ], {
+        onSameUrlNavigation: 'reload'
+      })
   ],
   providers: [UserServiceService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 
 export class AppModule { }
