@@ -1,76 +1,108 @@
-<!-- navbar parent start-->
-<nav class="navbar navbar-expand-sm fixed-top mainNav" style="background-color:#dcc7aa;color:#6b7a8f">
-	<!-- logo -->
-	<a class="navbar-brand" routerLink="/home" style="margin:auto 2.5%">
-		<img src="ninja.png" alt="Logo">
-	</a>
+<nav>
+	<div class="row justify-content-between">
 
+		<div class="col-auto mr-auto menu">
+			<!-- <div> -->
 
+			
+			<!-- <div class="menu"> -->
+				<ul class="menu-list">
+				<li>
+					<a class="navbar-brand" routerLink="/home" style="margin:auto 2.5%">
+						<img src="ninja.png" alt="Logo">
+					</a>
+				</li>	
+					<!-- <div class="row justify-content-between">
+						<div class="col-4"> -->
+				<li class="nav-item dropdown flex-fill">
+						<a class="nav-link dropdown-toggle flex-fill" href="" data-toggle="dropdown">Categories</a>
 
-	<!-- search form -->
-	<form #usersearch = "ngForm" class="form-inline" (ngSubmit)="navigateTo(usersearch)" action="" style="width:35%;margin:auto 2.5%">
-		<!-- <input type="text" name="searchword" class="form-control mr-sm-2" placeholder="Search" style="width:75%;">
-		<button class="btn" type="submit" >Search</button> -->
-		<div class="input-group">
-			<input ngModel name="searchcontent" type="text" class="form-control search" placeholder="Search" aria-label="Number"
-				[(ngModel)]="nas" [formControl]="myControl" [matAutocomplete]="auto">
-			<div class="input-group-append">
-				<button class="btn btn-secondary" type="submit">
-					<i class="fa fa-search"></i>
-				</button>
-			</div>
-			<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-				<mat-option *ngFor="let option of filteredOptions | async" [value]="option.title" routerLink='/search/{{option.title}}'>
+						<div class="dropdown-menu dropdown category">
+							<a *ngFor="let category of categories" class="dropdown-item"
+								routerLink="/category/{{category.categoryId}}">{{category.categoryStr}}</a>
+						</div>
+					</li>
+						<!-- </div> -->
 
-					<span style="color: #f7882f;">{{option.title}}</span>
-				</mat-option>
-			</mat-autocomplete>
+						<!-- <div class="col-4"> -->
+					<li>
+							<form #usersearch = "ngForm" class="site-search" (ngSubmit)="navigateTo(usersearch)" action="" method="get" name="SearchBoxForm">
+								<input id="search" class="site-search__input" type="text" name="Search" value="" placeholder="Search..."
+								ngModel name="searchcontent" type="text" aria-label="Number"
+													[(ngModel)]="nas" [formControl]="myControl" [matAutocomplete]="auto"
+								>
+								<label for="search" class="site-search__icon">
+										<i class="fas fa-search"></i>
+								</label>
+								<button class="site-search__submit" type="submit" name="Submit" value="">
+								</button>
+							</form>
+
+							<span style="display: none">
+							<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+									<mat-option *ngFor="let option of filteredOptions | async" [value]="option.title" routerLink='/course/{{option.courseId}}'>
+					
+										<span style="color: #f7882f;">{{option.title}}</span>
+									</mat-option>
+								</mat-autocomplete>
+							</span>
+					</li>
+						<!-- </div> -->
+
+						<!-- <div class="col-4"> -->
+							<!-- <li class="profile">
+								<a href=""> {{user.firstName}} </a>
+							</li> -->
+						<!-- </div> -->
+					<!-- </div> -->
+
+				</ul>
+			<!-- </div> -->
 		</div>
-	</form>
-	<!-- navbar-->
-	<ul class="navbar-nav mr-auto d-inline-flex" style="width:40%;position:relative;left: 100px; ">
-		<!-- Profile Image -->
-		<li class="nav-item flex-fill">
-			<a class="nav-link" routerLink="/profile"><img src="man.png" alt="Logo" style="margin:auto 8px;">profile</a>
-		</li>
-		<!-- Rank -->
-		<li class="nav-item navbar-text flex-fill">
-			rank: 1000
-		</li>
+			
+		<div class="col-auto profile">
+			<!-- <div class="row"> -->
+					<!-- <div class="col-auto"> -->
+						<ul>
+							<li>
+									<a class="navbar-brand" routerLink="/profile" style="margin:auto 2.5%">
+										<img src="man.png" alt="Logo">
+									</a>
+							</li>
+							<li>
+						<!-- <div class="dropdown"> -->
+								<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">{{user.firstName}} {{user.lastName}} <i class="fas fa-cog"></i></button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<a href="/profile" class="dropdown-item">Profile</a>
+									<a href="/profile" class="dropdown-item">Edit profile</a>
 
+									<!-- <a href="#" class="dropdown-item dropdown-item-checked">Item 2</a>
+									<a href="#" class="dropdown-item">Item 3</a> -->
+									<a class="dropdown-item" *ngIf="isAdmin" routerLink="/admindashboard">admin dashboard</a>
+									<hr>
+									<a class="dropdown-item" (click)="logoutUser()">logout</a>
+								</div>
+								</li>
+								</ul>
+						<!-- </div> -->
+				<!-- </div> -->
+			<!-- </div> -->
 
-		<!-- notifications -->
-		<li class="nav-item dropdown flex-fill">
-			<a class="nav-link dropdown-toggle flex-fill" href="" data-toggle="dropdown">notifications</a>
-			<div class="dropdown-menu dropdown">
-				<a class="dropdown-item">not1</a>
-				<a class="dropdown-item">not2</a>
-				<a class="dropdown-item">not3</a>
-			</div>
-		</li>
-		<!-- Categories -->
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">categories</a>
-			<div class="dropdown-menu dropdown">
-				<a *ngFor="let category of categories" class="dropdown-item"
-					routerLink="/category/{{category.categoryId}}">{{category.categoryStr}}</a>
-			</div>
-		</li>
-		<!-- Settings -->
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">settings</a>
-			<div class="dropdown-menu">
-				<a class="dropdown-item">s1</a>
-				<a class="dropdown-item">s2</a>
-				<a class="dropdown-item">s3</a>
-				<a class="dropdown-item" *ngIf="isAdmin" routerLink="/admindashboard">admin dashboard</a>
-				<a class="dropdown-item" (click)="logoutUser()">logout</a>
+			<!-- <li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle flex-fill" id="navbardrop" href="" data-toggle="dropdown">settings</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item">s1</a>
+						<a class="dropdown-item">s2</a>
+						<a class="dropdown-item">s3</a>
+						<a class="dropdown-item" *ngIf="isAdmin" routerLink="/admindashboard">admin dashboard</a>
+						<a class="dropdown-item" (click)="logoutUser()">logout</a>
 
 
 
-			</div>
-		</li>
-	</ul>
+					</div>
+				</li> -->
+		</div>
+
+	</div>
 
 </nav>
-<!-- navbar end-->

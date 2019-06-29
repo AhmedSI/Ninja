@@ -27,7 +27,13 @@
             <button mat-stroked-button
               style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 20%"
               (click)="enroll(course)">Enroll</button>
+
+              <button mat-stroked-button
+              style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 35%"
+               aria-label="Close" data-target="#enrollChild" data-toggle="modal" >Enroll child in</button>
           </mat-card-actions>
+
+
         </mat-card-content>
       </div>
       <div class="col-3 mt-3" style="margin-left:5%;">
@@ -126,3 +132,54 @@
 
 </body>
 <app-footer-component></app-footer-component>
+
+
+         
+         
+<div class="modal fade" id="enrollChild" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Choose Childs</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- <form #enrollForm="ngForm" (ngSubmit)="enrollChild()">
+      <div class="modal-body">
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option *ngFor="let child of children" value="{{child.id}}">
+                    {{child.firstName}}</option>
+            </select>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form> -->
+      <form [formGroup]="childEnrollment" class="col-xl" (ngSubmit)="enrollChild()">
+
+        <div class="form-group">
+            <!-- <select id="New_course_cat"  name="category" [(ngModel)]="newCourse.category" placeholder="Category" > -->
+            <select formControlName="childName" type="text" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && g.childName.errors }">
+              <option disabled selected value="">Select a child</option>
+              <option *ngFor="let child of children" [value]="child.firstName">
+                {{child.firstName}}</option>
+            </select>
+
+            <!-- <input formControlName="category" type="text" class="form-control" placeholder="Category"[ngClass]="{ 'is-invalid': submitted && g.category.errors }" /> -->
+            <div *ngIf="submitted && g.childName.errors" class="invalid-feedback">
+              <div *ngIf="g.childName.errors.required">please choose a child</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Enroll</button>
+            </div>
+
+        </form>
+
+    </div>
+  </div>
+</div>

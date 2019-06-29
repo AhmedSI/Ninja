@@ -4,6 +4,10 @@ import { User } from '.././User';
 import { Section } from '../Section';
 import { UserServiceService } from '../user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
+import {NgForm, FormGroup} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-coursehome-component',
@@ -17,18 +21,39 @@ export class CoursehomeComponentComponent implements OnInit {
   course : Course = new Course();
   sections:Section[];
   toggeled: number[] = [];
+  children:User[];
+  child:User;
+  childEnrollment:FormGroup;
+  submitted = false;
+  childArr:User[]=[];
+  chosenID:string= "";
+
+
+
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
-  private rout: Router
+  private rout: Router,
+  private formBuilder: FormBuilder
 
   ) { }
+
+  get g() { return this.childEnrollment.controls; }
+
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
     this.getCourseById();
+    this.getChildren();
     console.log("creator name:"+this.course.title);
-  }
+    this.child=new User();
+
+
+    this.childEnrollment =this.formBuilder.group({
+      childName:['',Validators.required]
+    });
+    }
+  
 
   getCourseById(){
   	this.userService.getCourseById(this.token,this.courseID)
@@ -60,4 +85,46 @@ export class CoursehomeComponentComponent implements OnInit {
     }
 
   }
+
+  getChildren(){
+  	this.userService.getChildren(this.token)
+      .then(children => {this.children = children;});
+  }
+
+  enrollChild(){
+
+    if (this.childEnrollment.invalid){
+      this.submitted=true;
+     return;
+    }
+    
+    // console.log(this.child);
+    this.chosenID=this.childEnrollment.value.childName;
+    console.log(this.chosenID);
+
+    this.childArr = this.children.filter(chosen => chosen.firstName == this.childEnrollment.value.childName);
+    this.child=this.childArr[0];
+
+    console.log(this.childArr)
+    // this.childEnrollment.reset();
+
+    // this.child=Object.keys(this.children).some(key => this.children[key].id === this.childEnrollment.value.childName);
+    this.userService.enrollChildInCourse(this.child,Number(this.courseID),this.token)
+    .then(enrollment => { 
+      // this.childEnrollment.reset();
+      // this.childEnrollment.removeControl;
+
+       this.child = new User();
+       this.getChildren();
+       console.log(this.child);
+     }); 
+
+    //  this.childEnrollment.reset();
+     this.childEnrollment.removeControl;
+
+      this.child = new User();
+      this.getChildren();
+      console.log(this.child);
+ }
+  
 }  

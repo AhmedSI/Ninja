@@ -9,6 +9,7 @@ import { Course } from '../Course';
 import { NgForm } from '@angular/forms';
 import { ActivatedRouteSnapshot } from '@angular/router' ;
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '../User';
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
@@ -19,10 +20,11 @@ export class NavbarComponentComponent implements OnInit{
   isAdmin : boolean = false;
   myControl = new FormControl();
   options: Course[] ;
-  uniqueoptions:Course[]=[];
   filteredOptions: Observable<Course[]>;
   categories : Category[];
   nas:string;
+  user: User;
+  newURL:string="";
   constructor(
   private userService: UserServiceService,
     private router: Router, private cdRef: ChangeDetectorRef, private _snackBar: MatSnackBar
@@ -30,27 +32,31 @@ export class NavbarComponentComponent implements OnInit{
   
 
 
-  navigateTo(value:NgForm) {
-    for (var i in this.options)
-    {
-      if (this.options[i].title == this.nas){
-        this.router.navigate(['/search/'+ this.options[i].title]);
-        return;
+    navigateTo(value:NgForm) {
+      for (var i in this.options)
+      {
+        if (this.options[i].title == this.nas){
+          this.router.navigate(['/search/'+ this.options[i].title]);
+          return;
+        }
       }
-    }
-    if (this.nas !== '' && this.nas !== undefined ){
-      this._snackBar.open('No Such ' + '"' + this.nas + '"' +' Course Was Found', '', {
-      duration: 3000, panelClass: ['custom-snackbar']
-    });
-    }
-    
+      if (this.nas !== '' && this.nas !== undefined ){
+        this._snackBar.open('No Such ' + '"' + this.nas + '"' +' Course Was Found', '', {
+        duration: 3000, panelClass: ['custom-snackbar']
+      });
+      }
+
     
   }
+
   ngOnInit() {
-  	this.token = localStorage.getItem('token');
+
+    this.token = localStorage.getItem('token');
+    this.user=new User();
     this.checkUserPermisions();
     this.getCategories();
     this.getCourseForSearsh();
+    this.getUserData();
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -60,33 +66,19 @@ export class NavbarComponentComponent implements OnInit{
   private _filter(value: string): Course[] {
     const filterValue = value.toLowerCase();
 
-    return this.uniqueoptions.filter(uniqueoptions => uniqueoptions.title.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.title.toLowerCase().includes(filterValue));
   }
   getCourseForSearsh(){
-    this.userService.getAllCoursesForsearch().then(options => { this.options = options; this.makeUniqueSearch(this.options);});
-  }
-  makeUniqueSearch(notUnique:Course[]){
-    var uniqe;
-    for(var i=0;i < notUnique.length;i++){
-      uniqe = true;
-      for(var j=i+1;j<notUnique.length;j++){
-        if(notUnique[i].title==notUnique[j].title){
-          uniqe = false;
-          break;
-        }
-        
-      }
-      if (uniqe){
-        this.uniqueoptions.push(notUnique[i]);
-      }
-    }
+    this.userService.getAllCoursesForsearch().then(options => {this.options = options;});
   }
   logoutUser(): void {
     
     this.userService.logoutUser(this.token)
-      .then(str => { 
+      .then(str => {        
+        console.log(str);
       });
       localStorage.removeItem('token');
+       console.log(localStorage.getItem('token'));
       this.router.navigate(['/login']);
 
   }
@@ -101,6 +93,11 @@ export class NavbarComponentComponent implements OnInit{
     this.userService.getCategories().then(categories=>{
       this.categories = categories;
     });
+  }
+
+  getUserData(){
+  	this.userService.getUserData(this.token)
+      .then(user => {this.user = user;});
   }
 
 
