@@ -12,6 +12,12 @@ import {
   ClickEvent,
 } from 'angular-star-rating';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core';
+
+enableProdMode();
+
 @Component({
   selector: 'app-lecture',
   templateUrl: './lecture.component.html',
@@ -38,7 +44,8 @@ export class LectureComponent implements OnInit {
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
-    private sanitizer: DomSanitizer, private _snackBar1: MatSnackBar
+    private sanitizer: DomSanitizer, private _snackBar1: MatSnackBar,
+    private route: Router
   ) { }
   
   onClick = ($event: ClickEvent) => {
@@ -60,7 +67,7 @@ export class LectureComponent implements OnInit {
     this.userService.getCourseById(this.token, this.id)
       .then(coursef => {
         this.course = JSON.parse(JSON.stringify(coursef))
-        console.log(this.course);
+        //console.log(this.course);
       });
   }
 
@@ -74,9 +81,13 @@ export class LectureComponent implements OnInit {
 
 
   quizModal(lecture: Lecture) {
-    this.quiz.title = lecture.name;
-    this.quiz.quizId = lecture.lectureId;
-    this.openedlecture = lecture.name;
+    this.lecture = lecture;
+    let lectureId = lecture.lectureContentId;
+    this.selectedLecture = lectureId;
+    this.userService.getQuizInstructions(this.token,lecture.lectureId).then(quiz => {
+      this.quiz = quiz;
+    });
+    
     console.log(this.quiz.quizId);
   }
 
@@ -134,6 +145,7 @@ export class LectureComponent implements OnInit {
     document.getElementById(lect).innerHTML = title;
     console.log(title,lect);
   }
+
 
 
 }

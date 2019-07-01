@@ -1,3 +1,4 @@
+<app-navbar-component></app-navbar-component>
 <div class="container">
   <div class="about-quiz">
     <h5>About Quiz</h5>
@@ -104,7 +105,7 @@
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <form #updateQuestionForm="ngForm" (ngSubmit)= "updateQuestion(updteQuestionForm)">
+            <form #updateQuestionForm="ngForm" (ngSubmit)= "updateQuestion(updateQuestionForm)">
               <p>Q1)</p>
               <textarea name="name" class="form-control " rows="4" style="resize:none" placeholder="Question here" name = "question_body" [(ngModel)]="newQuestion.question_body" #question_body="ngModel"></textarea>
               <br>
@@ -263,3 +264,4 @@
     </section>
   </div>
 </div>
+<app-footer-component></app-footer-component>

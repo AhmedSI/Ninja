@@ -1,8 +1,9 @@
 footer {
-    position: absolute;
-    margin-bottom: 0;
+    position: relative;
+    bottom: -300px;
     right: 0;
     left: 0;
+    margin-bottom: 0;
     text-align: center;
     background: rgba(220,199,170,0.6);
     padding-bottom: 25px;

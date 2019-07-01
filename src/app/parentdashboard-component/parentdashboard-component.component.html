@@ -17,14 +17,14 @@
 				<button id="add_child" type="button" class="btn" data-toggle="modal" data-target="#myModal">
 					<!-- <img src="assets/adduser.png" id="add_child_photo"> -->
 					<i class="fas fa-user-plus"></i>
-					Add New Children
+					Add a New Child
 				</button>
 				<div class="modal fade" id="myModal">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<!-- Modal Header -->
 							<div class="modal-header">
-								<h4 class="modal-title">Add Child</h4>
+								<h4 class="modal-title">Add a Child</h4>
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 							<!-- Modal body -->
@@ -165,7 +165,7 @@
 							<div class="card mb-2">
 								<img class="img-circle" src="assets/user.png" alt="Card image cap">
 								<div class="card-body">
-									<a routerLink="../childprofile/{{child.userId}}">
+									<a routerLink="../reports/{{child.userId}}">
 										<h4 class="card-title">{{child.firstName}}</h4>
 									</a>
 									<p class="card-text">{{child.dateOfBirth}}</p>
@@ -244,4 +244,4 @@
 
 
 
-<!-- <app-footer-component></app-footer-component> -->
+<app-footer-component></app-footer-component>

@@ -108,7 +108,7 @@ import { ReportsComponent } from './reports/reports.component';
     ReactiveFormsModule,
     StarRatingModule.forRoot(),
     RouterModule.forRoot([{
-      path:'reports',
+      path:'reports/:id',
       component: ReportsComponent
     },{
       path: 'search/:course',

@@ -9,6 +9,7 @@ import { Quiz } from './Quiz';
 import { Question } from './Question';
 import { Answer } from './Answer';
 import { Lecture } from './Lecture';
+import { Report } from './Report';
 import { fileContent } from './fileContent';
 import { StudentSubmission} from './StudentSubmission';
 
@@ -184,7 +185,7 @@ export class UserServiceService {
   enrollChildInCourse(child:User,courseId:Number,token:string):Promise<string>{
     return this.http.post(this.baseUrl + '/parent/enroll_child_course?token='+token+'&first_name='+child.firstName+'&course_id='+courseId,child)
     .toPromise()
-    .then(response => response.json() as string);
+    .then(response => response.text() as string);
   }
 
   enrollClassroom(token: string,classroomData: Classroom):Promise<string> {
@@ -341,9 +342,9 @@ export class UserServiceService {
   }
 
   startQuiz(token:string,id:Number){
-    return this.http.post(this.baseUrl+"/student/quiz/start?token="+token+"&quiz_id="+id,{})
+    return this.http.get(this.baseUrl+"/student/quiz/start?token="+token+"&quiz_id="+id,{})
     .toPromise()
-    .then( response => response.text() as string );
+    .then( response => response.json() as Quiz );
   }
 
   evaluate(token:string,id:Number,submission:StudentSubmission):Promise<string>{
@@ -373,7 +374,7 @@ export class UserServiceService {
   }
 
   getQuizInfoForStudent(token:string,quizId:Number){
-    return this.http.get(this.baseUrl+"/student/quiz?token="+token+"&quiz_id="+quizId)
+    return this.http.get(this.baseUrl+"/student/quiz/score?token="+token+"&quiz_id="+quizId)
     .toPromise()
     .then(response => response.json().studentMark as string);
   }
@@ -426,6 +427,19 @@ export class UserServiceService {
     return this.http.delete(this.baseUrl+"/saved_courses?token="+token+"&course_id="+course_id)
     .toPromise()
     .then(response => response.text() as string);
+  }
+
+  getReportsForChild(token:string,id:string){
+    return this.http.get(this.baseUrl+"/parent/child/reports?token="+token+"&user_id="+id)
+    .toPromise()
+    .then(response => response.json() as Report[]); 
+  }
+
+  getQuizInstructions(token:string,id:Number){
+
+    return this.http.get(this.baseUrl +'/student/quiz/info?token='+token+'&quiz_id='+id)
+    .toPromise()
+    .then(response=> response.json() as Quiz);
   }
 
 }

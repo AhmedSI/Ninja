@@ -51,10 +51,11 @@ export class ParentdashboardComponentComponent implements OnInit {
   getChildren(){
   	this.userService.getChildren(this.token)
       .then(children => {this.children = children;});
+
   }
 
   getCourses(){
-  	this.userService.getCourses(this.token)
+  	this.userService.newCourses()
       .then(children => {this.courses = children;});
   }
 
@@ -78,6 +79,7 @@ export class ParentdashboardComponentComponent implements OnInit {
   	this.userService.addChild(this.token,this.newChild).then(createChild => { 
   		// childForm.reset();
         this.newChild = new User();
+        this.getChildren();
       });
   }
 

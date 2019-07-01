@@ -26,7 +26,6 @@ export class QuizhomeComponent implements OnInit {
   grade:Number = 0;
 
   constructor(
-
   	private userService: UserServiceService,
     private router: ActivatedRoute,
      private router1: Router,
@@ -49,7 +48,7 @@ export class QuizhomeComponent implements OnInit {
   }
 
   getQuiz(){
-    this.userService.getQuizAsStudent(this.token,this.lecture.lectureContentId).then(quiz=>{
+    this.userService.startQuiz(this.token,this.lecture.lectureContentId).then(quiz=>{
       this.quiz=quiz;
       this.questionsNum = this.quiz.questions.length;
       for(var i=0;i < this.questionsNum;i++){
@@ -57,7 +56,7 @@ export class QuizhomeComponent implements OnInit {
       }
       console.log(this.quiz.questions);
     })
-    this.startQuiz(this.lecture.lectureContentId);
+    //this.startQuiz(this.lecture.lectureContentId);
   }
 
   startQuiz(id:Number){

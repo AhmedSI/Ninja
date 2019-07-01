@@ -4,6 +4,6 @@ export class Lecture {
 	isFile:boolean;
 	lectureId:Number;
 	name:string;
-	quiz:boolean;
+	isQuiz:boolean;
 	isVideo:boolean;  
 }
