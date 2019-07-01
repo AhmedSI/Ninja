@@ -5,5 +5,6 @@ export class Lecture {
 	lectureId:Number;
 	name:string;
 	isQuiz:boolean;
-	isVideo:boolean;  
+	isVideo:boolean; 
+	level : Number; 
 }

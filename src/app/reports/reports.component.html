@@ -6,14 +6,14 @@
   <mat-card  class="course-card" *ngFor = "let report of reports" style="padding:20px 50px">
     <mat-card-header>
       <img  mat-card-avatar src="/assets/avatar5.PNG" alt="child pic">
-      <mat-card-subtitle class="mt-2" style="font-size:110%;">{{report.childID}}</mat-card-subtitle>
+      <mat-card-subtitle class="mt-2" style="font-size:110%;">{{report.child.firstName}}</mat-card-subtitle>
       <mat-card-subtitle class="mt-2" style="font-size:110%;">{{report.submitDate}}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content class="pb-3">
-      <h4>hi Mr.{{report.parentID}}</h4>
+      <h4>hi Mr.{{report.parent.firstName}}</h4>
       <p style="margin-left:3%;font-size:110%;margin-top: 2%;">
-        we are pleased to tell that your child got {{report.studentMark}}/{{report.totalMark}} in quiz {{report.quizID}} in course {{report.courseID}} after {{report.totalAttempts}} attempts
+        we are pleased to tell that your child got {{report.studentMark}}/{{report.totalMark}} in quiz "{{report.quiz.title}}" in course "{{report.course.title}}" after {{report.totalAttempts}} attempts
         and this means he has<span *ngIf="!report.passed">n't</span> passed this quiz. 
       </p>
       <p style="margin-left:3%;font-size:110%;margin-top: 2%;">Have a nice day.</p>

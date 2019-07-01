@@ -26,7 +26,7 @@ export class CoursedashboardComponentComponent implements OnInit {
   aims: string [];
   selectedFiles: FileList;
   currentFileUpload: File;
-
+  level:Number = 1;
   panelOpenState = false;
   buthide: number = -1;
   sectionspinner:boolean=true;
@@ -112,9 +112,10 @@ export class CoursedashboardComponentComponent implements OnInit {
   }
 
   upload(lectureForm:NgForm){
+    console.log(this.level);
     this.currentFileUpload = this.selectedFiles.item(0);
     this.userService.pushLectureContent(
-      this.currentFileUpload,this.token,this.selectedSectionId)
+      this.currentFileUpload,this.token,this.selectedSectionId,this.level)
       .then(event => {
           console.log(event);
           this.getCourse();

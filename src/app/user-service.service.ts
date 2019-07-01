@@ -267,10 +267,10 @@ export class UserServiceService {
 
   }
 
-  pushLectureContent(file:File,token:string,id:string):Promise<String>{
+  pushLectureContent(file:File,token:string,id:string,level:Number):Promise<String>{
     const formData : FormData = new FormData();
     formData.append('file',file);
-    return this.http.post(this.baseUrl + '/teacher/file?token='+token+'&section_id='+id,formData)
+    return this.http.post(this.baseUrl + '/teacher/file?token='+token+'&section_id='+id+"&version_level="+level,formData)
     .toPromise()
     .then(response => response.text() as string);
   }
