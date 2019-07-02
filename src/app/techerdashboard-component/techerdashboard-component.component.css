@@ -13,6 +13,14 @@
   transform: translate(-50%, -50%);
 }
 
+.navs_pages{
+  padding-top: 80px;
+}
+.navs_pages .nav-link {
+  position: relative;
+  left: 600px;
+}
+
 #teach{
   position: relative;
   left: 80%;
@@ -24,16 +32,17 @@
   margin-top: 5%;
 }
 
-.nav-link.active{
+/* .nav-link.active{
   border-bottom: 2px solid orangered;
-}
+} */
+
 #add_class_room, #add_course{
   border-radius: 20px;
   background: #f7882f;
   color:#f7c331;
   position: absolute;
-  left: 45%;
-  top: 29%;
+  left: 77%;
+  top: 10%;
   transition: all .5s ease;
 }
 
@@ -75,4 +84,8 @@ background-color: orange;
 }
 .cssv:hover{
   background-color: orange;
+}
+
+.tab-content{
+  padding-top: 20px;
 }
