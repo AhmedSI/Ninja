@@ -24,6 +24,12 @@ export class ClassroomdashboardComponentComponent implements OnInit {
   courseForm:FormGroup;
   submitted = false;
   categories : Category[];
+  allCourses:Course[];
+  courses:Course[];
+  teacherCourse:FormGroup;
+  courseID:string='';
+  courseArr:Course[];
+  chosenCourse:Course;
 
 
   constructor(
@@ -32,12 +38,16 @@ export class ClassroomdashboardComponentComponent implements OnInit {
     private formBuilder: FormBuilder,private _snackBar2: MatSnackBar
     ) { }
     get g() { return this.courseForm.controls; }
+    get f() { return this.teacherCourse.controls; }
+
 
 
   ngOnInit() {
   	this.token = localStorage.getItem('token');
     this.getClassroom();
     this.getCategoris();
+    this.getCourses();
+
 
     this.show=false ;
 
@@ -48,6 +58,11 @@ export class ClassroomdashboardComponentComponent implements OnInit {
       level:['',Validators.required],
       courseDescription:['',Validators.required]
     });
+
+    this.teacherCourse =this.formBuilder.group({
+      courseName:['',Validators.required]
+    });
+
   }
 
   getClassroom(){
@@ -61,6 +76,24 @@ export class ClassroomdashboardComponentComponent implements OnInit {
           break;
       }
     }
+    });
+  }
+  getCourses(){
+    this.courses = new Array();
+
+    this.userService.getCourses(this.token)
+    .then(courses => {this.allCourses = courses;
+      console.log(this.classroom)
+      // for(var i=0; i<this.allCourses.length;i++){
+        for (var i in this.allCourses){
+
+        console.log(this.allCourses[i]);
+
+        if(!this.classroom.courses.includes(this.allCourses[i])){
+          // console.log(this.allCourses[i]);
+          this.courses.push(this.allCourses[i]);
+        }
+      }
     });
   }
 
@@ -99,4 +132,25 @@ export class ClassroomdashboardComponentComponent implements OnInit {
       duration: 2000, panelClass: ['custom-snackbar-one']
     });
   }
+
+  addCourseToClassroom(){
+
+    if (this.teacherCourse.invalid){
+      this.submitted=true;
+     return;
+    }
+    
+    this.courseID=this.teacherCourse.value.courseName;
+    console.log(this.courseID);
+
+    this.courseArr = this.courses.filter(chosen => chosen.courseId == this.teacherCourse.value.courseName);
+    this.chosenCourse=this.courseArr[0];
+
+    console.log(this.chosenCourse)
+    this.userService.AddCourseIntoClassroom(this.token,this.classroom.classroomId,this.chosenCourse)
+    .then(enrollment => { 
+     }); 
+
+ }
+
 }

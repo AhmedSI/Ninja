@@ -31,6 +31,11 @@
               <button mat-stroked-button
               style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 35%"
                aria-label="Close" data-target="#enrollChild" data-toggle="modal" >Enroll child in</button>
+
+               <button mat-stroked-button
+               style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 55%"
+               aria-label="Close" data-target="#addCourseToClassroom" data-toggle="modal" >Add to classroom</button>
+               
           </mat-card-actions>
 
 
@@ -181,6 +186,45 @@
 
         </form>
 
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addCourseToClassroom">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Course</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <form [formGroup]="addCourse" class="col-xl" (ngSubmit)="addCourseToClassroom()">
+
+          <div class="form-group">
+              <!-- <select id="New_course_cat"  name="category" [(ngModel)]="newCourse.category" placeholder="Category" > -->
+              <select formControlName="classroomName" type="text" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.classroomName.errors }">
+                <option disabled selected value="">Select a classroom</option>
+                <option *ngFor="let classroom of classrooms" [value]="classroom.classroomId">
+                  {{classroom.classroomName}}</option>
+              </select>
+  
+              <!-- <input formControlName="category" type="text" class="form-control" placeholder="Category"[ngClass]="{ 'is-invalid': submitted && g.category.errors }" /> -->
+              <div *ngIf="submitted && f.classroomName.errors" class="invalid-feedback">
+                <div *ngIf="f.classroomName.errors.required">please choose a classroom</div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+          </form>
+
+
+      </div>
     </div>
   </div>
 </div>
