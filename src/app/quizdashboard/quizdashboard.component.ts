@@ -32,7 +32,9 @@ export class QuizdashboardComponent implements OnInit {
   ngOnInit() {
     this.token = localStorage.getItem('token');
     this.id = this.router.snapshot.paramMap.get("id");
-    this.getLecture();
+
+    this.getQuiz(parseInt(this.id, 10));
+    //this.getLecture();
   }
 
   getQuiz(id:Number){
