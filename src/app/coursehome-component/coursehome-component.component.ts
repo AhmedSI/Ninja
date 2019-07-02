@@ -6,6 +6,7 @@ import { UserServiceService } from '../user-service.service';
 import { Router,ActivatedRoute} from '@angular/router';
 import {NgForm, FormGroup} from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Classroom } from '../Classroom';
 
 
 
@@ -27,6 +28,8 @@ export class CoursehomeComponentComponent implements OnInit {
   submitted = false;
   childArr:User[]=[];
   chosenID:string= "";
+  classrooms:Classroom[];
+  addCourse:FormGroup;
 
 
 
@@ -39,12 +42,16 @@ export class CoursehomeComponentComponent implements OnInit {
   ) { }
 
   get g() { return this.childEnrollment.controls; }
+  get f() { return this.addCourse.controls; }
+
 
 
   ngOnInit() {
     this.token = localStorage.getItem('token');
     this.getCourseById();
     this.getChildren();
+    this.getClassrooms();
+
     console.log("creator name:"+this.course.title);
     this.child=new User();
 
@@ -52,8 +59,17 @@ export class CoursehomeComponentComponent implements OnInit {
     this.childEnrollment =this.formBuilder.group({
       childName:['',Validators.required]
     });
+
+    this.addCourse =this.formBuilder.group({
+      classroomName:['',Validators.required]
+    });
+    
     }
   
+    getClassrooms(){
+      this.userService.getClassrooms(this.token)
+        .then(classrooms => {this.classrooms = classrooms;});
+    }
 
   getCourseById(){
   	this.userService.getCourseById(this.token,this.courseID)
@@ -127,4 +143,24 @@ export class CoursehomeComponentComponent implements OnInit {
       console.log(this.child);
  }
   
+ addCourseToClassroom(){
+
+  if (this.addCourse.invalid){
+    this.submitted=true;
+   return;
+  }
+  
+  // this.courseID=this.addCourse.value.classroomName;
+  // console.log(this.courseID);
+
+  // this.courseArr = this.courses.filter(chosen => chosen.courseId == this.teacherCourse.value.courseName);
+  // this.chosenCourse=this.courseArr[0];
+
+  // console.log(this.chosenCourse)
+  this.userService.AddCourseIntoClassroom(this.token,this.addCourse.value.classroomName,this.course)
+  .then(enrollment => { 
+   }); 
+
+}
+
 }  

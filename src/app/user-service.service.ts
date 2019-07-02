@@ -359,7 +359,7 @@ export class UserServiceService {
 
   NewCourseInClassroom(token:string,classroomId:string,course:Course){
     return this.http.post(
-      this.baseUrl + '/teacher/classroom_courses?token='+token+'&classroom_id='+classroomId+'&title='+course.title+ '&detailedTitle='+course.detailedTitle+ '&description='+course.description+ '&category='+course.category+ '&level='+course.level,course)
+      this.baseUrl + '/teacher/classroom_courses?token='+token+'&classroom_id='+classroomId+'&title='+course.title+ '&detailed_title='+course.detailedTitle+ '&description='+course.description+ '&category='+course.category+ '&level='+course.level,course)
       .toPromise().
       then(response => response.text() as string);
       }
@@ -445,5 +445,12 @@ export class UserServiceService {
     .toPromise()
     .then(response=> response.json() as Quiz);
   }
+
+  AddCourseIntoClassroom(token: string,classroomId:string,course: Course) : Promise<string>{
+    return this.http.post(
+      this.baseUrl + '/teacher/classroom/course?token='+token+ '&classroom_id='+classroomId+ '&course_id='+course.courseId,course)
+      .toPromise()
+      .then(response => response.text() as string);
+    }
 
 }
