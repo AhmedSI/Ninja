@@ -42,6 +42,7 @@ import { ErrorComponent } from './error/error.component';
 import { SavedComponent } from './saved/saved.component';
 import { AlternativeSearchComponent } from './alternative-search/alternative-search.component';
 import { ReportsComponent } from './reports/reports.component';
+import { AccomplishedCoursesComponent } from './accomplished-courses/accomplished-courses.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,9 @@ import { ReportsComponent } from './reports/reports.component';
 
      AlternativeSearchComponent,
 
-     ReportsComponent
+     ReportsComponent,
+
+     AccomplishedCoursesComponent
   ],
   imports: [
     MaterialModule,
@@ -187,9 +190,9 @@ import { ReportsComponent } from './reports/reports.component';
       path: 'error',  
       component: ErrorComponent 
     },{   
-    //   path: '404', 
-    //   component: ErrorComponent  
-    // },{  
+      path: 'accomplishedCourses', 
+      component: AccomplishedCoursesComponent  
+    },{  
       path: '**', 
       component: ErrorComponent}  
     ], {

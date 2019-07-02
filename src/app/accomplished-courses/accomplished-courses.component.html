@@ -1,0 +1,20 @@
+<app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component>
+
+<div class="container">
+  <span class="badge">Saved Courses</span>
+  <div class="row">
+    <div *ngFor = "let course of courses" class="col-md-12 col-lg-6 col-xl-4">
+      <!--div of the course .. -->
+      <div class="thumbnail">
+        <div class="caption">  
+            <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+            <a routerLink="/course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
+            <p>{{course.creator}}</p>
+          <a routerLink="/courseContent/{{course.courseId}}"class="courseButton">see course</a>
+        </div>
+      </div>
+    </div>
+  </div><!--/row-->
+</div><!--/container -->
+<app-footer-component></app-footer-component>

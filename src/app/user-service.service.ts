@@ -453,4 +453,10 @@ export class UserServiceService {
       .then(response => response.text() as string);
     }
 
+    getAccomplishedCourses(token:string){
+      return this.http.get(this.baseUrl+"/student/accomplished?token="+token)
+      .toPromise()
+      .then(response => response.json() as Course[]); 
+    }
+
 }
