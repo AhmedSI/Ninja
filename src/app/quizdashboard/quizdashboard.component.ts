@@ -26,7 +26,7 @@ export class QuizdashboardComponent implements OnInit {
 
   constructor(
     private userService: UserServiceService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute, private route: Router
     ) { }
 
   ngOnInit() {
@@ -61,7 +61,7 @@ export class QuizdashboardComponent implements OnInit {
     //this.newQuestion.is_multiple_choice = false;
     console.log(this.newQuestion.is_multiple_choice);
     this.userService.addQuestion(this.token,this.newQuestion,this.quiz.quizId).then(response =>{
-      this.getLecture();
+      this.getQuiz(+this.id);
     })
   }
 
@@ -69,46 +69,47 @@ export class QuizdashboardComponent implements OnInit {
     this.newQuestion.is_multiple_choice = false;
     this.newQuestion.questionId = parseInt(this.selectedQuestionId, 10);
     this.userService.updateQuestionById(this.token,this.newQuestion).then(response =>{
-      this.getLecture();
+      this.getQuiz(+this.id);
     })
   }
 
   deleteQuestion(questionId:string){
     this.userService.deleteQuestion(this.token,questionId).then(response =>{
-      this.getLecture();
+      this.getQuiz(+this.id);
     })
   }
 
   addAnswer(AnswerForm:NgForm){
     this.userService.addAnswer(this.token,this.newAnswer,this.selectedQuestionId).then(response =>{
-      this.getLecture();
+      this.getQuiz(+this.id);
     })
   }
 
   updateAnswer(updteAnswerForm:NgForm){
     this.newQuestion.questionId = parseInt(this.selectedQuestionId, 10);
     this.userService.updateAnswerById(this.token,this.newAnswer).then(response =>{
-      this.getLecture();
+      this.getQuiz(+this.id);
     })
   }
 
   deleteAnswer(answerId:string){
   console.log(answerId);
     this.userService.deleteAnswer(this.token,answerId).then(response =>{
-      this.getLecture();
+      this.getQuiz(+this.id);
     })
   }
 
   setNumber(questionNoForm:NgForm){
     this.userService.setQuestionsNumber(this.token,this.quiz.quizId,this.qNumber).then(response =>{
-      this.getLecture();
-    })
+      this.getQuiz(+this.id);
+    });
+    this.route.navigate(['/home']);
   }
 
   updateQuiz(quizForm:NgForm){
-    console.log(this.newQuiz);
+    
     this.userService.updateQuiz(this.token,this.quiz.quizId,this.newQuiz).then(response =>{
-      this.getLecture();
+      this.getQuiz(+this.id);console.log(this.newQuiz);
     })
   }
 
