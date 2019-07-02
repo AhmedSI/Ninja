@@ -118,6 +118,7 @@
                   <ul class="lecturesList">
                     <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong></li>
                   </ul>
+                  <strong *ngIf="section.fancyQuiz"> {{section.fancyQuiz.title}} </strong>
                 </div>
               </div>
             </div>

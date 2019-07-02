@@ -87,10 +87,11 @@
               <a class="lect-li" *ngIf="!lecture.isQuiz" (click)="setLecture(lecture)"
                 (click)="setlectertitle(lecture.name,lect.id)">{{lecture.name}}</a>
 
-              <a class="lect-li" *ngIf="lecture.isQuiz" data-toggle="modal" 
-                (click)="quizModal(lecture)">{{lecture.name}}</a>
+              
 
             </li>
+            <a class="lect-li" *ngIf="section.fancyQuiz" data-toggle="modal" 
+                >{{section.fancyQuiz.title}}</a>
 
           </ul>
         </li>

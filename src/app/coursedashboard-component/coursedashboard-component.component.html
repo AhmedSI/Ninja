@@ -173,7 +173,7 @@
                   (mouseleave)="onHover(-1)">
 
                   <button *ngIf="i == buthide" class="remove_what_u_will_learn"
-                    (click)="deleteQuiz([lecture.lectureId])"><i class="fas fa-times"></i> </button>
+                    (click)="deleteLecture([lecture.lectureId])"><i class="fas fa-times"></i> </button>
 
                   <a *ngIf="lecture.isQuiz" routerLink="/quizdashboard/{{lecture.lectureId}}">{{lecture.name}}</a>
 
@@ -182,6 +182,9 @@
 
                 </li>
               </ul>
+              <button style= "margin-left: 20px" *ngIf="section.fancyQuiz" class="remove_what_u_will_learn"
+                    (click)="deleteQuiz([section.fancyQuiz.quizId])"><i class="fas fa-times"></i> </button>
+              <a *ngIf="section.fancyQuiz" routerLink="/quizdashboard/{{section.fancyQuiz.quizId}}">{{section.fancyQuiz.title}}</a>
 
             </mat-expansion-panel>
           </mat-accordion>
@@ -347,4 +350,3 @@
   </div>
 </body>
 <app-footer-component></app-footer-component>
-<app-footer-component></app-footer-component> 
