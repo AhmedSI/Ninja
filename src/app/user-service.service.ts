@@ -280,7 +280,11 @@ export class UserServiceService {
     .toPromise()
     .then(response=> response.json() as Quiz);
   }
-
+  getQuizscore(token: string, id: Number): Promise<Quiz> {
+    return this.http.get(this.baseUrl + '/student/quiz/score?token=' + token + '&quiz_id=' + id)
+      .toPromise()
+      .then(response => response.json() as Quiz);
+  }
   addQuestion(token:string,question:Question,quizId:Number):Promise<string>{
     return this.http.post(this.baseUrl + '/teacher/question?token='+token+'&quiz_id='+quizId+'&question_body='+question.question_body+'&is_multiple_choice='+question.is_multiple_choice+'&question_mark='+question.question_mark+"&question_level="+question.question_level+"&question_reference="+question.question_reference,question)
     .toPromise()

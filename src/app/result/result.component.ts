@@ -38,22 +38,14 @@ export class ResultComponent implements OnInit {
   ngOnInit() {
   	this.token = localStorage.getItem('token');
   	this.id = this.router.snapshot.paramMap.get("id");
-    this.getLecture();
+	  this.getQuizInfoForStudent();
   }
 
-  getLecture(){
-  	this.userService.getLecture(this.token,this.id).then(lecture=>{
-  	this.lecture=lecture;
-    this.getQuizInfoForStudent();
-
-  	})
-  }
 
 	getQuizInfoForStudent(){
-	    this.userService.getQuizInfoForStudent(this.token,this.lecture.lectureContentId).then(response=>{
-	      	this.result= response;
-	      
-	    });
+		this.userService.getQuizscore(this.token, +this.router.snapshot.paramMap.get("id")).then(quiz => {
+			this.quiz = quiz;
+		})
 	  }
 
 }

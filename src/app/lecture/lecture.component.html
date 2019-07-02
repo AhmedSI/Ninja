@@ -90,8 +90,11 @@
               
 
             </li>
-            <a class="lect-li" *ngIf="section.fancyQuiz" data-toggle="modal" 
-                >{{section.fancyQuiz.title}}</a>
+            <li class="lect-li" *ngIf="section.fancyQuiz" style="background-color: black;">
+              <a class="lect-li" (click)="setquiz(section.sectionId)"  data-toggle="modal" (click)="setlectertitle(section.fancyQuiz.title,lect.id)"
+                >{{section.fancyQuiz.title}}
+              </a>
+            </li>
 
           </ul>
         </li>
@@ -103,14 +106,14 @@
       <div class="cont">
 
         
-          <h1 *ngIf="!selectedLecture" style="text-align: center;margin-top:250px;height: 400px;width: 100%">WELCOME TO
+          <h1 *ngIf="sectionId == 0" style="text-align: center;margin-top:250px;height: 400px;width: 100%">WELCOME TO
           {{course.title}}</h1>
-          <div *ngIf="lecture.isQuiz" style="text-align: center;margin-top:100px;height: 550px;width: 100%"><h1  >WELCOME TO 
-          {{quiz.title}}</h1> 
-          <h2>Quiz Instructions:</h2><p>{{quiz.instructions}}</p>
-          <h2>Quiz Time:</h2><p>{{quiz.time}}</p>
-          <h2>Quiz Total Mark:</h2><p>{{quiz.totalMark}}</p>
-          <a style="margin-top:20px;" routerLink="../../quizhome/{{this.quiz.quizId}}" class="btn btn-primary">CLICK HERE TO TAKE QUIZ NOW</a></div>
+          <div *ngIf="sectionId > 0" style="text-align: center;margin-top:100px;height: 550px;width: 100%"><h1  >WELCOME TO 
+          {{course.sections[sectionIndex].fancyQuiz.title}}</h1> 
+          <h2>Quiz Instructions:</h2><p>{{course.sections[sectionIndex].fancyQuiz.instructions}}</p>
+          <h2>Quiz Time:</h2><p>{{course.sections[sectionIndex].fancyQuiz.time}}</p>
+          <h2>Quiz Total Mark:</h2><p>{{course.sections[sectionIndex].fancyQuiz.totalMark}}</p>
+          <a style="margin-top:20px;" routerLink="../../quizhome/{{course.sections[sectionIndex].fancyQuiz.quizId}}" class="btn btn-primary">CLICK HERE TO TAKE QUIZ NOW</a></div>
         <video *ngIf="lecture.isVideo" [src]=videoURL() type="video/mp4" width="90%" height="540" controls> </video>
 
         <iframe *ngIf="lecture.isFile" [src]=pdfTrustedURL() width="100%" height="650px" frameborder="0"

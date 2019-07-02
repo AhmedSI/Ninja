@@ -39,8 +39,8 @@ export class LectureComponent implements OnInit {
   toggeled: number[]=[];
   openedlecture:string="";
   ratetitle: string ="Rate This Course";
-  
-  
+  sectionId:number=0;
+  sectionIndex:number;
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
@@ -66,8 +66,8 @@ export class LectureComponent implements OnInit {
   getCourseById() {
     this.userService.getCourseById(this.token, this.id)
       .then(coursef => {
-        this.course = JSON.parse(JSON.stringify(coursef))
-        //console.log(this.course);
+        this.course = JSON.parse(JSON.stringify(coursef));
+        console.log(this.course);
       });
   }
 
@@ -76,9 +76,19 @@ export class LectureComponent implements OnInit {
     let lectureId = lecture.lectureContentId;
     this.selectedLecture = lectureId;
     this.getLectureContent(lectureId);
+    this.sectionId = 0;
   }
 
-
+  setquiz(secId:number){
+    this.sectionId = secId;
+    for (var i=0;i<this.course.sections.length;i++){
+      if(secId==this.course.sections[i].sectionId){
+        this.sectionIndex = i;
+        console.log(this.sectionIndex);
+        break;
+      }
+    }
+  }
 
   quizModal(lecture: Lecture) {
     this.lecture = lecture;

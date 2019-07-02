@@ -24,7 +24,10 @@ export class QuizhomeComponent implements OnInit {
   answersList:Number[] = [];
   submission:StudentSubmission = new StudentSubmission();
   grade:Number = 0;
-
+  minutsleft: number;
+  secondeleft: number = 60;
+  intervalseconde;
+  intervalminuts;
   constructor(
   	private userService: UserServiceService,
     private router: ActivatedRoute,
@@ -36,25 +39,43 @@ export class QuizhomeComponent implements OnInit {
   ngOnInit() {
   	this.token = localStorage.getItem('token');
   	this.id = this.router.snapshot.paramMap.get("id");
-    this.getLecture();
-  }
-
-  getLecture(){
-  	this.userService.getLecture(this.token,this.id).then(lecture=>{
-  	this.lecture=lecture;
     this.getQuiz();
-
-  	})
   }
+  startTimer() {
+    this.intervalseconde = setInterval(() => {
+      if (this.secondeleft > 0) {
+        this.secondeleft--;
+      }
+    }, 1000);
+
+    this.intervalminuts = setInterval(() => {
+      if (this.minutsleft > 0) {
+        this.minutsleft--;
+        this.secondeleft = 60;
+      } else{
+        this.evaluate();
+      }
+    }, 59000);
+    
+  }
+
+  // getLecture(){
+  // 	this.userService.getLecture(this.token,this.id).then(lecture=>{
+  // 	this.lecture=lecture;
+  //   this.getQuiz();
+
+  // 	})
+  // }
 
   getQuiz(){
-    this.userService.startQuiz(this.token,this.lecture.lectureContentId).then(quiz=>{
+    this.userService.startQuiz(this.token,+this.id).then(quiz=>{
       this.quiz=quiz;
       this.questionsNum = this.quiz.questions.length;
       for(var i=0;i < this.questionsNum;i++){
         this.answersList[i] = 0;
       }
-      console.log(this.quiz.questions);
+      this.minutsleft = this.quiz.time.valueOf()-1;
+      this.startTimer();
     })
     //this.startQuiz(this.lecture.lectureContentId);
   }
@@ -64,6 +85,8 @@ export class QuizhomeComponent implements OnInit {
   }
 
   evaluate(){
+    clearInterval(this.intervalseconde);
+    clearInterval(this.intervalminuts);
     let questions = [];
     for(var i = 0;i < this.questionsNum;i++){
       let question = new StudentAnswers();
@@ -75,7 +98,7 @@ export class QuizhomeComponent implements OnInit {
     }
     this.submission.questions = questions;
     console.log(this.submission);
-    this.userService.evaluate(this.token,this.quiz.quizId,this.submission).then(res=>{console.log(res)});
+    this.userService.evaluate(this.token,this.quiz.quizId,this.submission).then(res=>{});
     this.router1.navigate(['/quizResult/'+this.id]);
   }
 
