@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Course } from '.././Course';
 import { Classroom } from '.././Classroom';
 import { UserServiceService } from '.././user-service.service';
+import { ViewChild, ElementRef } from '@angular/core';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { UserServiceService } from '.././user-service.service';
   styleUrls: ['./my-classrooms.component.css']
 })
 export class MyClassroomsComponent implements OnInit {
+  @ViewChild('closeBtn1') closeBtn1: ElementRef;
   token: string = "initial";
   toBeJoinedClassroom:Classroom= new Classroom();
   enrolledClassroom:Classroom;
@@ -30,7 +32,9 @@ export class MyClassroomsComponent implements OnInit {
 
   getEnrolledClassroom(){
     this.userService.getEnrolledClassroom(this.token)
-    .then(classroom =>{this.enrolledClassroom=classroom;});
+    .then(classroom =>{
+      this.enrolledClassroom=classroom;
+    });
   }
 
   onSubmit(){
@@ -38,7 +42,9 @@ export class MyClassroomsComponent implements OnInit {
     // this.classrooms.unshift(this.newClassroom);
     this.userService.enrollClassroom(this.token,this.toBeJoinedClassroom).then(createClassroom => {        
         this.toBeJoinedClassroom = new Classroom();
+        this.getEnrolledClassroom();
       });	  
-      this.toBeJoinedClassroom.passCode='';
+    this.toBeJoinedClassroom.passCode='';
+    this.closeBtn1.nativeElement.click();
   }
 }

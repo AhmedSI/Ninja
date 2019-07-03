@@ -79,7 +79,7 @@
                 <br>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal"  #closeBtn1>Close</button>
                   <input type="submit" value="Add" class="btn btn-dark">
                 </div>
               </form>
@@ -116,7 +116,7 @@
                 <br>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" #closeBtn2>Close</button>
                   <input type="submit" value="edit" class="btn btn-dark">
                 </div>
               </form>
@@ -168,7 +168,7 @@
                 <br>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" #closeBtn3>Close</button>
                   <input type="submit" value="Add" class="btn btn-dark">
                 </div>
               </form>
@@ -189,24 +189,24 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-              <form>
+              <form #updateChoiceForm="ngForm" (ngSubmit)="updateAnswer(updateChoiceForm)">
 
 
-                <textarea name="body" class="form-control " rows="1" style="resize:none" placeholder="Sol"></textarea>
+                <textarea name="body" class="form-control " rows="1" style="resize:none" placeholder="Sol" [(ngModel)]="newAnswer.answer_body" #answer_body="ngModel"></textarea>
                 <br>
                 <fieldset class="form-group">
                   <div class="row">
                     <legend class="col-form-label col-sm-2 pt-0">Answer Is:</legend>
                     <div class="col-sm-10">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
-                          checked>
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="true"
+                          checked [(ngModel)]="newAnswer.is_correct" #is_correct="ngModel">
                         <label class="form-check-label" for="gridRadios1">
                           Correct
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="false" [(ngModel)]="newAnswer.is_correct" #is_correct="ngModel">
                         <label class="form-check-label" for="gridRadios2">
                           False
                         </label>
@@ -218,7 +218,7 @@
                 <br>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" #closeBtn4>Close</button>
                   <input type="submit" value="edit" class="btn btn-dark">
                 </div>
               </form>
@@ -260,7 +260,7 @@
             <mat-icon class="white-icon" [inline]="true">edit</mat-icon>
           </button>
           <mat-menu #menu1="matMenu">
-            <button mat-menu-item (click)="setSelectedquestion(question.questionId)" data-toggle="modal"
+            <button mat-menu-item (click)="setSelectedSolution(answer.answerId)" data-toggle="modal"
               data-target="#myModal4">
               <mat-icon>edit</mat-icon>
               <span>Edit sol</span>

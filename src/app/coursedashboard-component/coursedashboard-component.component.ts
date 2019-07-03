@@ -9,6 +9,8 @@ import { Router,ActivatedRoute} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
+import { ViewChild, ElementRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-coursedashboard-component',
@@ -16,6 +18,10 @@ import { FormGroup,FormBuilder, Validators} from '@angular/forms';
   styleUrls: ['./coursedashboard-component.component.css']
 })
 export class CoursedashboardComponentComponent implements OnInit {
+  @ViewChild('closeBtn1') closeBtn1: ElementRef;
+   @ViewChild('closeBtn2') closeBtn2: ElementRef;
+   @ViewChild('closeBtn3') closeBtn3: ElementRef;
+   @ViewChild('closeBtn4') closeBtn4: ElementRef;
   course : Course = new Course();
   token: string = "initial";
   newSection : Section = new Section();
@@ -31,7 +37,7 @@ export class CoursedashboardComponentComponent implements OnInit {
   buthide: number = -1;
   sectionspinner:boolean=true;
   uploadspinner:boolean=true;
-  img: string = "assets\coursepic.png";
+  img: string = "assets/coursepic.png";
 
   courseStudents:User[];
 
@@ -104,7 +110,9 @@ export class CoursedashboardComponentComponent implements OnInit {
     this.userService.addQuiz(this.token,this.selectedSectionId,this.newQuiz)
     .then(section => {
         this.getCourse();
+        this.closeBtn1.nativeElement.click();
     });
+    
   }
 
   selectFile(event) {
@@ -119,6 +127,8 @@ export class CoursedashboardComponentComponent implements OnInit {
       .then(event => {
           console.log(event);
           this.getCourse();
+          this.closeBtn2.nativeElement.click();
+          this.closeBtn3.nativeElement.click();
       }
     );
   }
@@ -130,8 +140,11 @@ export class CoursedashboardComponentComponent implements OnInit {
       .then(event => {
           console.log(event);
           this.getCourse();
+          this.closeBtn4.nativeElement.click();
       }
     );
+
+     
   }
 
   setSelectedSection(id:string){

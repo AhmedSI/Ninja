@@ -5,7 +5,7 @@ import { User } from '.././User';
 import { Course } from '.././Course';
 import { UserServiceService } from '.././user-service.service';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
-
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-parentdashboard-component',
@@ -13,6 +13,7 @@ import { FormGroup,FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./parentdashboard-component.component.css']
 })
 export class ParentdashboardComponentComponent implements OnInit {
+  @ViewChild('closeBtn1') closeBtn1: ElementRef;
 	token: string = "initial";
 	children : User[];
 	courses: Course[];
@@ -80,6 +81,7 @@ export class ParentdashboardComponentComponent implements OnInit {
   		// childForm.reset();
         this.newChild = new User();
         this.getChildren();
+        this.closeBtn1.nativeElement.click();
       });
   }
 

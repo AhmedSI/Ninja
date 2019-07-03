@@ -386,13 +386,13 @@ export class UserServiceService {
   updateQuestionById(token:string,question:Question){
     return this.http.put(this.baseUrl+"/teacher/question?token="+token+"&question_id="+question.questionId+"&question_body="+question.question_body+"&is_multiple_choice="+question.is_multiple_choice+"&question_mark="+question.question_mark,{})
     .toPromise()
-    .then(response => response.json().studentMark as string);
+    .then(response => response.text() as string);
   }
 
   updateAnswerById(token:string,answer:Answer){
-    return this.http.put(this.baseUrl+"/teacher/answer?token="+token+"&answer_id="+answer.answerId+"&answer_body="+answer.answer_body,{})
+    return this.http.put(this.baseUrl+"/teacher/answer?token="+token+"&answer_id="+answer.answerId+"&answer_body="+answer.answer_body+"&is_correct="+answer.is_correct,{})
     .toPromise()
-    .then(response => response.json().studentMark as string);
+    .then(response => response.text() as string);
   }
 
   updateQuiz(token:string,id:Number,quiz:Quiz){
