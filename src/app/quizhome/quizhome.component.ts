@@ -91,13 +91,27 @@ export class QuizhomeComponent implements OnInit {
     for(var i = 0;i < this.questionsNum;i++){
       let question = new StudentAnswers();
       let choices = [];
-      choices[0] = this.answersList[i];
-      question.question_id = this.quiz.questions[i].questionId;
-      question.answers_ids = choices;
-      questions[i] = question;
+      if (this.quiz.questions[i].multipleChoice){
+        for(var j=0;j<this.quiz.questions[i].answers.length;j++){
+          var element = <HTMLInputElement>document.getElementById("defaultCheck"+i+j);
+          var isChecked = element.checked;
+          if(isChecked){
+            choices.push(this.quiz.questions[i].answers[j].answerId);
+          }
+        }
+        question.question_id = this.quiz.questions[i].questionId;
+        question.answers_ids = choices;
+        questions[i] = question;
+      }
+      else{
+        choices[0] = this.answersList[i];
+        question.question_id = this.quiz.questions[i].questionId;
+        question.answers_ids = choices;
+        questions[i] = question;
+      }
     }
-    this.submission.questions = questions;
     console.log(this.submission);
+    this.submission.questions = questions;
     this.userService.evaluate(this.token,this.quiz.quizId,this.submission).then(res=>{});
     this.router1.navigate(['/quizResult/'+this.id]);
   }

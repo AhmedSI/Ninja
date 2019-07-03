@@ -5,7 +5,7 @@
   <h5>{{questionsNum}} Marks</h5>
 
   <p>
-    <small>you have : </small> 
+    <small>time remaining : </small> 
     <strong>
       <span [hidden]="minutsleft > 9">0</span>{{minutsleft}}:<span [hidden]="secondeleft > 9">0</span>{{secondeleft}}
     </strong>
@@ -20,11 +20,17 @@
       <p>Q{{i+1}}) <strong> {{question.body}} </strong></p>
       <div class="row">
         <div class="col-sm-10" *ngFor="let answer of question.answers; index as j;">
-          <div class="form-check sol-div">
+          <div *ngIf="!question.multipleChoice" class="form-check sol-div">
             <input class="form-check-input" type="radio" name="radiogroup{{i}}" [value]="answer.answerId"
-              [(ngModel)]="answersList[i]" #answersList[i]="ngModel">
-            <label class="form-check-label">
+              [(ngModel)]="answersList[i]" #answersList[i]="ngModel" id="defaultradio{{i}}{{j}}">
+            <label class="form-check-label" for="defaultradio{{i}}{{j}}" style="cursor: pointer;">
               {{answer.body}}</label>
+          </div>
+          <div *ngIf="question.multipleChoice" class="form-check sol-div">
+            <input class="form-check-input" type="checkbox" id="defaultCheck{{i}}{{j}}"  [attr.name]="answer.answerId" [value]="answer.answerId">
+            <label class="form-check-label" for="defaultCheck{{i}}{{j}}" style="cursor: pointer;">
+              {{answer.body}}
+            </label>
           </div>
         </div>
       </div>
