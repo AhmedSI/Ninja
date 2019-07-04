@@ -77,7 +77,7 @@ export class QuizdashboardComponent implements OnInit {
     })
   }
 
-  updateQuestion(updteQuestionForm:NgForm){
+  updateQuestion(updateQuestionForm:NgForm){
     this.newQuestion.is_multiple_choice = false;
     this.newQuestion.questionId = parseInt(this.selectedQuestionId, 10);
     this.userService.updateQuestionById(this.token,this.newQuestion).then(response =>{
@@ -99,7 +99,7 @@ export class QuizdashboardComponent implements OnInit {
     })
   }
 
-  updateAnswer(updteAnswerForm:NgForm){
+  updateAnswer(updateAnswerForm:NgForm){
     this.newAnswer.answerId = parseInt(this.selectedAnswerId, 10);
     console.log(this.newAnswer.answerId);
     this.userService.updateAnswerById(this.token,this.newAnswer).then(response =>{
