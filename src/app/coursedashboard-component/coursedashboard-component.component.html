@@ -199,11 +199,12 @@
     </div>
   </form>
   <hr>
+  <div style="margin-left: 20%;">
       <h4>Students in this course</h4>
       <ul class="input-group ques-c col-10" *ngFor="let student of courseStudents">
         <li>{{student.username}}</li>
       </ul>
-
+  </div>
   <div class="modal fade" id="quizModal">
     <div class="modal-dialog">
       <div class="modal-content">

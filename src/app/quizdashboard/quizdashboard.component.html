@@ -53,27 +53,33 @@
                   name="question_body" [(ngModel)]="newQuestion.question_reference"
                   #question_reference="ngModel"></textarea>
                 <br>
+                <div class="row">
+                 <span class="ml-4">Question Level : </span>
                 <select name="qNumber" type="text" placeholder="level" [(ngModel)]="newQuestion.question_level">
                   <option [value]="1">easy</option>
                   <option [value]="2">medium</option>
                   <option [value]="3">hard</option>
                 </select>
+                </div>
                 <br>
-
+                <div class="row">
+                <span class="ml-4">Question type : </span>
                 <select name="qType" type="text" placeholder="question type"
                   [(ngModel)]="newQuestion.is_multiple_choice">
                   <option [value]=true>multiple choice</option>
                   <option [value]=false>one choice</option>
                 </select>
+                </div>
                 <br>
-
-                <label for="ques-mark" class="questions-mark">Question Mark:</label>
-                <div class="input-group col-3 mark-input">
+                <div class="row">
+                <label for="ques-mark" class="questions-mark ml-4">Question Mark : </label>
+                <div class="input-group col-3" style="margin-top:2%;">
                   <input id="ques-mark" type="text" class="form-control" placeholder="Mark" name="question_mark"
                     [(ngModel)]="newQuestion.question_mark" #question_mark="ngModel">
                   <div class="input-group-append">
                     <span class="input-group-text">marks</span>
                   </div>
+                </div>
                 </div>
                 <br>
                 <br>
