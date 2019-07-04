@@ -76,7 +76,7 @@ export class LectureComponent implements OnInit {
     let lectureId = lecture.lectureContentId;
     this.selectedLecture = lectureId;
     this.getLectureContent(lectureId);
-    this.sectionId = 0;
+    this.sectionId = -1;
   }
 
   setquiz(secId:number){
