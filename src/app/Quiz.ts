@@ -8,4 +8,5 @@ export class Quiz {
   questions:Question[];
   totalMark:Number;
   no_of_questions:Number;
+  studentMark:Number;
 }
