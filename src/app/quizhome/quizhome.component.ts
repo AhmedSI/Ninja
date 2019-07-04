@@ -55,7 +55,7 @@ export class QuizhomeComponent implements OnInit {
       } else{
         this.evaluate();
       }
-    }, 59000);
+    }, 60000);
     
   }
 
@@ -83,10 +83,14 @@ export class QuizhomeComponent implements OnInit {
   startQuiz(id:Number){
     //this.userService.startQuiz(this.token,id).then(response=>{})
   }
-
+  delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+  }
   evaluate(){
     clearInterval(this.intervalseconde);
     clearInterval(this.intervalminuts);
+    var element1 = <HTMLInputElement>document.getElementById("sub");
+    element1.disabled = true;
     let questions = [];
     for(var i = 0;i < this.questionsNum;i++){
       let question = new StudentAnswers();
@@ -113,7 +117,11 @@ export class QuizhomeComponent implements OnInit {
     console.log(this.submission);
     this.submission.questions = questions;
     this.userService.evaluate(this.token,this.quiz.quizId,this.submission).then(res=>{});
-    this.router1.navigate(['/quizResult/'+this.id]);
+    setTimeout(() => {
+      this.router1.navigate(['/quizResult/' + this.id]);
+    },
+      2000)
+    
   }
 
 
