@@ -4,6 +4,7 @@ export class Question {
 	quiz_id:string;
 	question_body:string;
 	is_multiple_choice:boolean;
+	multipleChoice:boolean;
 	question_mark:Number;
 	mark:Number;
 	answers:Answer[];
