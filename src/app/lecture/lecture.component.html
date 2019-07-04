@@ -75,7 +75,7 @@
       <mat-nav-list>
 
         <li  *ngFor="let section of course.sections;let i = index">
-          <a href="#{{section.sectionId}}" data-toggle="collapse" (click)="togglearrow(i)" class="bs">
+          <a href="#{{section.sectionId}}" data-toggle="collapse" (click)="togglearrow(i)" class="bs pr-5">
             <i [hidden]="toggeled.indexOf(i) == -1" style="position: absolute;margin-left: 80%;margin-top: 3%;"
               class="fas fa-angle-up"></i>
             <i [hidden]="toggeled.indexOf(i) != -1" style="position: absolute;margin-left: 80%;margin-top: 3%;"
