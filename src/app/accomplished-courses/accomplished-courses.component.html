@@ -2,8 +2,13 @@
 <app-sidebar-component></app-sidebar-component>
 
 <div class="container">
-  <span class="badge">Saved Courses</span>
+  <span class="badge">Accomplished Courses</span>
   <div class="row">
+
+    <div *ngIf="(!(courses)?.length)" style="margin:0px auto; text-align:center;">
+        <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+    </div>
+    
     <div *ngFor = "let course of courses" class="col-md-12 col-lg-6 col-xl-4">
       <!--div of the course .. -->
       <div class="thumbnail">

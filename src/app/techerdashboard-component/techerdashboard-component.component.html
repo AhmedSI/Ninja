@@ -243,4 +243,4 @@
 		</div>
 	</div>
 </section>
-<app-footer-component></app-footer-component>
+<app-footer-component *ngIf="(!(classrooms)?.length)&& !showOverlay"></app-footer-component>
