@@ -2,3 +2,8 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~css-star-rating/css/star-rating';
+
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
