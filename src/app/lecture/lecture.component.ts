@@ -138,7 +138,7 @@ export class LectureComponent implements OnInit {
 
   pdfTrustedURL() {
     console.log("http://docs.google.com/gview?url=" + this.lectureContent.fileDownloadUri + "&embedded=true");
-    return this.sanitizer.bypassSecurityTrustResourceUrl("http://docs.google.com/gview?url=" + this.lectureContent.fileDownloadUri + "&embedded=true");
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://docs.google.com/gview?url=" + this.lectureContent.fileDownloadUri + "&embedded=true");
     // return this.sanitizer.bypassSecurityTrustUrl(this.lectureContent.fileDownloadUri);
   }
 

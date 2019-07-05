@@ -43,6 +43,7 @@ import { SavedComponent } from './saved/saved.component';
 import { AlternativeSearchComponent } from './alternative-search/alternative-search.component';
 import { ReportsComponent } from './reports/reports.component';
 import { AccomplishedCoursesComponent } from './accomplished-courses/accomplished-courses.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,9 @@ import { AccomplishedCoursesComponent } from './accomplished-courses/accomplishe
 
      ReportsComponent,
 
-     AccomplishedCoursesComponent
+     AccomplishedCoursesComponent,
+
+     LandingComponent
   ],
   imports: [
     MaterialModule,
@@ -193,9 +196,16 @@ import { AccomplishedCoursesComponent } from './accomplished-courses/accomplishe
       path: 'accomplishedCourses', 
       component: AccomplishedCoursesComponent  
     },{  
+      path: 'landing', 
+      component: LandingComponent  
+    },{  
+      path: '', 
+      component: LandingComponent  
+    },{  
       path: '**', 
-      component: ErrorComponent}  
-    ], {
+      component: ErrorComponent
+    }],
+    {
         onSameUrlNavigation: 'reload'
       })
   ],

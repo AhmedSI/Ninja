@@ -40,9 +40,8 @@
 				</button>
 				<!-- <button id="teach" *ngIf="!isTeacher" (click)= "beTeacher()" type="button" class="btn" >Be a Teacher</button> -->
 
-
 				<div class="modal fade" id="myModal">
-					<div class="modal-dialog">
+					<div class="modal-dialog modal-dialog-centered">
 						<div class="modal-content">
 							<!-- Modal Header -->
 							<div class="modal-header">
@@ -142,6 +141,10 @@
 
 				<div class="row">
 
+					<div *ngIf="(!(courses)?.length)&& !showOverlay" style="margin:0px auto; text-align:center;">
+							<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+					</div>
+
 					<div *ngFor="let course of courses" class="col-md-12 col-lg-6 col-xl-4 mb-4">
 						<mat-card>
 							<img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
@@ -173,7 +176,7 @@
 					Create Classroom
 				</button>
 				<div class="modal fade" id="myModal2">
-					<div class="modal-dialog">
+					<div class="modal-dialog modal-dialog-centered">
 						<div class="modal-content">
 							<!-- Modal Header -->
 							<div class="modal-header">
@@ -212,6 +215,11 @@
 					</div>
 				</div>
 				<div class="row">
+
+					<div *ngIf="(!(classrooms)?.length)&& !showOverlay" style="margin:0px auto; text-align:center;">
+							<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+					</div>
+
 					<div *ngFor="let classroom of classrooms" class="col-md-12 col-lg-6 col-xl-4">
 						<mat-card>
 							<img mat-card-image src="assets\coursepic.png" alt="Photo of a Classroom">
@@ -235,4 +243,4 @@
 		</div>
 	</div>
 </section>
-<app-footer-component></app-footer-component>
+<app-footer-component *ngIf="(!(classrooms)?.length)&& !showOverlay"></app-footer-component>

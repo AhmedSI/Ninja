@@ -20,7 +20,7 @@
 					Add a New Child
 				</button>
 				<div class="modal fade" id="myModal">
-					<div class="modal-dialog">
+					<div class="modal-dialog modal-dialog-centered">
 						<div class="modal-content">
 							<!-- Modal Header -->
 							<div class="modal-header">
@@ -160,6 +160,11 @@
 					</div>
 				</div>
 				<div class="row">
+						
+					<div *ngIf="(!(children)?.length)" style="margin:0px auto; text-align:center;">
+							<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+					</div>
+
 					<div *ngFor="let child of children" class="col-md-12 col-lg-6 col-xl-4">
 						<div class="item">
 							<div class="card mb-2">
@@ -182,7 +187,7 @@
 				<!-- <span class="badge">Suggested Courses</span> -->
 				<div class="row">
 					<div class="modal fade" id="myModal2">
-						<div class="modal-dialog modal-lg">
+						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content">
 								<!-- Modal Header -->
 								<div class="modal-header">
@@ -216,6 +221,10 @@
 							</div>
 						</div>
 					</div>
+					<div *ngIf="(!(courses)?.length)" style="margin:0px auto; text-align:center;">
+							<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+					</div>
+
 					<div *ngFor="let course of courses" class="col-md-12 col-lg-6 col-xl-4">
 						<div class="item">
 							<div class="card mb-2">

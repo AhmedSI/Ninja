@@ -7,6 +7,8 @@ import { Router,ActivatedRoute} from '@angular/router';
 import {NgForm, FormGroup} from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Classroom } from '../Classroom';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 
@@ -37,7 +39,9 @@ export class CoursehomeComponentComponent implements OnInit {
     private userService: UserServiceService,
     private router: ActivatedRoute,
   private rout: Router,
-  private formBuilder: FormBuilder
+  private formBuilder: FormBuilder,
+   private _snackBar: MatSnackBar
+
 
   ) { }
 
@@ -47,6 +51,8 @@ export class CoursehomeComponentComponent implements OnInit {
 
 
   ngOnInit() {
+    let course = new Course();
+
     this.token = localStorage.getItem('token');
     this.getCourseById();
     this.getChildren();
@@ -79,13 +85,20 @@ export class CoursehomeComponentComponent implements OnInit {
     // console.log(course);
     this.userService.enrollIntoCourse(this.token,course)
     .then(course =>{});
-    this.rout.navigate(['/myCourses']);
+    // this.rout.navigate(['/myCourses']);
+    this._snackBar.open('You are enrolled in Course ' +course.title , '', {
+      duration: 3000, panelClass: ['custom-snackbar']
+    });
+
   }
   saveCourse(course:Course){
     // console.log(course);
     this.userService.saveCourse(this.token,course)
     .then(course =>{});
-    this.rout.navigate(['/savedCourses']);
+    // this.rout.navigate(['/savedCourses']);
+    this._snackBar.open('Course '+ course.title + ' is saved', '', {
+      duration: 3000, panelClass: ['custom-snackbar']
+    });
   }
   togglearrow(index: number) {
     var flag = true;
