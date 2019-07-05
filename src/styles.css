@@ -7,3 +7,14 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
+
+.modal-content{
+    background-color:rgba(220,199,170, 0.9);
+    /* background-color: rgba(107,122,143,0.7); */
+    border-color:rgba(220,199,170, 0.9);
+    box-shadow:0 0 40px rgba(107,122,143,0.7);;
+}
+
+.modal button{
+    color: red;
+}

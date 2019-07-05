@@ -1,5 +1,7 @@
 nav {
     position: fixed;
+    transition: 1s ;
+
     /* opacity: 0.9; */
     background-color:#dcc7aa;
     width: 100%;
@@ -10,17 +12,29 @@ nav {
     z-index: 100;
     padding-left: 5%;
     padding-right: 5%;
-  }
+    /* background: linear-gradient(0deg, rgba(220,199,170,0.3) 0%, #dcc7aa 60%); */
 
+
+    
+  }
+  nav:hover{
+    /* transition: all .3s ease-in; */
+
+    /* background-color: rgba(107,122,143,0.95); */
+    /* background: linear-gradient(0deg, #dcc7aa 0%, #dcc7aa 100%); */
+
+  }
+/* 
   nav:hover{
       opacity:1;
-  }
+  } */
+
   nav .justify-content-between{
       margin-bottom: 500px;
   }
   
   .menu{
-    background-color: #dcc7aa;
+    /* background-color: #dcc7aa; */
     position: relative;
     display: inline-block;
     /* z-index: 10; */
@@ -142,7 +156,7 @@ form .site-search__input:focus{
     margin: 0 0 0 20px; */
     color: #8395af;
     position: relative;
-    background-color: #dcc7aa;
+    /* background-color: #dcc7aa; */
     /* z-index: 10; */
     height: 30px;
     padding: 5px 20px;
@@ -171,7 +185,7 @@ form .site-search__input:focus{
 
   .profile button{
       text-align: right;
-      background-color: #dcc7aa;
+      /* background-color: #dcc7aa; */
       color: #6b7a8f;
   }
   .profile button:focus{
