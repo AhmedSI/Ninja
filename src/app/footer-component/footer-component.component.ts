@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router,ActivatedRoute} from '@angular/router';
 import { UserServiceService } from '.././user-service.service';
 import { Category } from '../Category';
+import { Course } from '../Course';
 
 @Component({
   selector: 'app-footer-component',
@@ -9,14 +10,23 @@ import { Category } from '../Category';
   styleUrls: ['./footer-component.component.css']
 })
 export class FooterComponentComponent implements OnInit {
-	categories : Category[];
+  
+  categories : Category[];
+  topCourses : Course[];
+  newCourses : Course[];
   constructor(
   	private userService: UserServiceService,
     private router: Router
   ) { }
 
   ngOnInit() {
-  	this.getCategories();
+    this.getCategories();
+    this.getTopCourses();
+    this.getNewCourses();
+
+    let topCourses:Course[]=[];
+    let newCourses:Course[]=[];
+
   }
   shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -40,6 +50,22 @@ export class FooterComponentComponent implements OnInit {
 		this.userService.getCategories().then(categories=>{
 		  this.categories = categories;this.categories = this.shuffle(this.categories);
 		});
-  	}
+    }
+    
+    getTopCourses(){
+      this.userService.topCourses()
+      .then(courses =>{
+        this.topCourses=courses;
+      });
+  }
+
+  getNewCourses(){
+    this.userService.newCourses()
+    .then(courses =>{
+      this.newCourses=courses;
+   });
+  }
+
+
 
 }

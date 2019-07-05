@@ -13,15 +13,13 @@
           <!-- Grid column -->
 
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">Top Courses</h6>
+            <h6 class="text-uppercase mb-4 font-weight-bold">New Courses</h6>
 
-            <div class="Top_Courses">
-              <p>
-                <a href="#!">Course one</a>
-              </p>
-              <p>
-                <a href="#!">Course two</a>
-              </p>
+            <!-- <div class="Top_Courses"> -->
+                <div  *ngFor="let course of (newCourses ? newCourses.slice(0,3): [])"  class="Top_Courses">
+                    <p>
+                      <a routerLink="/course/{{course.courseId}}">{{course.title}}</a>
+                    </p>
             </div>
 
           </div>
@@ -32,12 +30,9 @@
           <!-- Grid column -->
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
             <h6 class="text-uppercase mb-4 font-weight-bold">Most Rated courses</h6>
-            <div class="Most_Rated">
+            <div  *ngFor="let course of (topCourses ? topCourses.slice(0,3): [])"  class="Most_Rated">
               <p>
-                <a href="#!">Course one</a>
-              </p>
-              <p>
-                <a href="#!">Course two</a>
+                <a routerLink="/course/{{course.courseId}}">{{course.title}}</a>
               </p>
             </div>
 
