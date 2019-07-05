@@ -9,4 +9,5 @@ export class Quiz {
   totalMark:Number;
   no_of_questions:Number;
   studentMark:Number;
+  notes:string;
 }

@@ -25,7 +25,8 @@ export class ResultComponent implements OnInit {
 	submission:StudentSubmission = new StudentSubmission();
 	grade:Number = 0;
 	result :string="";
-
+	wrongQuestion:string[];
+	wrongQuestions:Question[]=[];
   constructor(
 
     
@@ -45,7 +46,17 @@ export class ResultComponent implements OnInit {
 	getQuizInfoForStudent(){
 		this.userService.getQuizscore(this.token, +this.router.snapshot.paramMap.get("id")).then(quiz => {
 			this.quiz = quiz;
+			this.wrongQuestion = this.quiz.notes.split(",");
+			this.getWrongQuestion();
 		})
 	  }
-
+	getWrongQuestion(){
+		for(var i=0;i<this.wrongQuestion.length-1;i++){
+			
+			this.userService.getQuestionById(this.token, +this.wrongQuestion[i]).then(Question =>{
+				
+				this.wrongQuestions.push(Question);
+			})
+		}
+	}
 }

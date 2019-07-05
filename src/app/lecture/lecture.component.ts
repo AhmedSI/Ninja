@@ -41,6 +41,7 @@ export class LectureComponent implements OnInit {
   ratetitle: string ="Rate This Course";
   sectionId:number=0;
   sectionIndex:number;
+  nottakenquiz:boolean=true;
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
@@ -67,7 +68,6 @@ export class LectureComponent implements OnInit {
     this.userService.getCourseById(this.token, this.id)
       .then(coursef => {
         this.course = JSON.parse(JSON.stringify(coursef));
-        console.log(this.course);
       });
   }
 
@@ -84,10 +84,16 @@ export class LectureComponent implements OnInit {
     for (var i=0;i<this.course.sections.length;i++){
       if(secId==this.course.sections[i].sectionId){
         this.sectionIndex = i;
-        console.log(this.sectionIndex);
         break;
       }
     }
+    this.userService.getQuizscore(this.token, this.course.sections[this.sectionIndex].fancyQuiz.quizId).then(quiz => {
+      this.quiz = quiz;
+      this.nottakenquiz = false;
+    },
+      error => {
+        this.nottakenquiz = true;
+      });
   }
 
   quizModal(lecture: Lecture) {
@@ -98,7 +104,6 @@ export class LectureComponent implements OnInit {
       this.quiz = quiz;
     });
     
-    console.log(this.quiz.quizId);
   }
 
   getLectureContent(id: Number) {
@@ -153,7 +158,6 @@ export class LectureComponent implements OnInit {
 
   setlectertitle(title:string,lect:string){
     document.getElementById(lect).innerHTML = title;
-    console.log(title,lect);
   }
 
 

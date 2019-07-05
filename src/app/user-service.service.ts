@@ -283,7 +283,9 @@ export class UserServiceService {
   getQuizscore(token: string, id: Number): Promise<Quiz> {
     return this.http.get(this.baseUrl + '/student/quiz/score?token=' + token + '&quiz_id=' + id)
       .toPromise()
-      .then(response => response.json() as Quiz);
+      .then(response => response.json() as Quiz).catch(err => {
+        return Promise.reject(err);
+      });
   }
   addQuestion(token:string,question:Question,quizId:Number):Promise<string>{
     return this.http.post(this.baseUrl + '/teacher/question?token='+token+'&quiz_id='+quizId+'&question_body='+question.question_body+'&is_multiple_choice='+question.is_multiple_choice+'&question_mark='+question.question_mark+"&question_level="+question.question_level+"&question_reference="+question.question_reference,question)
@@ -388,7 +390,11 @@ export class UserServiceService {
     .toPromise()
     .then(response => response.text() as string);
   }
-
+  getQuestionById(token:string,questionId:Number){
+    return this.http.get(this.baseUrl + "/question?token=" + token +"&question_id="+questionId)
+    .toPromise()
+    .then(response => response.json() as Question);
+  }
   updateAnswerById(token:string,answer:Answer){
     return this.http.put(this.baseUrl+"/teacher/answer?token="+token+"&answer_id="+answer.answerId+"&answer_body="+answer.answer_body+"&is_correct="+answer.is_correct,{})
     .toPromise()

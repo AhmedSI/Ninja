@@ -22,7 +22,7 @@
         <p><strong>Time: 30 minutes</strong></p>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <a  class="btn btn-dark">Take Quiz</a>
+          <a class="btn btn-dark">Take Quiz</a>
         </div>
 
       </div>
@@ -31,8 +31,7 @@
 </div>
 
 
-<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="ratemodal"
-  aria-hidden="true">
+<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="ratemodal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <!-- <div class="modal-header">
@@ -42,7 +41,8 @@
         </button>
       </div> -->
       <div class="modal-body">
-        <star-rating (starClickChange)="onClick($event)" speed="slow" labelText="{{ratetitle}}"  labelPosition="top" size="large" [hoverEnabled]="true"></star-rating>
+        <star-rating (starClickChange)="onClick($event)" speed="slow" labelText="{{ratetitle}}" labelPosition="top"
+          size="large" [hoverEnabled]="true"></star-rating>
       </div>
 
       <div class="modal-footer">
@@ -64,9 +64,9 @@
     <p id="lect-title" #lect style="margin-left:35%;margin-top: 2.5%;">WELCOME TO
       {{course.title}}</p>
 
-      <button style="margin-left:15%;margin-top:.5%;" mat-button data-toggle="modal" data-target="#rateModal">
-        <i class="fas fa-star"></i> rate this course
-      </button>
+    <button style="margin-left:15%;margin-top:.5%;" mat-button data-toggle="modal" data-target="#rateModal">
+      <i class="fas fa-star"></i> rate this course
+    </button>
 
   </mat-toolbar>
 
@@ -74,7 +74,7 @@
     <mat-sidenav #snav mode="side" opened="true">
       <mat-nav-list>
 
-        <li  *ngFor="let section of course.sections;let i = index">
+        <li *ngFor="let section of course.sections;let i = index">
           <a href="#{{section.sectionId}}" data-toggle="collapse" (click)="togglearrow(i)" class="bs pr-5">
             <i [hidden]="toggeled.indexOf(i) == -1" style="position: absolute;margin-left: 80%;margin-top: 3%;"
               class="fas fa-angle-up"></i>
@@ -87,12 +87,12 @@
               <a class="lect-li" *ngIf="!lecture.isQuiz" (click)="setLecture(lecture)"
                 (click)="setlectertitle(lecture.name,lect.id)">{{lecture.name}}</a>
 
-              
+
 
             </li>
             <li class="lect-li" *ngIf="section.fancyQuiz" style="background-color: black;">
-              <a class="lect-li" (click)="setquiz(section.sectionId)"  data-toggle="modal" (click)="setlectertitle(section.fancyQuiz.title,lect.id)"
-                >{{section.fancyQuiz.title}}
+              <a class="lect-li" (click)="setquiz(section.sectionId)" data-toggle="modal"
+                (click)="setlectertitle(section.fancyQuiz.title,lect.id)">{{section.fancyQuiz.title}}
               </a>
             </li>
 
@@ -105,18 +105,30 @@
     <mat-sidenav-content>
       <div class="cont">
 
-        
-          <h1 *ngIf="sectionId == 0" style="text-align: center;margin-top:250px;height: 400px;width: 100%">WELCOME TO
-          {{course.title}}</h1>
-          <div *ngIf="sectionId > 0" style="text-align: center;margin-top:100px;height: 550px;width: 100%"><h1  >WELCOME TO 
-          {{course.sections[sectionIndex].fancyQuiz.title}}</h1> 
-          <h2>Quiz Instructions:</h2><p>{{course.sections[sectionIndex].fancyQuiz.instructions}}</p>
-          <h2>Quiz Time:</h2><p>{{course.sections[sectionIndex].fancyQuiz.time}}</p>
-          <h2>Quiz Total Mark:</h2><p>{{course.sections[sectionIndex].fancyQuiz.totalMark}}</p>
-          <a style="margin-top:20px;" routerLink="../../quizhome/{{course.sections[sectionIndex].fancyQuiz.quizId}}" class="btn btn-primary">CLICK HERE TO TAKE QUIZ NOW</a></div>
-        <video *ngIf="lecture.isVideo && sectionId ==-1" style="margin-top: 100px;" [src]=videoURL() type="video/mp4" width="90%" height="540" controls> </video>
 
-        <iframe *ngIf="lecture.isFile"  [src]=pdfTrustedURL() width="100%" height="650px" frameborder="0"
+        <h1 *ngIf="sectionId == 0" style="text-align: center;margin-top:250px;height: 400px;width: 100%">WELCOME TO
+          {{course.title}}</h1>
+        <div *ngIf="sectionId > 0" style="text-align: center;margin-top:100px;height: 550px;width: 100%">
+          <h1>WELCOME TO
+            {{course.sections[sectionIndex].fancyQuiz.title}}</h1>
+          <div *ngIf="quiz.attempts !== 0 && quiz.passed && !nottakenquiz" class="circle"><i class="fas fa-check" style="color: white;font-size: 70px;"></i></div>
+          <span *ngIf="quiz.attempts !== 0 && quiz.passed && !nottakenquiz" style="color: green;margin-left: 35px;">passed</span>
+          <div *ngIf="quiz.attempts !== 0 && !quiz.passed && !nottakenquiz" style="background: red;" class="circle"><i class="fas fa-times"
+              style="color: white;font-size: 70px;"></i></div>
+          <span *ngIf="quiz.attempts !== 0 && !quiz.passed && !nottakenquiz" style="color: red;margin-left: 35px;">faild</span>
+          <h2>Quiz Instructions:</h2>
+          <p>{{course.sections[sectionIndex].fancyQuiz.instructions}}</p>
+          <h2>Quiz Time:</h2>
+          <p>{{course.sections[sectionIndex].fancyQuiz.time}}</p>
+          <h2>Quiz Total Mark:</h2>
+          <p>{{course.sections[sectionIndex].fancyQuiz.totalMark}}</p>
+          <a style="margin-top:20px;" routerLink="../../quizhome/{{course.sections[sectionIndex].fancyQuiz.quizId}}"
+            class="btn btn-primary">CLICK HERE TO TAKE QUIZ NOW</a>
+        </div>
+        <video *ngIf="lecture.isVideo && sectionId ==-1" style="margin-top: 100px;" [src]=videoURL() type="video/mp4"
+          width="90%" height="540" controls> </video>
+
+        <iframe *ngIf="lecture.isFile && sectionId ==-1" [src]=pdfTrustedURL() width="100%" height="650px" frameborder="0"
           style="margin-top: 80px;"></iframe>
 
       </div>
@@ -124,6 +136,6 @@
   </mat-sidenav-container>
 </div>
 
- <app-footer-component></app-footer-component>
+<app-footer-component></app-footer-component>
 
 <!-- </div> -->
