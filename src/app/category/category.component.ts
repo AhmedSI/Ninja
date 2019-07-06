@@ -4,6 +4,7 @@ import { UserServiceService } from '../user-service.service';
 import { Course } from '../Course';
 import { Category } from '../Category';
 
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -15,6 +16,8 @@ export class CategoryComponent implements OnInit {
   token : string ="initial";
   categories: Category[];
   cat:string;
+
+
   constructor(
   private userService:UserServiceService,
     private router: ActivatedRoute

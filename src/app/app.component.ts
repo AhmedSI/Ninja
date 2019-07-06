@@ -44,6 +44,14 @@ export class AppComponent implements OnInit{
     //   this.location.replaceState(''); 
     // }
     else{
+      if(window.location.pathname ==='/login' ){
+        this.router.navigateByUrl('/login');
+      }
+      else if(window.location.pathname ==='/register'){
+        this.router.navigateByUrl('/register');
+
+      }
+      else
       this.router.navigateByUrl('/landing', {skipLocationChange: true});
       this.location.replaceState('');
     } 

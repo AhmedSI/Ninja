@@ -10,6 +10,9 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRouteSnapshot } from '@angular/router' ;
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../User';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
@@ -25,9 +28,14 @@ export class NavbarComponentComponent implements OnInit{
   nas:string;
   user: User;
   newURL:string="";
+
   constructor(
   private userService: UserServiceService,
-    private router: Router, private cdRef: ChangeDetectorRef, private _snackBar: MatSnackBar
+    private router: Router,
+     private cdRef: ChangeDetectorRef,
+      private _snackBar: MatSnackBar,
+      private location: Location
+
     ) { }
   
 
@@ -100,5 +108,27 @@ export class NavbarComponentComponent implements OnInit{
       .then(user => {this.user = user;});
   }
 
+  route(id){
+
+    console.log("route"+ id);
+    // this.router.navigateByUrl('/category/'+id);
+
+    // this.router.navigated = false;
+    // this.router.navigate(['/category/'+id]);
+
+    // this.router.navigate(['/category'+'/'+id]);
+
+    // this.router.navigateByUrl('/register');
+
+    this.router.navigateByUrl('/category'+'/'+id, {skipLocationChange: true}).then(()=>
+        this.router.navigate(['/category'+'/'+id]));
+
+    
+    // this.location.replaceState('/category/'+id);
+
+    // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+    // this.router.navigate([uri]));
+
+  }
 
 }
