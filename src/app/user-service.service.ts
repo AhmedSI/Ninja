@@ -465,4 +465,10 @@ export class UserServiceService {
       .then(response => response.json() as Course[]); 
     }
 
+    updatePasscode(token:string,id:string){
+      const formData : FormData = new FormData();
+      return this.http.put(this.baseUrl + '/teacher/classroom?token='+token+'&classroom_id='+id,formData)
+      .toPromise()
+      .then(response => response.text() as string);
+    }
 }

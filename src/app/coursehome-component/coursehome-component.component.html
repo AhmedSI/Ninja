@@ -20,13 +20,16 @@
             <strong class="mr-2">Description:</strong>
             {{course.description}}
           </p>
-          <mat-card-actions *ngIf="course.role == '' ">
-            <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;"
-              (click)="saveCourse(course)">Save Course</button>
 
-            <button mat-stroked-button
-              style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 20%"
-              (click)="enroll(course)">Enroll</button>
+          <div class="container" id="enrollAndOption">
+          <!-- <mat-card-actions *ngIf="course.role == '' "> -->
+
+            <button class="enrollBtn" *ngIf="course.role == '' "  mat-stroked-button style="margin-right:5%;"
+            (click)="enroll(course)">Enroll</button>
+
+
+              <!-- <button mat-stroked-button style="background-color:black;color: white;position: absolute;bottom: 0%;"
+              (click)="saveCourse(course)">Save Course</button>
 
               <button mat-stroked-button
               style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 35%"
@@ -35,9 +38,32 @@
                <button mat-stroked-button
                style="background-color:black;color: white;position: absolute;bottom: 0%;margin-left: 55%"
                aria-label="Close" data-target="#addCourseToClassroom" data-toggle="modal" >Add to classroom</button>
-               
-          </mat-card-actions>
+                -->
+          <!-- </mat-card-actions> -->
 
+          <!-- <mat-card-actions *ngIf="!course.role == '' "> -->
+
+              <button *ngIf="!course.role == '' " mat-stroked-button disabled style="margin-right:5%;"
+              (click)="enroll(course)">Enrolled</button>
+
+          <!-- </mat-card-actions> -->
+        
+
+          <div class="dropdown show">
+            <a class="btn dropdown-toggle"
+             href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+             >
+              Options
+            </a>
+          
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item"  (click)="saveCourse(course)" >Save course</a>
+              <a class="dropdown-item" data-target="#enrollChild" data-toggle="modal" >Enroll child in</a>
+              <a class="dropdown-item" *ngIf="user.teacher" data-target="#addCourseToClassroom" data-toggle="modal" >Add to classroom</a>
+            </div>
+          </div>
+
+        </div>
 
         </mat-card-content>
       </div>
@@ -121,7 +147,9 @@
                 aria-labelledby="headingOne">
                 <div class="panel-body">
                   <ul class="lecturesList">
-                    <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong></li>
+                    <!-- <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong></li> -->
+                    <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong> <small> ({{lecture.version}} version) </small> </li>
+
                   </ul>
                   <strong *ngIf="section.fancyQuiz"> {{section.fancyQuiz.title}} </strong>
                 </div>

@@ -75,3 +75,70 @@ li{
 p{
   text-align: justify;
 }
+
+.dropdown-menu .dropdown-item{
+  color: #f7882f;
+}
+.dropdown-item:hover{
+color: #f7882f;
+  /* background-color: red; */
+}
+div .category .dropdown-item{
+  border-left: 5px solid #6b7a8f;
+}
+div .dropdown-menu .dropdown-item:hover{
+background-color: rgba(131,149,175,0.5);  
+}
+
+div .category .dropdown-item:hover{
+background-color: rgba(131,149,175,0.5);
+border-left: 5px solid #f7882f;
+}
+
+#enrollAndOption{
+  /* margin-left: 2%; */
+  margin-top: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
+/* #dropdownMenuLink{
+  color: #F7882F;
+  background-color: #F7882F;
+} */
+
+#dropdownMenuLink{
+  border-radius: 7px;
+  background-color: white;
+  color:#f7c331;
+  width: 130%;
+  transition: all .5s ease;
+}
+
+#dropdownMenuLink:hover{
+  color:#f7c331;
+  text-decoration-line: none;
+  box-shadow:0 0 5px #f7c331;
+}
+
+.enrollBtn{
+  border-radius: 7px;
+  /* color: white; */
+  color: #F7882F;
+  transition: all .5s ease;
+  width: 100px;
+ 
+}
+
+.enrollBtn:hover{
+  background-color:#f7c331;
+  text-decoration-line: none;
+  color: white; 
+  box-shadow:0 0 3px #f7c331;
+}
+
+.enrollBtn:focus{
+  /* outline: none; */
+    outline: 0 !important;
+    box-shadow: none;
+}
