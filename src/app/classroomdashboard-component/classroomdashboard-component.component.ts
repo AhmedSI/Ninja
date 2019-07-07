@@ -157,7 +157,8 @@ export class ClassroomdashboardComponentComponent implements OnInit {
   this.userService.updatePasscode(this.token,this.classroom.classroomId)
   .then(enrollment => {
     this.getClassroom();
-   }); 
+   });
+    
  }
 
 }

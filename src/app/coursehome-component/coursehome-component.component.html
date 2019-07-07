@@ -147,13 +147,7 @@
                 aria-labelledby="headingOne">
                 <div class="panel-body">
                   <ul class="lecturesList">
-<<<<<<< HEAD
-                    <!-- <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong></li> -->
                     <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong> <small> ({{lecture.version}} version) </small> </li>
-
-=======
-                    <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong> <small> ({{lecture.version}} version) </small> </li>
->>>>>>> 0233b30a5b8a441ac56d67b756ad77db5b100df7
                   </ul>
                   <strong *ngIf="section.fancyQuiz"> {{section.fancyQuiz.title}} </strong>
                 </div>

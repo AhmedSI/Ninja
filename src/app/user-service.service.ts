@@ -471,4 +471,11 @@ export class UserServiceService {
       .toPromise()
       .then(response => response.text() as string);
     }
+
+    getChildCourses(token:string, id:string){
+      return this.http.get(this.baseUrl+"/parent/child/courses?token="+token+'&user_id='+id)
+      .toPromise()
+      .then(response => response.json() as Course[]); 
+    }
+    
 }
