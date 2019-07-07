@@ -28,7 +28,8 @@
         <img mat-card-image [src]="img" alt="Photo of Course">
 
         <mat-card-actions>
-          <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;" data-toggle="modal" data-target="#photoModal">Change Course
+          <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;" data-toggle="modal"
+            data-target="#photoModal">Change Course
             Photo</button>
         </mat-card-actions>
 
@@ -138,7 +139,7 @@
           </div>
           <mat-accordion *ngIf="!sectionspinner">
 
-            <mat-expansion-panel *ngFor="let section of sections" class="mb-4 mat-elevation-z1">
+            <mat-expansion-panel *ngFor="let section of sections;let j = index" class="mb-4 mat-elevation-z1">
 
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -167,24 +168,35 @@
                   (click)="deleteSection([section.sectionId])"><i class="fas fa-trash-alt"></i></button>
 
               </mat-toolbar>
-
+              <div style="margin-left: 35%;">
+                <mat-form-field>
+                  <mat-label>Select Witch version to Show</mat-label>
+                  <mat-select [(value)]="showWhatVersion[j]">
+                    <mat-option value="Easy">Easy</mat-option>
+                    <mat-option value="Medium">Medium</mat-option>
+                    <mat-option value="Hard">Hard</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
               <ul class="lecturesList">
-                <li *ngFor="let lecture of section.fancyLectures ;let i = index" (mouseenter)="onHover(i)"
-                  (mouseleave)="onHover(-1)">
+                <div *ngFor="let lecture of section.fancyLectures ;let i = index">
+                  <li (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)"
+                    *ngIf="showWhatVersion[j] == lecture.version">
 
-                  <button *ngIf="i == buthide" class="remove_what_u_will_learn"
-                    (click)="deleteLecture([lecture.lectureId])"><i class="fas fa-times"></i> </button>
-
-                  <a *ngIf="lecture.isQuiz" routerLink="/quizdashboard/{{lecture.lectureId}}">{{lecture.name}}</a>
-
-                  <a *ngIf="! lecture.isQuiz" routerLink="/lecture/{{lecture.lectureId}}">{{lecture.name}}</a>
+                    <button *ngIf="i == buthide" class="remove_what_u_will_learn"
+                      (click)="deleteLecture([lecture.lectureId])"><i class="fas fa-times"></i> </button>
 
 
-                </li>
+                    <a routerLink="/lecture/{{lecture.lectureId}}">{{lecture.name}}</a>
+
+
+                  </li>
+                </div>
               </ul>
-              <button style= "margin-left: 20px" *ngIf="section.fancyQuiz" class="remove_what_u_will_learn"
-                    (click)="deleteQuiz([section.fancyQuiz.quizId])"><i class="fas fa-times"></i> </button>
-              <a *ngIf="section.fancyQuiz" routerLink="/quizdashboard/{{section.fancyQuiz.quizId}}">{{section.fancyQuiz.title}}</a>
+              <button style="margin-left: 20px" *ngIf="section.fancyQuiz" class="remove_what_u_will_learn"
+                (click)="deleteQuiz([section.fancyQuiz.quizId])"><i class="fas fa-times"></i> </button>
+              <a *ngIf="section.fancyQuiz"
+                routerLink="/quizdashboard/{{section.fancyQuiz.quizId}}">{{section.fancyQuiz.title}}</a>
 
             </mat-expansion-panel>
           </mat-accordion>
@@ -200,10 +212,10 @@
   </form>
   <hr>
   <div style="margin-left: 20%;">
-      <h4>Students in this course</h4>
-      <ul class="input-group ques-c col-10" *ngFor="let student of courseStudents">
-        <li>{{student.username}}</li>
-      </ul>
+    <h4>Students in this course</h4>
+    <ul class="input-group ques-c col-10" *ngFor="let student of courseStudents">
+      <li>{{student.username}}</li>
+    </ul>
   </div>
   <div class="modal fade" id="quizModal">
     <div class="modal-dialog">
@@ -270,14 +282,18 @@
         <!-- Modal body -->
         <div class="modal-body">
           <form #videoForm="ngForm" (ngSubmit)="upload(videoForm)">
-            <div class="col-11">
+            <!-- <div class="col-11">
               <input type="text" class="form-control" placeholder="New video title" name="title"
                 [(ngModel)]="newQuiz.title" #title="ngModel">
-            </div>
+            </div> -->
 
             <div class="col-11">
-              <input type="number" min="1" max="3" class="form-control" placeholder="Level" name="Level"
-                [(ngModel)]="level">
+              <select class="form-control" id="sel2">
+                <option value="0">Select Level..</option>
+                <option value="1">Easy</option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
+              </select>
             </div>
 
             <div class="col-11">
@@ -285,8 +301,8 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn2>Close</button>
-              <input type="submit" value="Create Video Lecture" class="btn btn-create">
+              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn2 (click)="setUploadFileOrVidoe('3')">Close</button>
+              <input type="submit" value="Create Video Lecture" class="btn btn-create" (click)="setUploadFileOrVidoe('1')">
             </div>
           </form>
         </div>
@@ -305,20 +321,25 @@
         <!-- Modal body -->
         <div class="modal-body">
           <form #documentForm="ngForm" (ngSubmit)="upload(documentForm)">
-            <div class="col-11">
+            <!-- <div class="col-11">
               <input type="text" class="form-control" placeholder="New Document title" name="title"
                 [(ngModel)]="newQuiz.title" #title="ngModel">
-            </div>
+            </div> -->
             <div class="col-11">
-              <input type="number" min="1" max="3" class="form-control" placeholder="Level" name="Level"
-                [(ngModel)]="level">
+              <select class="form-control" id="sel1">
+                <option value="0">Select Level..</option>
+                <option value="1">Easy</option>
+                <option value="2">Medium</option>
+                <option value="3">Hard</option>
+              </select>
+
             </div>
             <div class="col-11">
               <input type="file" class="form-control" (change)="selectFile($event)">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn3>Close</button>
-              <input type="submit" value="Create Document Lecture" class="btn btn-create">
+              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn3 (click)="setUploadFileOrVidoe('3')">Close</button>
+              <input type="submit" value="Create Document Lecture" (click)="setUploadFileOrVidoe('2')" class="btn btn-create">
             </div>
           </form>
         </div>

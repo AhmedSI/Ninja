@@ -32,15 +32,15 @@ export class CoursedashboardComponentComponent implements OnInit {
   aims: string [];
   selectedFiles: FileList;
   currentFileUpload: File;
-  level:Number = 1;
+  level:string = "1";
   panelOpenState = false;
   buthide: number = -1;
   sectionspinner:boolean=true;
   uploadspinner:boolean=true;
   img: string = "assets/coursepic.png";
-
+  showWhatVersion:string[];
   courseStudents:User[];
-
+  fileOrVidoe:string="";
 
   constructor(
   	private userService: UserServiceService,
@@ -71,6 +71,11 @@ export class CoursedashboardComponentComponent implements OnInit {
       		if(courses[i].courseId == this.router.snapshot.paramMap.get("id")){
    				this.course = courses[i];
           this.sections = courses[i].sections;
+          this.showWhatVersion = new Array(this.sections.length);
+          for(var j=0;j<this.sections.length;j++){
+            this.showWhatVersion[j]="Easy";
+          }
+          console.log(this.showWhatVersion);
    				console.log(courses[i]);
    				break;
 			}
@@ -118,12 +123,30 @@ export class CoursedashboardComponentComponent implements OnInit {
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
-
+  setUploadFileOrVidoe(n:number){
+    if(n==1){
+      this.fileOrVidoe = "vidoe";
+    }
+    else if(n==2){
+      this.fileOrVidoe = "file";
+    }
+    else{
+      this.fileOrVidoe ="";
+    }
+  }
   upload(lectureForm:NgForm){
+    
+    var e1 = <HTMLSelectElement> document.getElementById("sel1");
+    var e2 = <HTMLSelectElement>document.getElementById("sel2");
+    if (this.fileOrVidoe == "file"){
+      this.level = e1.options[e1.selectedIndex].value;}
+    else{
+      this.level = e2.options[e2.selectedIndex].value;
+    }
     console.log(this.level);
     this.currentFileUpload = this.selectedFiles.item(0);
     this.userService.pushLectureContent(
-      this.currentFileUpload,this.token,this.selectedSectionId,this.level)
+      this.currentFileUpload,this.token,this.selectedSectionId,+this.level)
       .then(event => {
           console.log(event);
           this.getCourse();
