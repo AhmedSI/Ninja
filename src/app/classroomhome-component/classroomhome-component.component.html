@@ -1,3 +1,51 @@
-<p>
-  classroomhome-component works!
-</p>
+<app-navbar-component></app-navbar-component>
+<app-sidebar-component></app-sidebar-component>
+
+<div class="container">
+  <mat-card style="box-shadow:0 0 10px rgba(79, 67, 81, 0.3);">
+    <mat-card-title>
+      <strong> Classroom Name: </strong> <span class="ml-3" style="color:orange;"> {{classroom.classroomName}}</span>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row col-12 mt-5">
+      <div class="col-9">
+      Creator : <strong>{{classroom.creator.firstName}}</strong>
+      </div>
+      <div class="col-3 mt-3">
+        <img mat-card-image [src]="img" alt="Photo of Course">
+      </div>
+      </div>
+    </mat-card-content>
+    
+  </mat-card>
+  <span class="badge">Classroom Courses</span>
+
+  <div *ngIf="classroom.coursesNumber === 0" style="margin:0px auto; text-align:center;">
+    <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+  </div>
+
+  <mat-card *ngFor="let course of classroom.courses" class="course-card">
+    <div class="row">
+      <img class="courseImg col-md-3"
+        src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+      <div class="col-md">
+        <mat-card-header>
+          <h4 style="color: #f7882f;">{{course.title}}</h4>
+        </mat-card-header>
+        <mat-card-content style="margin-left: 4%;">
+          {{course.description}}
+        </mat-card-content>
+      </div>
+    </div>
+    <div>
+      <mat-card-actions>
+        <button class="play-button" routerLink="/courseContent/{{course.courseId}}" mat-button>
+          <i class="fas fa-play"></i> Play Course
+        </button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+
+</div>
+
+<app-footer-component></app-footer-component>

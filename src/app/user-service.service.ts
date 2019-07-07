@@ -77,12 +77,23 @@ export class UserServiceService {
       .toPromise()
       .then(response => response.text() as string);
   }
+  getClassroomById(token:string,id:number){
+    return this.http.get(this.baseUrl + '/classroom?token=' + token +'&classroom_id='+id).toPromise()
+    .then(response => response.json() as Classroom);
 
+  }
   ratCourseForStudent(token: string , courseId: number, rate: number):Promise<string>{
     return this.http.post(
       this.baseUrl + '/student/rate_course?token=' + token + '&course_id=' + courseId + '&rate=' +rate,rate)
       .toPromise()
       .then(response => response.text() as string);
+  }
+  SetClassroomPic(file: File, token: string, id: string): Promise < String > {
+      const formData : FormData = new FormData();
+      formData.append('file', file);
+    return this.http.post(this.baseUrl + '/classroomPic?token=' + token + '&classroom_id=' + id, formData)
+        .toPromise()
+        .then(response => response.text() as string);
   }
   getCourses(token: string):  Promise<Course[]> {
     return this.http.get(this.baseUrl + '/teacher/courses?token='+token)

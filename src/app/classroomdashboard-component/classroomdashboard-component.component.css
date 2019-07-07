@@ -55,8 +55,6 @@
 .parallax {
   margin-top: 4.7%;
   margin-left: 3%;
-  background-image: url("/assets/hack.jpg");
-
   height: 600px;
 
   background-attachment: fixed;

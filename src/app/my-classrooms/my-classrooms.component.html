@@ -62,10 +62,9 @@
                   <div class="thumbnail">
                     <div class="caption">
                         <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-                        <a routerLink="/classroom/{{classroom.classroomId}}"> <h4>{{classroom.classroomName}}</h4></a>
-                        <p>{{classroom.creatorId}}</p>
+                        <p style="color: orange;font-size: 110%;">{{classroom.classroomName}}</p>
                       <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
-                      <a href="#"class="courseButton">see classroom</a>
+                      <a routerLink="/classroom/{{classroom.classroomId}}" class="courseButton mt-2">see classroom</a>
                     </div>
                   </div>
                 </div>

@@ -1,0 +1,28 @@
+.container{
+    /* margin-bottom: 0px; */
+    margin-top: 70px; 
+    /* padding: 0;   */
+}
+
+.course-card{
+    /* border: 2px solid black; */
+    padding-bottom: 0;
+    margin-bottom: 5%;
+    box-shadow:0 0 10px rgba(79, 67, 81, 0.3);
+}
+.badge{
+    background-color: #f7c331;
+    font-size: 20px;
+    color: #fff;
+    margin: 20px auto;
+}
+.play-button{
+    background-color: #6b7a8f;
+    color: white;
+    position: absolute;
+    left: 80%;
+    top: 65%;
+}
+.play-button:hover{
+    background-color: orange;
+}

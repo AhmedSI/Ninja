@@ -30,8 +30,9 @@ export class ClassroomdashboardComponentComponent implements OnInit {
   courseID:string='';
   courseArr:Course[];
   chosenCourse:Course;
-
-
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  img: string = "assets/coursepic.png";
   constructor(
   	private userService: UserServiceService,
     private router: ActivatedRoute,
@@ -72,6 +73,7 @@ export class ClassroomdashboardComponentComponent implements OnInit {
         for(var i = 0;i<classrooms.length;i++) { 
           if(classrooms[i].classroomId == this.router.snapshot.paramMap.get("id")){
           this.classroom = classrooms[i];
+          this.img = this.classroom.classroom_picture.fileDownloadUri;
           console.log(classrooms[i]);
           break;
       }
@@ -152,5 +154,20 @@ export class ClassroomdashboardComponentComponent implements OnInit {
      }); 
 
  }
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
+  uploadPicture(pictureForm: NgForm) {
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.userService.SetClassroomPic(
+      this.currentFileUpload, this.token, this.router.snapshot.paramMap.get("id"))
+      .then(event => {
+        console.log(event);
+        this.getClassroom();
+      }
+      );
+
+
+  }
 
 }
