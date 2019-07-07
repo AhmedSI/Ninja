@@ -68,3 +68,30 @@ background-color: orange;
 .tab-content{
   padding-top: 20px;
 }
+
+.enrollBtn{
+  border-radius: 7px;
+  /* color: white; */
+  color: #F7882F;
+  transition: all .5s ease;
+  /* width: 100px; */
+ 
+}
+
+.enrollBtn:hover{
+  background-color:#f7c331;
+  text-decoration-line: none;
+  color: white; 
+  box-shadow:0 0 3px #f7c331;
+}
+
+
+.enrollBtn:focus{
+  /* outline: none; */
+    outline: 0 !important;
+    box-shadow: none;
+}
+
+a{
+  color: #F7882F;
+}

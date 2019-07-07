@@ -4,14 +4,14 @@
     <div class="container">
       <span class="badge">Joined Classrooms</span>
       <div class="row">
-       
 
-        
+
+
           <button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
               <i class="fas fa-plus"></i>
               Join Classroom
             </button>
-            
+
             <div class="modal fade" id="myModal2">
 
             <div class="modal-dialog">
@@ -25,7 +25,7 @@
                   <div class="modal-body">
                     <!-- <form #classroomForm="ngForm" (ngSubmit)="joinClassroom(classroomForm)"> -->
                       <!-- <input id="New_classroom_name" type="text"  value="" placeholder="classroom Passcode" required name="title" [(ngModel)]="toBeJoinedClassroom.passCode"> -->
-                      
+
 
                     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                         <div class="form-group">
@@ -74,5 +74,3 @@
     </div><!--/container -->
 
     <app-footer-component></app-footer-component>
-
-    

@@ -32,14 +32,15 @@ export class CoursehomeComponentComponent implements OnInit {
   chosenID:string= "";
   classrooms:Classroom[];
   addCourse:FormGroup;
+  user: User;
 
 
 
   constructor(
     private userService: UserServiceService,
     private router: ActivatedRoute,
-  private rout: Router,
-  private formBuilder: FormBuilder,
+    private rout: Router,
+    private formBuilder: FormBuilder,
    private _snackBar: MatSnackBar
 
 
@@ -52,11 +53,14 @@ export class CoursehomeComponentComponent implements OnInit {
 
   ngOnInit() {
     let course = new Course();
+    let user = new User();
 
     this.token = localStorage.getItem('token');
     this.getCourseById();
     this.getChildren();
     this.getClassrooms();
+    this.getUserData();
+
 
     console.log("creator name:"+this.course.title);
     this.child=new User();
@@ -79,7 +83,10 @@ export class CoursehomeComponentComponent implements OnInit {
 
   getCourseById(){
   	this.userService.getCourseById(this.token,this.courseID)
-      .then(course => {this.course = course; this.sections =course.sections;});
+      .then(course => {this.course = course; 
+        this.sections =course.sections;
+        console.log(course);
+      });
   }
   enroll(course:Course){
     // console.log(course);
@@ -174,6 +181,13 @@ export class CoursehomeComponentComponent implements OnInit {
   .then(enrollment => { 
    }); 
 
+}
+
+getUserData(){
+  this.userService.getUserData(this.token)
+    .then(user => {this.user = user;
+    console.log(this.user);
+    });
 }
 
 }  

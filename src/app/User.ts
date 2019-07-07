@@ -9,4 +9,5 @@ export class User {
   gender: Number;
   grade: string;
   teacher:boolean;
+  child:boolean;
 }

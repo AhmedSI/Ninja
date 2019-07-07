@@ -16,12 +16,12 @@
 	         <i class="fa fa-user"></i><h6>My classrooms</h6>
 	       </a>
 	    </li>
-	    <li>
+	    <li *ngIf="!user.child" >
 	       <a class="Menu" routerLink="/teacherDashboard">
 	        <i class="fa fa-chalkboard-teacher"></i><h6>Teacher dashboard</h6>
 	       </a>
 	    </li>
-	    <li>
+	    <li *ngIf="!user.child" >
 	      <a class="Menu" routerLink="/parentDashboard">
 	        <i class="fa fa-user-edit"></i><h6>Parent dashboard</h6>
 	      </a>

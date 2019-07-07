@@ -6,6 +6,9 @@ import { Course } from '.././Course';
 import { UserServiceService } from '.././user-service.service';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { ViewChild, ElementRef } from '@angular/core';
+import { Classroom } from '../Classroom';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-parentdashboard-component',
@@ -23,17 +26,24 @@ export class ParentdashboardComponentComponent implements OnInit {
   chosenChild: User = new User();
   addChildForm:FormGroup;
   submitted = false;
+  toBeJoinedClassroom:Classroom = new Classroom();
+  child:User;
+  childName:string;
+
 
 
   constructor(
     private userService: UserServiceService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _snackBar2: MatSnackBar
     ) { }
 
     get f() { return this.addChildForm.controls; }
 
   ngOnInit() {
-  	this.token = localStorage.getItem('token');
+    this.token = localStorage.getItem('token');
+    this.child=new User();
+    this.childName='';
   	this.getChildren();
     this.getCourses();
     
@@ -96,5 +106,30 @@ export class ParentdashboardComponentComponent implements OnInit {
       enrollForm.reset();
         this.chosenChild = new User();
       }); 
+  }
+
+  getChildData(child){
+    this.child=child;
+    }
+
+
+
+  onSubmit(){
+    console.log(this.toBeJoinedClassroom.passCode);
+    // this.classrooms.unshift(this.newClassroom);
+    this.userService.enrollChildInClassroom(this.token,this.toBeJoinedClassroom.passCode,this.child.firstName)
+    .then(createClassroom => {        
+        this.toBeJoinedClassroom = new Classroom();
+        this._snackBar2.open('Sucssefully '+this.child.firstName+ ' joined the classroom', '', {
+          duration: 2000, panelClass: ['custom-snackbar-one']
+        });
+      },
+      error=>{
+        this._snackBar2.open('no such a classroom exists', '', {
+          duration: 2000, panelClass: ['custom-snackbar-one']
+        });
+      });	  
+    this.toBeJoinedClassroom.passCode='';
+    this.closeBtn1.nativeElement.click();
   }
 }

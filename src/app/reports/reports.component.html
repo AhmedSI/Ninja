@@ -3,6 +3,11 @@
 
 <div class="container">
   <span class="badge">Reports</span>
+
+  <div *ngIf="!(reports)?.length" style="margin:0px auto; text-align:center;">
+    <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+</div>
+
   <mat-card  class="course-card" *ngFor = "let report of reports" style="padding:20px 50px">
     <mat-card-header>
       <img  mat-card-avatar src="/assets/avatar5.PNG" alt="child pic">

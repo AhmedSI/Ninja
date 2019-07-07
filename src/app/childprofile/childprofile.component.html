@@ -1,12 +1,12 @@
 <app-navbar-component></app-navbar-component>
 <app-sidebar-component></app-sidebar-component>
 <div class="container emp-profile">
-    <form method="post" action="editing_profile.html">
+    <!-- <form method="post" action="editing_profile.html"> -->
       <div class="row">
-      	<button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
+      	<!-- <button id="add_class_room" type="button" class="btn" data-toggle="modal" data-target="#myModal2">
               <i class="fas fa-plus"></i>
               Join Classroom
-            </button>
+            </button> -->
             <div class="modal fade" id="myModal2">
 
             <div class="modal-dialog">
@@ -63,23 +63,23 @@
             <h5>
               {{child.username}}
             </h5>
-            <h6>
+            <!-- <h6>
               About Me
-            </h6>
-            <p class="proile-rating">RANKINGS : <span>1000</span></p>
+            </h6> -->
+            <!-- <p class="proile-rating">RANKINGS : <span>1000</span></p> -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Information</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Completed Courses</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{child.firstName}}'s Courses</a>
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-md-2">
+        <!-- <div class="col-md-2">
           <a routerLink="../editprofile"><input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/></a>
-        </div>
+        </div> -->
       </div>
       <div class="row">
         <div class="col-md-4">
@@ -175,15 +175,20 @@
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <div class="row">
-                <div class="col-md-12 col-lg-6 col-xl-4">
+
+                <div *ngIf="(!(courses)?.length)" style="margin:0px; text-align:center;">
+                    <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+                </div>
+
+                <div *ngFor="let course of courses" class="col-md-12 col-lg-6 col-xl-4">
                   <div class="completed_course">
                     <i class="fas fa-check-double"></i>
                     <div class="ad">
-                      <a href="#">Course Name here Course Name here Course Name here</a>
+                      <a href="#">{{course.title}}</a>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-12 col-lg-6 col-xl-4">
+                <!-- <div class="col-md-12 col-lg-6 col-xl-4">
                   <div class="completed_course">
                     <i class="fas fa-check-double"></i>
                     <div class="ad">
@@ -208,12 +213,12 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
             </div>
           </div>
         </div>
       </div>
-    </form>
+    <!-- </form> -->
   </div>
-<app-footer-component></app-footer-component>
+<!-- <app-footer-component></app-footer-component> -->
