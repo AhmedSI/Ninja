@@ -121,7 +121,7 @@
                 aria-labelledby="headingOne">
                 <div class="panel-body">
                   <ul class="lecturesList">
-                    <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong></li>
+                    <li *ngFor="let lecture of section.fancyLectures"><strong> {{lecture.name}} </strong> <small> ({{lecture.version}} version) </small> </li>
                   </ul>
                   <strong *ngIf="section.fancyQuiz"> {{section.fancyQuiz.title}} </strong>
                 </div>
