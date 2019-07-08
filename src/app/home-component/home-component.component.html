@@ -29,8 +29,9 @@
               <mat-card *ngFor="let course of topCourses | slice: i*3 : i*3 + 3"
                 class="col-sm-4 example-card ml-3 mb-1">
                 <!-- <span class="notify-badge">NEW</span> -->
-                <img *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
-                <img *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
+                <img class="img" *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
+                <img class="img" *ngIf="course.course_picture != null" mat-card-image
+                  [src]="course.course_picture.fileDownloadUri">
 
                 <mat-card-title style="color:orange;">
                   {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
@@ -46,16 +47,19 @@
 
                 <mat-card-actions>
                   <!-- <button mat-button>LIKE</button> -->
-                  <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
-                    detailes</button>
-                  <button mat-icon-button matTooltip="Save Course" matTooltipPosition="below" class="csa ml-5"
-                    style="margin-top:-1%;">
-                    <mat-icon>save</mat-icon>
-                  </button>
-                  <button mat-icon-button matTooltip="Enroll" matTooltipPosition="below" class="csa"
-                    style="margin-top:-2%;">
-                    <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
-                  </button>
+                  <div class="">
+                    <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
+                      detailes</button>
+                    <img *ngIf="course.level == 1" class="csa" src="../../assets/sgreen.png"
+                      style="width: 40px;height:30px;" alt="sadasd">
+                    <img *ngIf="course.level == 3" class="csa" src="../../assets/sred.png"
+                      style="width: 40px;height:30px;" alt="sadasd">
+                    <img *ngIf="course.level == 2" class="csa" src="../../assets/syellow.png"
+                      style="width: 40px;height:30px;" alt="sadasd">
+                    <span *ngIf="course.level == 1" class="csa ml-5 mt-1">Beginner</span>
+                    <span *ngIf="course.level == 3" class="csa ml-5 mt-1">Advanced</span>
+                    <span *ngIf="course.level == 2" class="csa ml-5 mt-1">Intermediate</span>
+                  </div>
 
 
                 </mat-card-actions>
@@ -105,8 +109,9 @@
               <mat-card *ngFor="let course of newCourses | slice: i*3 : i*3 + 3"
                 class="col-sm-4 example-card ml-3 mb-1">
                 <!-- <span class="notify-badge">NEW</span> -->
-                <img *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
-                <img *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
+                <img class="img" *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
+                <img class="img" *ngIf="course.course_picture != null" mat-card-image
+                  [src]="course.course_picture.fileDownloadUri">
 
                 <mat-card-title style="color:orange;">
                   {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
@@ -121,19 +126,19 @@
                 </mat-card-content>
 
                 <mat-card-actions>
-                  <!-- <button mat-button>LIKE</button> -->
-                  <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
-                    detailes</button>
-                  <button mat-icon-button matTooltip="Save Course" matTooltipPosition="below" class="csa ml-5"
-                    style="margin-top:-1%;">
-                    <mat-icon>save</mat-icon>
-                  </button>
-                  <button mat-icon-button matTooltip="Enroll" matTooltipPosition="below" class="csa"
-                    style="margin-top:-2%;" (click)="enroll(course)">
-                    <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
-                  </button>
-
-
+                  <div class="">
+                    <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
+                      detailes</button>
+                    <img *ngIf="course.level == 1" class="csa" src="../../assets/sgreen.png"
+                      style="width: 40px;height:30px;" alt="sadasd">
+                    <img *ngIf="course.level == 3" class="csa" src="../../assets/sred.png"
+                      style="width: 40px;height:30px;" alt="sadasd">
+                    <img *ngIf="course.level == 2" class="csa" src="../../assets/syellow.png"
+                      style="width: 40px;height:30px;" alt="sadasd">
+                    <span *ngIf="course.level == 1" class="csa ml-5 mt-1">Beginner</span>
+                    <span *ngIf="course.level == 3" class="csa ml-5 mt-1">Advanced</span>
+                    <span *ngIf="course.level == 2" class="csa ml-5 mt-1">Intermediate</span>
+                  </div>
                 </mat-card-actions>
               </mat-card>
             </div>
@@ -183,8 +188,9 @@
               <mat-card *ngFor="let course of suggestedCourses | slice: i*3 : i*3 + 3"
                 class="col-sm-4 example-card ml-3 mb-1">
                 <!-- <span class="notify-badge">NEW</span> -->
-                <img *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
-                <img *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
+                <img class="img" *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
+                <img class="img" *ngIf="course.course_picture != null" mat-card-image
+                  [src]="course.course_picture.fileDownloadUri">
 
                 <mat-card-title style="color:orange;">
                   {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
@@ -199,19 +205,19 @@
                 </mat-card-content>
 
                 <mat-card-actions>
-                  <!-- <button mat-button>LIKE</button> -->
-                  <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
-                    detailes</button>
-                  <button mat-icon-button matTooltip="Save Course" matTooltipPosition="below" class="csa ml-5"
-                    style="margin-top:-1%;">
-                    <mat-icon>save</mat-icon>
-                  </button>
-                  <button mat-icon-button matTooltip="Enroll" matTooltipPosition="below" class="csa"
-                    style="margin-top:-2%;" (click)="enroll(course)">
-                    <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
-                  </button>
-
-
+                  <div class="">
+                    <button mat-stroked-button routerLink="/course/{{course.courseId}}" class="cssv"> Course
+                      detailes</button>
+                    <img *ngIf="course.level == 1" class="csa" src="../../assets/sgreen.png"
+                      style="width: 40px;height:30px;">
+                    <img *ngIf="course.level == 3" class="csa" src="../../assets/sred.png"
+                      style="width: 40px;height:30px;">
+                    <img *ngIf="course.level == 2" class="csa" src="../../assets/syellow.png"
+                      style="width: 40px;height:30px;">
+                    <span *ngIf="course.level == 1" class="csa ml-5 mt-1">Beginner</span>
+                    <span *ngIf="course.level == 3" class="csa ml-5 mt-1">Advanced</span>
+                    <span *ngIf="course.level == 2" class="csa ml-5 mt-1">Intermediate</span>
+                  </div>
                 </mat-card-actions>
               </mat-card>
             </div>
