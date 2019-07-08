@@ -5,29 +5,31 @@
   <span class="badge">Enrolled Courses</span>
 
   <div *ngIf="!(enrolledCourses)?.length" style="margin:0px auto; text-align:center;">
-      <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+    <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
   </div>
 
   <mat-card *ngFor="let course of enrolledCourses" class="course-card">
     <div class="row">
-      <img class="courseImg col-md-3"
+      <img class="img col-md-3 mt-2 ml-2" *ngIf="course.course_picture == null" mat-card-image
         src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+      <img class="img col-md-3 mt-2 ml-2" *ngIf="course.course_picture != null" mat-card-image
+        [src]="course.course_picture.fileDownloadUri">
       <div class="col-md">
-      <mat-card-header>
-        <h4 style="color: #f7882f;">{{course.title}}</h4>
-      </mat-card-header>
-      <mat-card-content style="margin-left: 4%;">
-        {{course.description}}
-      </mat-card-content>
+        <mat-card-header>
+          <h4 style="color: #f7882f;">{{course.title}}</h4>
+        </mat-card-header>
+        <mat-card-content style="margin-left: 4%;">
+          {{course.description}}
+        </mat-card-content>
       </div>
     </div>
-      <div>
-        <mat-card-actions>
-          <button class="play-button" routerLink="/courseContent/{{course.courseId}}" mat-button>
-            <i class="fas fa-play"></i> Play Course
-          </button>
-        </mat-card-actions>
-      </div>
+    <div>
+      <mat-card-actions>
+        <button class="play-button" routerLink="/courseContent/{{course.courseId}}" mat-button>
+          <i class="fas fa-play"></i> Play Course
+        </button>
+      </mat-card-actions>
+    </div>
   </mat-card>
 
 </div>

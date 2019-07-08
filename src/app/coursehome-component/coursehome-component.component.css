@@ -23,6 +23,9 @@ body{
     /* margin-left: 5%; */
     margin-bottom: 20px;
 }
+.img{
+  height: 200px;
+}
 .course-container{
     width: 60%;
   background-color: rgba(220,199,170,0.1);

@@ -13,7 +13,8 @@
       <!--div of the course .. -->
       <div class="thumbnail">
         <div class="caption">  
-            <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+            <img class="img" *ngIf="course.course_picture == null" mat-card-image src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+            <img class="img" *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
             <a routerLink="/course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
             <p>{{course.creator}}</p>
           <a routerLink="/courseContent/{{course.courseId}}"class="courseButton">see course</a>

@@ -12,7 +12,7 @@
       Creator : <strong>{{classroom.creator.firstName}}</strong>
       </div>
       <div class="col-3 mt-3">
-        <img mat-card-image [src]="img" alt="Photo of Course">
+        <img style="height: 200px;" mat-card-image [src]="img">
       </div>
       </div>
     </mat-card-content>
@@ -21,13 +21,15 @@
   <span class="badge">Classroom Courses</span>
 
   <div *ngIf="classroom.coursesNumber === 0" style="margin:0px auto; text-align:center;">
-    <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+    <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png">
   </div>
 
   <mat-card *ngFor="let course of classroom.courses" class="course-card">
     <div class="row">
-      <img class="courseImg col-md-3"
+      <img class="img col-md-3 mt-2 ml-2" *ngIf="course.course_picture == null" mat-card-image
         src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+      <img class="img col-md-3 mt-2 ml-2" *ngIf="course.course_picture != null" mat-card-image
+        [src]="course.course_picture.fileDownloadUri">
       <div class="col-md">
         <mat-card-header>
           <h4 style="color: #f7882f;">{{course.title}}</h4>

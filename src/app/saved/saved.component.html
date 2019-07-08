@@ -6,24 +6,29 @@
   <div class="row">
 
     <div *ngIf="(!(courses)?.length)" style="margin:0px auto; text-align:center;">
-        <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+      <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png">
     </div>
 
-    <div *ngFor = "let course of courses" class="col-md-12 col-lg-6 col-xl-4">
+    <div *ngFor="let course of courses" class="col-md-12 col-lg-6 col-xl-4">
       <!--div of the course .. -->
       <div class="thumbnail">
-        <div class="caption">  
+        <div class="caption">
           <!-- <button class="far">          -->
-            <button  (click)="removeSavedCourse(course.courseId)" mat-icon-button matTooltip="remove" matTooltipPosition="left" class="remove">
-                <mat-icon><i class="far fa-times-circle"></i></mat-icon>
-            </button>
-            <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
-            <a routerLink="/course/{{course.courseId}}"> <h4>{{course.title}}</h4></a>
-            <p>{{course.creator}}</p>
-          <a routerLink="/courseContent/{{course.courseId}}"class="courseButton">see course</a>
+          <button (click)="removeSavedCourse(course.courseId)" mat-icon-button matTooltip="remove"
+            matTooltipPosition="left" class="remove">
+            <mat-icon><i class="far fa-times-circle"></i></mat-icon>
+          </button>
+          <img class="img" *ngIf="course.course_picture == null" mat-card-image
+            src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+          <img class="img" *ngIf="course.course_picture != null" mat-card-image
+            [src]="course.course_picture.fileDownloadUri">
+          <p style="color: orange;font-size: 110%;">{{course.title}}</p>
+          <a routerLink="/courseContent/{{course.courseId}}" class="courseButton mt-2">see course</a>
         </div>
       </div>
     </div>
-  </div><!--/row-->
-</div><!--/container -->
+  </div>
+  <!--/row-->
+</div>
+<!--/container -->
 <app-footer-component></app-footer-component>

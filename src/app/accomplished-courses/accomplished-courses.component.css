@@ -41,7 +41,11 @@
     color: #f7882f;
     position: relative;
 }
-
+.img{
+  height: 200px;
+  display: block;
+  overflow: hidden;
+}
 .courseImg{
     display: block;
     margin-left: auto;

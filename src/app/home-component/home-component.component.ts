@@ -39,7 +39,11 @@ export class HomeComponentComponent implements OnInit{
   }
   getTopCourses(){
     this.userService.topCourses()
-    .then(courses =>{this.topCourses=courses;this.topCoursesSlide= Array(Math.ceil(this.topCourses.length/3)).fill(1);this.topcoursespinner=false;});
+    .then(courses =>{
+      this.topCourses=courses;
+      this.topCoursesSlide= Array(Math.ceil(this.topCourses.length/3)).fill(1);
+      this.topcoursespinner=false;
+    });
   }
 
   getNewCourses(){

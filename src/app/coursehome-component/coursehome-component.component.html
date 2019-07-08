@@ -68,7 +68,9 @@
         </mat-card-content>
       </div>
       <div class="col-3 mt-3" style="margin-left:5%;">
-        <img mat-card-image src="assets\hack.jpg" alt="Photo of Course">
+        <img class="img" *ngIf="course.course_picture == null" mat-card-image
+          src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+        <img class="img" *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
         <mat-card-subtitle style="margin-bottom:1%;margin-left:29%;">Average Rating</mat-card-subtitle>
         <star-rating [labelText]="course.rate" [rating]="course.rate" [showHalfStars]="true" [readOnly]="true"
           labelPosition="right"></star-rating>

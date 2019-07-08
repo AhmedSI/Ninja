@@ -29,8 +29,8 @@
               <mat-card *ngFor="let course of topCourses | slice: i*3 : i*3 + 3"
                 class="col-sm-4 example-card ml-3 mb-1">
                 <!-- <span class="notify-badge">NEW</span> -->
-                <img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
-
+                <img *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
+                <img *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
 
                 <mat-card-title style="color:orange;">
                   {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
@@ -53,7 +53,7 @@
                     <mat-icon>save</mat-icon>
                   </button>
                   <button mat-icon-button matTooltip="Enroll" matTooltipPosition="below" class="csa"
-                    style="margin-top:-2%;" >
+                    style="margin-top:-2%;">
                     <mat-icon><i class="fas fa-sign-in-alt"></i></mat-icon>
                   </button>
 
@@ -105,8 +105,8 @@
               <mat-card *ngFor="let course of newCourses | slice: i*3 : i*3 + 3"
                 class="col-sm-4 example-card ml-3 mb-1">
                 <!-- <span class="notify-badge">NEW</span> -->
-                <img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
-
+                <img *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
+                <img *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
 
                 <mat-card-title style="color:orange;">
                   {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>
@@ -183,8 +183,8 @@
               <mat-card *ngFor="let course of suggestedCourses | slice: i*3 : i*3 + 3"
                 class="col-sm-4 example-card ml-3 mb-1">
                 <!-- <span class="notify-badge">NEW</span> -->
-                <img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
-
+                <img *ngIf="course.course_picture == null" mat-card-image src="assets\coursepic.png">
+                <img *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
 
                 <mat-card-title style="color:orange;">
                   {{course.title|slice:0:26}}<strong *ngIf="course.title.length >26 ">..................</strong>

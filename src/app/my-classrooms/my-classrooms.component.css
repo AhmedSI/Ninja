@@ -21,7 +21,9 @@
     text-decoration-line: none;
     color: white;
   }
-
+.img{
+  height: 150px;
+}
 .caption{
     background-color:#f5f7fa;
     text-align: justify;

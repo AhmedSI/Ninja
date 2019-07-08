@@ -25,7 +25,9 @@
         </mat-card-content>
       </div>
       <div class="col-3 mt-3" style="margin-left:5%;">
-        <img mat-card-image [src]="img" alt="Photo of Course">
+        <img class="img" *ngIf="course.course_picture == null" mat-card-image
+          src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+        <img class="img" *ngIf="course.course_picture != null" mat-card-image [src]="img">
 
         <mat-card-actions>
           <button mat-stroked-button style="background-color:black;color: white;margin-left:20%;" data-toggle="modal"
@@ -193,11 +195,13 @@
                   </li>
                 </div>
               </ul>
-              <button style="margin-left: 20px" *ngIf="section.fancyQuiz" class="remove_what_u_will_learn"
-                (click)="deleteQuiz([section.fancyQuiz.quizId])"><i class="fas fa-times"></i> </button>
-              <a *ngIf="section.fancyQuiz"
-                routerLink="/quizdashboard/{{section.fancyQuiz.quizId}}">{{section.fancyQuiz.title}}</a>
-
+              <div (mouseenter)="onHover(-5)" (mouseleave)="onHover(-1)" class="ml-5">
+                <i style="margin-left: -4.5%;color:rgb(107,122,143);" class="fas fa-certificate"></i>
+                <button *ngIf="section.fancyQuiz &&  buthide == -5" class="remove_what_u_will_learn"
+                  (click)="deleteQuiz([section.fancyQuiz.quizId])"><i class="fas fa-times"></i> </button>
+                <a style="margin-left: 4%;" *ngIf="section.fancyQuiz"
+                  routerLink="/quizdashboard/{{section.fancyQuiz.quizId}}">{{section.fancyQuiz.title}}</a>
+              </div>
             </mat-expansion-panel>
           </mat-accordion>
         </div>
@@ -301,8 +305,10 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn2 (click)="setUploadFileOrVidoe('3')">Close</button>
-              <input type="submit" value="Create Video Lecture" class="btn btn-create" (click)="setUploadFileOrVidoe('1')">
+              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn2
+                (click)="setUploadFileOrVidoe('3')">Close</button>
+              <input type="submit" value="Create Video Lecture" class="btn btn-create"
+                (click)="setUploadFileOrVidoe('1')">
             </div>
           </form>
         </div>
@@ -338,8 +344,10 @@
               <input type="file" class="form-control" (change)="selectFile($event)">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn3 (click)="setUploadFileOrVidoe('3')">Close</button>
-              <input type="submit" value="Create Document Lecture" (click)="setUploadFileOrVidoe('2')" class="btn btn-create">
+              <button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn3
+                (click)="setUploadFileOrVidoe('3')">Close</button>
+              <input type="submit" value="Create Document Lecture" (click)="setUploadFileOrVidoe('2')"
+                class="btn btn-create">
             </div>
           </form>
         </div>

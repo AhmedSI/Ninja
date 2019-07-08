@@ -6,7 +6,9 @@
     <div class="row">
         <mat-card *ngFor="let course of courses" class="col-sm-4 example-card ml-3 mb-3">
             <!-- <span class="notify-badge">NEW</span> -->
-            <img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
+            <img class="img" *ngIf="course.course_picture == null" mat-card-image
+                src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+            <img class="img" *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
 
 
             <mat-card-title style="color:orange;">

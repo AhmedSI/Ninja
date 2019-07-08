@@ -20,7 +20,9 @@
   position: relative;
   left: 600px;
 }
-
+.img{
+  height: 200px;
+}
 #teach{
   position: relative;
   left: 80%;

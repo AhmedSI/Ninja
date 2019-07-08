@@ -56,12 +56,13 @@
               <div *ngIf="!(enrolledClassroom)?.length" style="margin:0px auto; text-align:center;">
                   <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
               </div>
-
               <div *ngFor = "let classroom of enrolledClassroom" class="col-md-12 col-lg-6 col-xl-4">
                   <!--div of the course .. -->
                   <div class="thumbnail">
                     <div class="caption">
-                        <img class="courseImg" src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+                        <img class="img" *ngIf="classroom.classroom_picture == null" mat-card-image
+                          src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+                        <img class="img" *ngIf="classroom.classroom_picture != null" mat-card-image [src]="classroom.classroom_picture.fileDownloadUri">
                         <p style="color: orange;font-size: 110%;">{{classroom.classroomName}}</p>
                       <!-- <a routerLink="#"> <button type="button" class="btn btn-info">see course</button></a> -->
                       <a routerLink="/classroom/{{classroom.classroomId}}" class="courseButton mt-2">see classroom</a>

@@ -21,8 +21,8 @@
 </div>
 
 <!-- nav pages start -->
-<section class="navs_pages" >
-	<ul class="nav nav-tabs" >
+<section class="navs_pages">
+	<ul class="nav nav-tabs">
 		<li class="nav-item">
 			<a class="nav-link active" data-toggle="tab" href="#home">My Courses</a>
 		</li>
@@ -127,7 +127,8 @@
 
 									<div class="modal-footer">
 										<input type="submit" value="Create course" class="btn btn-create">
-										<button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn1>Close</button>
+										<button type="button" class="btn btn-dark" data-dismiss="modal"
+											#closeBtn1>Close</button>
 									</div>
 
 								</form>
@@ -142,23 +143,27 @@
 				<div class="row">
 
 					<div *ngIf="(!(courses)?.length)&& !showOverlay" style="margin:0px auto; text-align:center;">
-							<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+						<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
 					</div>
 
 					<div *ngFor="let course of courses" class="col-md-12 col-lg-6 col-xl-4 mb-4">
 						<mat-card>
-							<img mat-card-image src="assets\coursepic.png" alt="Photo of a course">
-						
-						
+							<img class="img" *ngIf="course.course_picture == null" mat-card-image
+								src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+							<img class="img" *ngIf="course.course_picture != null" mat-card-image [src]="course.course_picture.fileDownloadUri">
+
+
 							<mat-card-title style="color:orange;">
 								{{course.title}}
 							</mat-card-title>
-						
+
 							<mat-card-content>
 								<mat-card-subtitle>
-									<strong>Description:</strong>	{{course.description|slice:0:100}}<strong *ngIf="course.description.length >= 230">..................</strong>
+									<strong>Description:</strong> {{course.description|slice:0:100}}<strong
+										*ngIf="course.description.length >= 230">..................</strong>
 								</mat-card-subtitle>
-								<button mat-stroked-button routerLink="../coursedashboard/{{course.courseId}}" class="cssv"> Edit
+								<button mat-stroked-button routerLink="../coursedashboard/{{course.courseId}}"
+									class="cssv"> Edit
 									course</button>
 							</mat-card-content>
 						</mat-card>
@@ -204,7 +209,8 @@
 									<div class="modal-footer">
 										<!-- <button type="submit" value="Create Classroom" class="btn btn-create"> -->
 										<button type="submit" class="btn btn-create">Create Classroom</button>
-										<button type="button" class="btn btn-dark" data-dismiss="modal" #closeBtn2>Close</button>
+										<button type="button" class="btn btn-dark" data-dismiss="modal"
+											#closeBtn2>Close</button>
 									</div>
 								</form>
 
@@ -217,25 +223,28 @@
 				<div class="row">
 
 					<div *ngIf="(!(classrooms)?.length)&& !showOverlay" style="margin:0px auto; text-align:center;">
-							<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
+						<img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
 					</div>
 
 					<div *ngFor="let classroom of classrooms" class="col-md-12 col-lg-6 col-xl-4">
 						<mat-card>
-							<img mat-card-image src="assets\coursepic.png" alt="Photo of a Classroom">
-						
-						
+							<img class="img" *ngIf="classroom.classroom_picture == null" mat-card-image
+								src="https://www.wolfestone.co.uk/wp-content/uploads/2018/01/eLearning-1024x568.png">
+							<img class="img" *ngIf="classroom.classroom_picture != null" mat-card-image
+								[src]="classroom.classroom_picture.fileDownloadUri">
+
 							<mat-card-title style="color:orange;">
 								{{classroom.classroomName}}
 							</mat-card-title>
-						
+
 							<mat-card-content>
-								
-								<button mat-stroked-button routerLink="../classroomdashboard/{{classroom.classroomId}}" class="cssv">Enter
+
+								<button mat-stroked-button routerLink="../classroomdashboard/{{classroom.classroomId}}"
+									class="cssv">Enter
 									ClassRoom</button>
 							</mat-card-content>
 						</mat-card>
-						
+
 					</div>
 
 				</div>

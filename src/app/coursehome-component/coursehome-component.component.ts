@@ -93,9 +93,13 @@ export class CoursehomeComponentComponent implements OnInit {
     this.userService.enrollIntoCourse(this.token,course)
     .then(course =>{});
     // this.rout.navigate(['/myCourses']);
-    this._snackBar.open('You are enrolled in Course ' +course.title , '', {
-      duration: 3000, panelClass: ['custom-snackbar']
-    });
+    
+    setTimeout(() => {
+      this.getCourseById();
+      this._snackBar.open('You are enrolled in Course ' + course.title, '', {
+        duration: 3000, panelClass: ['custom-snackbar']
+      });
+    }, 500);
 
   }
   saveCourse(course:Course){

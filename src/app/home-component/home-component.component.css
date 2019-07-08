@@ -48,7 +48,11 @@ width: 11%;
 margin-top: 2%;
 /* background-color:gray; */
 }
-
+img{
+  height: 200px;
+  display: block;
+  overflow: hidden;
+}
 /*
 .carousel-control-prev-icon,
 .carousel-control-next-icon {

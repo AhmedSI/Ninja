@@ -26,3 +26,6 @@
 .play-button:hover{
     background-color: orange;
 }
+.img{
+    height: 150px;
+}

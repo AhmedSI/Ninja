@@ -59,7 +59,7 @@ export class ChildprofileComponent implements OnInit {
   	});
   }
 
-  // getCourseById(){
+  getCourseById(){
 
-  // }
+  }
 }
