@@ -53,7 +53,7 @@
               </div>
               </div>
 
-              <div *ngIf="!(enrolledClassroom)?.length" style="margin:0px auto; text-align:center;">
+              <div *ngIf="!(enrolledClassroom.length)" style="margin:0px auto; text-align:center;">
                   <img src="https://cdn.dribbble.com/users/888330/screenshots/2653750/empty_data_set.png" alt="">
               </div>
               <div *ngFor = "let classroom of enrolledClassroom" class="col-md-12 col-lg-6 col-xl-4">

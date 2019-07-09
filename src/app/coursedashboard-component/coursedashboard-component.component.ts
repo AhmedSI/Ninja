@@ -123,11 +123,11 @@ export class CoursedashboardComponentComponent implements OnInit {
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
-  setUploadFileOrVidoe(n:number){
-    if(n==1){
+  setUploadFileOrVidoe(n:string){
+    if(n =='1'){
       this.fileOrVidoe = "vidoe";
     }
-    else if(n==2){
+    else if(n =='2'){
       this.fileOrVidoe = "file";
     }
     else{

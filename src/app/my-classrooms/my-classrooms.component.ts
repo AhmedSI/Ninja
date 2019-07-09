@@ -16,7 +16,7 @@ export class MyClassroomsComponent implements OnInit {
   @ViewChild('closeBtn1') closeBtn1: ElementRef;
   token: string = "initial";
   toBeJoinedClassroom:Classroom= new Classroom();
-  enrolledClassroom:Classroom;
+  enrolledClassroom:Classroom[];
   classroom:Classroom=new Classroom();
   model: any = {};
 

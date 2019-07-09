@@ -43,7 +43,7 @@
 
           <!-- <mat-card-actions *ngIf="!course.role == '' "> -->
 
-              <button *ngIf="!course.role == '' " mat-stroked-button disabled style="margin-right:5%;"
+              <button *ngIf="course.role != '' " mat-stroked-button disabled style="margin-right:5%;"
               (click)="enroll(course)">Enrolled</button>
 
           <!-- </mat-card-actions> -->

@@ -180,10 +180,10 @@ export class UserServiceService {
       .then(response => response.text() as string);
   }
 
-  getEnrolledCourses(token:string):Promise<Course>{
+  getEnrolledCourses(token:string):Promise<Course[]>{
     return this.http.get(this.baseUrl + '/student/courses?token='+token)
     .toPromise()
-    .then(response => response.json() as Course);
+    .then(response => response.json() as Course[]);
 
   }
 
@@ -206,10 +206,10 @@ export class UserServiceService {
       .then(response => response.text() as string);
   }
 
-  getEnrolledClassroom(token:string):Promise<Classroom>{
+  getEnrolledClassroom(token:string):Promise<Classroom[]>{
     return this.http.get(this.baseUrl + '/student/classrooms?token='+token)
     .toPromise()
-    .then(response => response.json() as Classroom);
+    .then(response => response.json() as Classroom[]);
   }
 
   pushFileToStorage(file:File,token:string):Promise<String>{

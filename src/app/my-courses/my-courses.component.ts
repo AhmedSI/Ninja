@@ -11,7 +11,7 @@ import { Course } from '../Course';
 export class MyCoursesComponent implements OnInit {
 
   token:string = "initial";
-  enrolledCourses:Course;
+  enrolledCourses:Course[];
   course:Course=new Course();
 
   constructor(
@@ -25,7 +25,10 @@ export class MyCoursesComponent implements OnInit {
   }
   getEnrolledCourses(){
     this.userService.getEnrolledCourses(this.token)
-    .then(courses =>{this.enrolledCourses=courses;});
+    .then(courses =>{
+      this.enrolledCourses=courses;
+      console.log(courses);
+    });
 
   }
 
