@@ -2,6 +2,9 @@
 <p style="margin-top: 8%;margin-left: 42%;font-size: 150%;">
   you got : <strong>{{quiz.studentMark}}</strong>  in this quiz
 </p>
+<p style="margin-left: 48%;font-size: 150%;">
+  out of : <strong>{{quiz.retrievedQuizTotalMark}}</strong>
+</p>
 <hr>
 <div *ngIf='quiz.notes != "" '  class="ml-2">
   <p style="font-size: 130%;">
@@ -15,5 +18,10 @@
     <strong>Here is a note for it:</strong>
     {{wrongQuestion.message}}
   </div>
+</div>
+<div *ngIf='quiz.notes == "" '  style="margin-left: 35%;margin-bottom:5%;">
+<p style="color: green;font-size: 150%;">
+  Wow!! you Answer all question Correct.
+</p>
 </div>
 <app-footer-component></app-footer-component>

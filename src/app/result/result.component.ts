@@ -47,6 +47,7 @@ export class ResultComponent implements OnInit {
 		this.userService.getQuizscore(this.token, +this.router.snapshot.paramMap.get("id")).then(quiz => {
 			this.quiz = quiz;
 			this.wrongQuestion = this.quiz.notes.split(",");
+			console.log(this.quiz);
 			this.getWrongQuestion();
 		})
 	  }
