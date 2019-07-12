@@ -91,3 +91,6 @@ background-color: orange;
 .tab-content{
   padding-top: 20px;
 }
+.nav-tabs .nav-item .nav-link:not(.active){
+  color: #f7882f;
+}
